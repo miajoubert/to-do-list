@@ -1,16 +1,14 @@
-# Petsy
+# Todolist
 
-Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where users can buy and sell pet products as well as leave ratings/reviews of their items.
+Inspired by Todoist, Todolist is an task-list platform on which users can create to-do lists with tasks.
 
 # Index
 
-- [Live Site](https://petsy-store.herokuapp.com/)
-- [Feature List](https://github.com/miajoubert/petsy/wiki/Feature-List)
-- [Database Schema](https://github.com/miajoubert/petsy/wiki/Database-Schema)
-- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Frontend-Routes)
-- [API Documentation](https://github.com/miajoubert/petsy/wiki/API-Routes)
-- [User Stories](https://github.com/miajoubert/petsy/wiki/User-Stories)
-- [Redux State](https://github.com/miajoubert/petsy/wiki/Redux-State)
+- [Live Site](https://todolist-appclone.herokuapp.com/)
+- [Feature List](https://github.com/miajoubert/to-do-list/wiki/Features)
+- [Database Schema](https://github.com/miajoubert/to-do-list/wiki/Database-Schema)
+- [User Stories](https://github.com/miajoubert/to-do-list/wiki/User-Stories)
+- [Wireframes](https://github.com/miajoubert/to-do-list/wiki/Wireframes)
 
 # Technologies Used
 
@@ -20,7 +18,7 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 
 1. Clone this repository
 
-   ```git@github.com/miajoubert/petsy.git```
+   ```git@github.com/miajoubert/to-do-list.git```
 
 2. CD into the /app directory and install dependencies
 
@@ -56,22 +54,22 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 # Features
 
 ## Splash Page 
-![Splash-Page](https://user-images.githubusercontent.com/87781597/158024746-4325799d-e31a-4530-934e-f42154416e54.png)
+![Splash-Page]()
 
 
 
 ## Login Page
-![Login-Page](https://user-images.githubusercontent.com/87781597/158024845-76569883-5566-4e39-bd5f-c2a08af283b7.png)
+![Login-Page]()
 
 
 
 ## Shopping Cart 
+![Login-Page]()
 
-```Shopping Cart Image To Be Updated```
 
 ## Product Detail Page 
-![Product-Detail](https://user-images.githubusercontent.com/87781597/158024972-b931a0ca-da1c-467d-b656-6a47cb82e585.png)
+![Product-Detail]()
 
 
 ## 404 Page Not Found 
-![image](https://user-images.githubusercontent.com/87781597/158023261-a9b58781-45b6-47eb-a058-73bd005135f7.png)
+![image]()
