@@ -36,7 +36,8 @@
 }
 
 .screenshot-splash {
-
+  width: 100%;
+  background-image: "https://todoist.com/_next/static/images/header-bg@2x_d49daad6e384274c19f96f6aad65a615.webp";
 }
 
 .final-pic {

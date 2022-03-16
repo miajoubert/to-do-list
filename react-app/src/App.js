@@ -6,7 +6,6 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import SplashPage from './components/SplashPage.js';
-import Footer from './components/Footer';
 import { authenticate } from './store/session';
 import User from './components/User';
 
@@ -48,7 +47,6 @@ function App() {
           <User />
         </ProtectedRoute> */}
       </Switch>
-      <Footer />
     </BrowserRouter>
   );
 }

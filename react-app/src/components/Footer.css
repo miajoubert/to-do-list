@@ -17,40 +17,63 @@
   font-size: 16px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding: 36px 24px 24px 16px;
+  padding: 36px 144px 16px 72px;
+}
+
+.resources {
+  display: flex;
+  flex-direction: row;
+  margin-left: 40px;
+  padding: 0 72px 0 200px;
+}
+.column {
+  padding: 0 40px 0 40px;
+}
+.column-title {
+  font-size: smaller;
 }
 
 .footer-ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  line-height: 2.2;
 }
 
 .footer-links {
+  display: flex;
+  flex-direction: row;
   color: black;
   text-decoration: none;
+  font-family:
 }
 
 .footer-links:hover {
+  cursor: pointer;
   text-decoration: underline;
 }
 
 .footer-bottom {
   align-items: center;
-  background-color: #FFF9F3;;
+  background-color: #0000000D;
   color: black;
   display: flex;
   height: 50px;
-  /* justify-content: center; */
-  padding-left: 36px;
+  padding: 0 64px;
+}
+
+.fa-github::before,
+.fa-linkedin::before {
+  margin-right: 10px;
+  color: #E44232;
+}
+
+.github-footer {
+  text-decoration: none;
+  color: #E44232;
+  margin-right: 10px;
 }
 
 .footer-copyright {
   padding-left: 20px;
-}
-
-.fa-github
-.fa-linkedin {
-
 }
