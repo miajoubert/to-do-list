@@ -1,1 +1,13 @@
 /* TODO Add site wide styles */
+main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+body {
+  /* margin-top: 50px; */
+  font-family: 'Segoe UI','Helvetica Neue', sans-serif;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}

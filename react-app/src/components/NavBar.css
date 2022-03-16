@@ -1,0 +1,99 @@
+.nav-bar {
+  background-color: #DB4C3F ;
+  width: 100%vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 20px;
+  height: 43px;
+  padding: 0 42px;
+}
+
+.nav-bar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-bar-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-bar-item {
+  padding: 10px;
+}
+
+.search {
+  padding: 5px 10px;
+}
+.search-icon {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.search-input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #FFFFFF33;
+}
+
+.search-input:hover {
+  background-color: white;
+  color: darkgray
+}
+
+
+.nav-bar-splash-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 90px;
+}
+.nav-bar-splash-left {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 10px;
+  min-width: 150px;
+}
+.nav-bar-splash-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+  min-width: 150px;
+}
+.logo-home {
+  margin-top: 6px;
+}
+.site-name {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+}
+.splash-bar-name {
+  color: #E44232;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 90%;
+  font-size: 28px;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-top: 10px;
+  letter-spacing: -1px;
+}
+
+.splash-link {
+  text-decoration: none;
+  color: #575757;
+  font-size: 16px;
+}
