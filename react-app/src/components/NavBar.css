@@ -50,3 +50,50 @@
   background-color: white;
   color: darkgray
 }
+
+
+.nav-bar-splash-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 16px;
+}
+.nav-bar-splash-left {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 10px;
+  min-width: 150px;
+}
+.nav-bar-splash-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+  min-width: 150px;
+}
+.logo-home {
+  margin-top: 6px;
+}
+.site-name {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+}
+.splash-bar-name {
+  color: #E44232;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 90%;
+  font-size: 28px;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-top: 10px;
+  letter-spacing: -1px;
+}
+
+.splash-link {
+  text-decoration: none;
+  color: #575757;
+  font-size: 16px;
+}

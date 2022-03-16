@@ -1,0 +1,89 @@
+.splash-container {
+  position: relative;
+  bottom: -75px;
+  text-align: center;
+}
+
+.splash-main-text{
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 65px;
+  text-align: center;
+  justify-content: center;
+  line-height: 100%;
+  letter-spacing: -1px;;
+  padding-top: 45px;
+  margin: 0px 30vw;
+}
+
+.get-started {
+  background-color: #E44232;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  height: 44px;
+  width: 151px;
+  margin: 32px 0 0 0;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.splash-main-pic {
+  width: 100%;
+  min-width: 360px;
+  z-index: -1
+}
+
+.screenshot-splash {
+
+}
+
+.final-pic {
+  background-color: #FFF9F3;
+}
+
+@media screen and (max-width: 1150px) {
+  .splash-main-text {
+    margin: 0 25vw;
+  }
+}
+
+@media screen and (max-width: 932px) {
+  .splash-main-text {
+    margin: 0 20vw;
+  }
+}
+
+@media screen and (max-width: 751px) {
+  .splash-main-text {
+    margin: 0 15vw;
+  }
+}
+
+@media screen and (max-width: 632px) {
+  .splash-main-text {
+    margin: 0 10vw;
+  }
+}
+
+@media screen and (max-width: 553px) {
+  .splash-main-text {
+    margin: 0 5vw;
+  }
+}
+
+@media screen and (max-width: 492px) {
+  .splash-main-text {
+    font-size: 40px;
+    margin: 0 13vw;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .splash-main-text {
+    font-size: 40px;
+    min-width: 303px;
+    margin: 0 30px
+  }
+}
