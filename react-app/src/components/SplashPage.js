@@ -20,14 +20,13 @@ const SplashPage = () => {
           width="100%"
           src="https://todoist.com/_next/static/images/header@2x_b52d8f7c7bf19d6c702569d1072ed6a2.webp"
         />
-        <div className="screenshot-splash">
-          <img
-            width="100%"
-            src="https://todoist.com/_next/static/images/screenshot@2x_44c1cf78bc12457546d889573e04345a.webp"
-          />
-        </div>
-        <div className="final-pic">
-        </div>
+      </div>
+      <div className="screenshot-splash">
+        <img
+          className="final-pic"
+          width="100%"
+          src="https://todoist.com/_next/static/images/screenshot@2x_44c1cf78bc12457546d889573e04345a.webp"
+        />
       </div>
       <Footer />
     </>

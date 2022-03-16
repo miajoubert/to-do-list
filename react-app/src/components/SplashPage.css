@@ -1,17 +1,16 @@
 .splash-container {
   position: relative;
-  bottom: -75px;
+  bottom: -100px;
   text-align: center;
 }
 
 .splash-main-text{
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 65px;
+  font-size: 68px;
   text-align: center;
   justify-content: center;
   line-height: 100%;
   letter-spacing: -1px;;
-  padding-top: 45px;
   margin: 0px 30vw;
 }
 
@@ -30,7 +29,7 @@
 }
 
 .splash-main-pic {
-  width: 100%;
+  padding: 0 50px;
   min-width: 360px;
   z-index: -1
 }
@@ -41,7 +40,10 @@
 }
 
 .final-pic {
+  position: relative;
+  top: 7px;
   background-color: #FFF9F3;
+  z-index: -1;
 }
 
 @media screen and (max-width: 1150px) {
