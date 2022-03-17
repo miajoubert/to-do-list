@@ -14,7 +14,7 @@ const LogoutButton = () => {
     className='logout-button'
     onClick={onLogout}
   >
-    {sessionUser['username'].charAt(0)}
+    {sessionUser['username']?.charAt(0)}
   </button>;
 };
 

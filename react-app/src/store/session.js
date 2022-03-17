@@ -13,7 +13,7 @@ const removeUser = () => ({
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch('/auth', {
+  const response = await fetch('/api/auth', {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -24,6 +24,7 @@ export const authenticate = () => async (dispatch) => {
     const data = await response.json();
     console.log("THIS IS MY USER DATA FOR AUTH", data)
     if (data.errors) {
+      console.log("RETURNING d/t errors")
       return;
     }
     dispatch(setUser(data));
@@ -31,7 +32,7 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (email, password) => async (dispatch) => {
-  const response = await fetch('/auth/login', {
+  const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/auth/logout', {
+  const response = await fetch('/api/auth/logout', {
     headers: {
       'Content-Type': 'application/json',
     }
@@ -71,7 +72,7 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (email) => async (dispatch) => {
-  const response = await fetch('/auth/register', {
+  const response = await fetch('/api/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ export const signUp = (email) => async (dispatch) => {
 }
 
 export const signUp2 = (email, username, password) => async (dispatch) => {
-  const response = await fetch('/auth/register/step_two', {
+  const response = await fetch('/api/auth/register/step_two', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
