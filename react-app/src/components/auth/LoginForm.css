@@ -27,10 +27,11 @@
   border-radius: 8px;
 }
 
-.form-left {
+.login-form-left {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  margin-bottom: 20px;
   min-width: 150px;
 }
 .form-logo {
@@ -60,6 +61,15 @@
 
 .login-title {
   font-size: 26px
+}
+
+.login-error-div {
+  color: #DD4B39;
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+.fa-exclamation-circle {
+  margin-right: 5px;
 }
 
 .input-div {

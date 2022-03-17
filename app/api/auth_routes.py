@@ -1,3 +1,4 @@
+from http.client import OK
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -13,11 +14,13 @@ def validation_errors_to_error_messages(validation_errors):
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages.append(f'{error}')
+            # errorMessages.append('THIS IS MY MESSAGE')
     return errorMessages
 
 
-@auth_routes.route('/auth')
+@auth_routes.route('/')
 def authenticate():
+    print("current user ------", current_user.is_authenticated)
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
@@ -30,6 +33,8 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
+        if current_user.is_authenticated:
+            print("THIS ONE IS AUTHED!!!!!!!!!!!!!!!!!!!!!!!!")
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -39,25 +44,26 @@ def logout():
     logout_user()
     return {'message': 'User logged out'}
 
+
 @auth_routes.route('/register', methods=['POST'])
 def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        email = User.query.filter(User.email == form.data['email']).first()
-        print(email)
-        if not email:
-            return email.to_dict()
+        return form.data
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @auth_routes.route('/register/step_two', methods=['POST'])
 def sign_up_step_two():
     form = SignUpFormTwo()
+    body = request.get_json()
+    my_email = body['email']
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         user = User(
+            email=my_email,
             username=form.data['username'],
-            email=form.data['email'],
             password=form.data['password']
         )
         db.session.add(user)
@@ -69,7 +75,5 @@ def sign_up_step_two():
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
-    """
-    Returns unauthorized JSON when flask-login authentication fails
-    """
+    """Unauth JSON when flask-login auth fails"""
     return {'errors': ['Unauthorized']}, 401

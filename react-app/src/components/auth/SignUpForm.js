@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignupForm.css'
 
 const SignUpForm = () => {
+  const userEmail = localStorage.user
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(userEmail);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -16,6 +18,8 @@ const SignUpForm = () => {
     const data = await dispatch(signUp(email));
     if (data) {
       setErrors(data)
+    } else {
+      history.push("/register/step_two")
     }
   };
 
@@ -45,12 +49,15 @@ const SignUpForm = () => {
         >
           <h1 className='signup-title'>Sign up</h1>
           <div className='signup-div'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div className='signup-div'>
             <label>Email</label>
+            <div className='signup-error-div'>
+              {errors.map((error, ind) => (
+                <div key={ind}>
+                  <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                  {error}
+                </div>
+              ))}
+            </div>
             <input
               className='signup-input'
               type='text'

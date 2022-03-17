@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { Redirect, useHistory } from 'react-router-dom';
+import { signUp2 } from '../../store/session';
 import './SignupForm2.css'
 
 const SignUpForm2 = () => {
@@ -9,14 +9,33 @@ const SignUpForm2 = () => {
   const email = localStorage['user'];
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    let data = [];
+    if (password === "Password" || password === "Password") {
+      data = [`Password cannot be "${password}".`]
+      setErrors(data)
+    }
+    if (password.length < 8) {
+      data = [...data, "Password must be at least 8 characters."]
+      setErrors(data)
+    }
+    if (password != confirm_password) {
+      data = [...data, "Passwords must match."]
+      setErrors(data)
+    } else {
+      console.log("GOT INTO MY FINAL STATEMENT!!!!!!!!!!!!")
+      data = await dispatch(signUp2(
+        email,
+        username,
+        password
+      ));
+      console.log("THE DATA IS _____________________", data)
       if (data) {
         setErrors(data)
       }
@@ -31,8 +50,8 @@ const SignUpForm2 = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   if (user) {
@@ -55,8 +74,8 @@ const SignUpForm2 = () => {
           </a>
         </div>
         <div className='back-to-previous'>
-          <a>
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          <a href="/register">
+            <i className="fa fa-chevron-left" aria-hidden="true"></i>
             {email}
           </a>
         </div>
@@ -65,9 +84,12 @@ const SignUpForm2 = () => {
           onSubmit={onSignUp}
         >
           <h1 className='signup-title'>Almost there</h1>
-          <div className='signup-div'>
+          <div className='signup-error-div'>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {error}
+              </div>
             ))}
           </div>
           <div className='signup-div'>
@@ -96,8 +118,8 @@ const SignUpForm2 = () => {
               className='signup-input'
               type='password'
               name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
+              onChange={updateConfirmPassword}
+              value={confirm_password}
               required={true}
             ></input>
           </div>
@@ -123,7 +145,7 @@ const SignUpForm2 = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div >
     </div >
   );
 };

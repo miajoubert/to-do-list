@@ -61,6 +61,15 @@
   font-size: 26px
 }
 
+.signup-error-div {
+  color: #DD4B39;
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+.fa-exclamation-circle {
+  margin-right: 5px;
+}
+
 .signup-div {
   display: flex;
   flex-direction: column;
