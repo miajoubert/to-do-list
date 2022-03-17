@@ -1,4 +1,4 @@
-.login-page-container {
+.signup2-page-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -8,30 +8,29 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110vh;
+  height: 125vh;
   width: 98vw;
+  box-sizing: border-box;
   z-index: 1;
 }
 
-.login-form-div {
+.signup2-form-div {
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 50px 0px 50px 0;
+  justify-content: flex-start;
+  margin: 50px 0px;
   padding: 25px;
-  box-sizing: border-box;
-  width: 452px;
-
+  width: 400px;
+  height: 570px;
   border: solid 1px rgba(128, 128, 128, 0.3);
   border-radius: 8px;
 }
 
-.login-form-left {
+.form-left {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 0;
   min-width: 150px;
 }
 .form-logo {
@@ -55,15 +54,31 @@
   letter-spacing: -1px;
 }
 
-.login-form {
+.back-to-previous {
+  color: #333333;
+  font-size: 13px;
+  margin: 20px 0px 0px 0px;
+  cursor: pointer;
+
+}
+.back-to-previous > a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #333333;
+}
+.back-to-previous > a > i{
+  margin: 0 5px;
+}
+
+.signup2-form {
   color: #333333;
 }
 
-.login-title {
+.signup-title {
   font-size: 26px
 }
 
-.login-error-div {
+.signup-error-div {
   color: #DD4B39;
   font-size: 13px;
   margin: 0 0 10px 0;
@@ -72,19 +87,19 @@
   margin-right: 5px;
 }
 
-.input-div {
+.signup-div {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-.input-div > label {
+.signup-div > label {
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.login-input {
+.signup-input {
   background-color: #FFFFFF;
   border: solid 1px rgba(128, 128, 128, 0.3);
   border-radius: 3px;
@@ -92,11 +107,17 @@
   box-sizing: border-box;
   width: 400px;
 }
-.login-input:target {
+.signup-input:target {
   background-color: #FFFFFF;
 }
 
-.login-button {
+.form-password-text {
+  color: #666666;
+  font-size: 13px;
+  margin: 10px 0px;
+}
+
+.signup2-button {
   background-color: #E44232;
   color: #FFFFFF;
   font-size: 13px;
@@ -109,19 +130,14 @@
   cursor: pointer;
 }
 
-.form-add-links-logged {
+.form-add-text {
   color: #666666;
   font-size: 13px;
   margin: 25px 0px 15px
 }
-.form-add-links-pass {
-  color: #666666;
-  font-size: 13px;
-  margin: 0 0px 15px
-}
 
-.form-bottom-section {
-  padding: 10px 0 20px 0;
+.form2-bottom-section {
+  padding: 0 0 20px 0;
 }
 
 .form-hr {
@@ -134,7 +150,7 @@
   font-size: 13px;
 }
 
-.login-register-link {
+.signup-login-link {
   margin-left: 5px;
   text-decoration: none;
   color: #DD4B39

@@ -1,47 +1,31 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignupForm.css'
 
 const SignUpForm = () => {
+  const userEmail = localStorage.user
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [email, setEmail] = useState(userEmail);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    localStorage.setItem('user', email)
+    const data = await dispatch(signUp(email));
+    if (data) {
+      setErrors(data)
+    } else {
+      history.push("/register/step_two")
     }
-  };
-
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
   };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  if (user) {
-    return <Redirect to='/app' />;
-  }
 
   return (
     <div className='signup-page-container'>
@@ -65,22 +49,15 @@ const SignUpForm = () => {
         >
           <h1 className='signup-title'>Sign up</h1>
           <div className='signup-div'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div className='signup-div'>
-            <label>User Name</label>
-            <input
-              className='signup-input'
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-            ></input>
-          </div>
-          <div className='signup-div'>
             <label>Email</label>
+            <div className='signup-error-div'>
+              {errors.map((error, ind) => (
+                <div key={ind}>
+                  <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                  {error}
+                </div>
+              ))}
+            </div>
             <input
               className='signup-input'
               type='text'
@@ -89,35 +66,17 @@ const SignUpForm = () => {
               value={email}
             ></input>
           </div>
-          <div className='signup-div'>
-            <label>Password</label>
-            <input
-              className='signup-input'
-              type='password'
-              name='password'
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div className='signup-div'>
-            <label>Repeat Password</label>
-            <input
-              className='signup-input'
-              type='password'
-              name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
           <button
             className='signup-button'
             type='submit'
           >
             Sign up with Email
           </button>
+          <div className='su-form-add-text'>
+            By continuing, you agree to Todolist's Terms of Service and Privacy Policy, which do not exist.
+          </div>
         </form>
-        <div className='form-bottom-section'>
+        <div className='su-form-bottom-section'>
           <hr className='form-hr' />
           <div className='form-switch-div'>Already signed up?
             <a

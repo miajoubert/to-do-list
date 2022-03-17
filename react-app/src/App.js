@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import SplashPage from './components/SplashPage.js';
 import { authenticate } from './store/session';
-import User from './components/User';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,14 +34,20 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+        <Route path='/logout' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/register/step_two' exact={true}>
+          <SignUpForm2 />
+        </Route>
         <ProtectedRoute path='/app' exact={true}>
-          <SignUpForm />
+          <NavBar />
         </ProtectedRoute>
         <ProtectedRoute path='/projects' exact={true}>
-          <SignUpForm />
+          <NavBar />
         </ProtectedRoute>
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

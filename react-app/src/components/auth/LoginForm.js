@@ -16,7 +16,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors([data[0]]);
     }
   };
 
@@ -35,7 +35,7 @@ const LoginForm = () => {
   return (
     <div className='login-page-container'>
       <div className='login-form-div'>
-        <div className='form-left'>
+        <div className='login-form-left'>
           <a
             href="/"
             className='site-name'>
@@ -52,9 +52,12 @@ const LoginForm = () => {
           onSubmit={onLogin}
         >
           <h1 className='login-title'>Log in</h1>
-          <div className='input-div'>
+          <div className='login-error-div'>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {error}
+              </div>
             ))}
           </div>
           <div className='input-div'>

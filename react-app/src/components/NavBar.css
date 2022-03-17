@@ -51,6 +51,16 @@
   color: darkgray
 }
 
+.nav-bar-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.logout-div {
+  margin-top: 10px;
+  padding: 10px;
+}
+
 
 .nav-bar-splash-container {
   display: flex;
@@ -70,7 +80,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 16px;
+  padding: 16px 0;
   min-width: 150px;
 }
 .logo-home {
@@ -92,8 +102,22 @@
   letter-spacing: -1px;
 }
 
+.splash-bar-item {
+  text-align: center;
+}
+
 .splash-link {
   text-decoration: none;
   color: #575757;
   font-size: 16px;
+  width: 88px;
+  height: 80px;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  margin-top: 16px;
+}
+
+.splash-link:hover {
+  background-color: #FAFAFA;
+  border-bottom: solid 2px #E44232;
 }
