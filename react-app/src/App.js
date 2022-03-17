@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import SplashPage from './components/SplashPage.js';
+import NavBar from './components/NavBar';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import SignUpForm2 from './components/auth/SignupForm2';
-import NavBar from './components/NavBar';
-import SplashPage from './components/SplashPage.js';
 import { authenticate } from './store/session';
 
 function App() {

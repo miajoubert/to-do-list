@@ -28,13 +28,12 @@ const SignUpForm2 = () => {
       data = [...data, "Passwords must match."]
       setErrors(data)
     } else {
-      console.log("GOT INTO MY FINAL STATEMENT!!!!!!!!!!!!")
       data = await dispatch(signUp2(
         email,
         username,
         password
       ));
-      console.log("THE DATA IS _____________________", data)
+
       if (data) {
         setErrors(data)
       }

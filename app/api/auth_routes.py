@@ -19,7 +19,6 @@ def validation_errors_to_error_messages(validation_errors):
 
 @auth_routes.route('/')
 def authenticate():
-    print("current user ------", current_user.is_authenticated)
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
@@ -32,8 +31,6 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        if current_user.is_authenticated:
-            print("THIS ONE IS AUTHED!!!!!!!!!!!!!!!!!!!!!!!!")
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
