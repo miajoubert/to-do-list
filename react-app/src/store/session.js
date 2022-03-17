@@ -29,7 +29,7 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (email, password) => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
+  const response = await fetch('/api/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/auth/logout', {
+  const response = await fetch('/api/logout', {
     headers: {
       'Content-Type': 'application/json',
     }
@@ -68,9 +68,33 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-
 export const signUp = (username, email, password) => async (dispatch) => {
-  const response = await fetch('/api/auth/register', {
+  const response = await fetch('/api/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(signUp2(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
+  }
+}
+
+export const signUp2 = (username, email, password) => async (dispatch) => {
+  const response = await fetch('/api/register/step_two', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -92,7 +116,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ['A server error occurred. Please try again.']
   }
 }
 
