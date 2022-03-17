@@ -12,7 +12,6 @@ const SignUpForm2 = () => {
   const [confirm_password, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory()
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ const SignUpForm2 = () => {
       data = [...data, "Password must be at least 8 characters."]
       setErrors(data)
     }
-    if (password != confirm_password) {
+    if (password !== confirm_password) {
       data = [...data, "Passwords must match."]
       setErrors(data)
     } else {
