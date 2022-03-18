@@ -16,15 +16,13 @@ const SignUpForm2 = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     let data = [];
-    if (password === "Password" || password === "Password") {
-      data = [`Password cannot be "${password}".`]
-      setErrors(data)
-    }
     if (password.length < 8) {
       data = [...data, "Password must be at least 8 characters."]
       setErrors(data)
-    }
-    if (password !== confirm_password) {
+    } else if (password === "Password" || password === "password") {
+      data = [`Password cannot be "${password}".`]
+      setErrors(data)
+    } else if (password !== confirm_password) {
       data = [...data, "Passwords must match."]
       setErrors(data)
     } else {

@@ -1,14 +1,17 @@
 import React from "react";
-import "./ProjectSidebar.css"
+import { useSelector } from "react-redux";
+import "./ProjectsSidebar.css"
 
-const ProjectSidebar = () => {
+const ProjectSidebar = ({ openSideBar }) => {
+  const projectsState = useSelector(state => state.projects)
 
 
   return (
     <>
-      <div>PROJECTS</div>
+      <div
+        className="side-bar-container">PROJECT LIST SIDEBAR</div>
     </>
   );
 }
 
-export default Footer;
+export default ProjectSidebar;

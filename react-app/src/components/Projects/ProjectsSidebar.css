@@ -1,0 +1,11 @@
+.side-bar-container {
+  background-color: #FAFAFA;
+  position: fixed;
+  top: 43px;
+  bottom: 0px;
+  left: 0px;
+  width: 292px;
+  padding-top: 30px;
+  padding-left: 35px;
+  box-shadow: 3px 3px 3px 1px lightgray;
+}

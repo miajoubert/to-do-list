@@ -27,6 +27,10 @@ const SignUpForm = () => {
     setEmail(e.target.value);
   };
 
+  if (user) {
+    return <Redirect to='/app' />;
+  }
+
   return (
     <div className='signup-page-container'>
       <div className='signup-form-div'>
