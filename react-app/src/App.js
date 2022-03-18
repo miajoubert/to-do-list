@@ -10,6 +10,7 @@ import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import MainApp from './components/MainApp';
 import { authenticate } from './store/session';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +51,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/projects' exact={true}>
           <NavBar />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search' exact={true}>
+          <SearchResults />
         </ProtectedRoute>
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

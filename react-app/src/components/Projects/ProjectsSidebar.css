@@ -3,10 +3,9 @@
   position: fixed;
   top: 43px;
   bottom: 0px;
-  left: 0;
+  left: 0px;
   width: 292px;
   padding-top: 30px;
   padding-left: 35px;
-  z-index: 1;
   box-shadow: 3px 3px 3px 1px lightgray;
 }

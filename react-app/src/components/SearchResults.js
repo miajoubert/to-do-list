@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import MainNav from './MainNav';
 import ProjectSidebar from './Projects/ProjectsSidebar';
 
-import './MainApp.css'
+import './SearchResults.css'
 
-const MainApp = () => {
+const SearchResults = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [openSideBar, setOpenSideBar] = useState(false)
 
@@ -38,15 +38,15 @@ const MainApp = () => {
               style={openSideBar ? { transform: 'translateX(-328px)' } : {}}
             >
               <ProjectSidebar
-                openSideBar={() => setOpenSideBar(!openSideBar)} />
+                hideSideBar={() => setOpenSideBar(!openSideBar)} />
             </div>
           </div>
 
           <div
             className='bottom-right'
           >
-            <div className=''>MAIN APP</div>
-            <div className=''> MORE STUFF</div>
+            <div className=''>SEARCH RESULTS</div>
+            <div className=''> and STUFF</div>
           </div>
         </div>
       </div>
@@ -54,4 +54,4 @@ const MainApp = () => {
   );
 }
 
-export default MainApp;
+export default SearchResults;
