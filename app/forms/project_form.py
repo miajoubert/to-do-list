@@ -3,4 +3,4 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 
 class ProjectForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()] )
+    title = StringField('title', validators=[DataRequired()])

@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Project, db
-from app.forms import ProjectForm
+from app.models import Task, db
+from app.forms import TaskForm
 from datetime import datetime
 
-project_routes = Blueprint('projects', __name__)
+task_routes = Blueprint('tasks', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
   errorMessages = []
@@ -14,43 +14,46 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@project_routes.route('/')
-def get_project():
-  projects = Project.query.all()
-  return {"projects": [project.to_dict() for project in projects]}
+@task_routes.route('/')
+def get_task():
+  tasks = Task.query.all()
+  return {"tasks": [task.to_dict() for task in tasks]}
 
 
-@project_routes.route("/<int:id>")
-def get_project_by_id(id):
-  project = Project.query.get(id)
-  return project.to_dict()
+@task_routes.route("/<int:id>")
+def get_task_by_id(id):
+  task = Task.query.get(id)
+  return task.to_dict()
 
 
-@project_routes.route('/add', methods=['POST'])
-def add_project():
-  form = ProjectForm()
+@task_routes.route('/add', methods=['POST'])
+def add_task():
+  form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    project = Project(
-      user_id=current_user.id,
-      title=form.data['title'],
+    task = Task(
+      project_id=form.data['project_id'],
+      task=form.data['task'],
+      description = form.data['description'],
       created_at = datetime.now(),
       updated_at = datetime.now(),
     )
-    db.session.add(project)
+    db.session.add(task)
     db.session.commit()
-    return project.to_dict()
+    return task.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@project_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_project():
-  form = ProjectForm()
+@task_routes.route('/<int:id>/edit/', methods=['PATCH'])
+def edit_task():
+  form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    edit = Project.query.get(id)
+    edit = Task.query.get(id)
 
-    edit.title=form.data['title'],
+    edit.project_id=form.data['project_id']
+    edit.task=form.data['task'],
+    edit.description = form.data['description'],
     edit.updated_at = datetime.now()
 
     db.session.add(edit)
@@ -59,9 +62,9 @@ def edit_project():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@project_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_project():
-  delete = Project.query.get(id)
+@task_routes.route('/<int:id>/delete', methods=['DELETE'])
+def delete_task():
+  delete = Task.query.get(id)
   db.session.delete(delete)
   db.session.commit()
   return {'Response': 'Deleted'}
