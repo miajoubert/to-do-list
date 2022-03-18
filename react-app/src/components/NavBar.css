@@ -28,7 +28,22 @@
 }
 
 .nav-bar-item {
-  padding: 10px;
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 15px;
+}
+
+.burger-menu {
+  padding: 3px;
+}
+.burger-menu:hover {
+  background-color: #FFFFFF33;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.sidebar {
+  transition: all 0.2s linear;
 }
 
 .search {
@@ -42,6 +57,7 @@
 }
 .search-icon:hover {
   color: #333333;
+  cursor: default;
 }
 
 .search-input {

@@ -1,14 +1,16 @@
 import React from "react";
-import "./ProjectSidebar.css"
+import "./ProjectsSidebar.css"
 
-const ProjectSidebar = () => {
+const ProjectSidebar = ({ hideSideBar }) => {
 
 
   return (
     <>
-      <div>PROJECTS</div>
+      <div
+        hidden={hideSideBar}
+        className="side-bar-container">PROJECT LIST SIDEBAR</div>
     </>
   );
 }
 
-export default Footer;
+export default ProjectSidebar;

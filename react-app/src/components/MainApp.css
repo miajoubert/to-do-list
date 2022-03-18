@@ -1,0 +1,14 @@
+.main-app-container {
+  position: absolute;
+  top: 43px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+}
+
+.app-body {
+  padding: 30px 50px;
+}
