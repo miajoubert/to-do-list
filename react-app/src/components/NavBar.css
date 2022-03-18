@@ -38,17 +38,28 @@
   position: absolute;
   margin-left: 5px;
   margin-top: 5px;
+  cursor: pointer;
 }
+.search-icon:hover {
+  color: #333333;
+}
+
 .search-input {
   border: none;
   border-radius: 5px;
   height: 30px;
   background-color: #FFFFFF33;
+  color: white;
+  padding-left: 30px;
+}
+
+.search-input::placeholder {
+  color: white;
 }
 
 .search-input:hover {
   background-color: white;
-  color: darkgray
+  color: #333333
 }
 
 .nav-bar-right {
