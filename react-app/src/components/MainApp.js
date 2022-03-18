@@ -17,7 +17,7 @@ const MainApp = () => {
           <MainNav />
           <div className='nav-bar-item-burger'>
             <svg
-              className='burger-menu-on-main'
+              className='burger-menu'
               onClick={() => setOpenSideBar(!openSideBar)}
               width="24"
               height="24"

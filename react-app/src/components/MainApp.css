@@ -1,6 +1,6 @@
 .main-app-container {
   background-color: #FFFFFF;
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -11,14 +11,14 @@
 
 .nav-bar-item-burger {
   position: relative;
-  top: 10px;
-  left: 15px;
+  top: 5px;
+  left: 49px;
+  color: white;
 }
 
 .burger-menu-on-main {
   color: white;
-  cursor: pointer;
-  /* z-index: 1; */
+
 }
 
 .main-bottom {

@@ -1,0 +1,15 @@
+.project-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-div {
+  margin-left: 40px
+}
+
+.proj-sb-button {
+  cursor: pointer;
+  color: black;
+  width: 20px;
+  height: 20px;
+}

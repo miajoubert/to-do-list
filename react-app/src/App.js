@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UserRoute from './components/auth/UserRoute';

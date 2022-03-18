@@ -9,3 +9,14 @@
   padding-left: 35px;
   box-shadow: 3px 3px 3px 1px lightgray;
 }
+
+.project-sb-title {
+  font-weight: bold;
+}
+
+.project-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+}

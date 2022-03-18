@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from flask_login import current_user, login_required
+from flask_login import current_user
 from app.models import Project, db
 from app.forms import ProjectForm
 from datetime import datetime
@@ -16,7 +16,9 @@ def validation_errors_to_error_messages(validation_errors):
 
 @project_routes.route('/')
 def get_project():
-  projects = Project.query.all()
+  print("i'm in my route-------------------------")
+  print("IS CURRENTLY AUTHED!!!!!!!!!", current_user.is_authenticated)
+  projects = Project.query.filter(Project.user_id == 1).all()
   return {"projects": [project.to_dict() for project in projects]}
 
 

@@ -29,14 +29,14 @@ const NavBar = () => {
           <div className='splash-bar-item'>
             <NavLink to='/login' exact={true}
               className="splash-link"
-              activeClassName='active'>
+            >
               Login
             </NavLink>
           </div>
           <div className='splash-bar-item'>
             <NavLink to='/register' exact={true}
               className="splash-link"
-              activeClassName='active'>
+            >
               Sign Up
             </NavLink>
           </div>
