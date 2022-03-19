@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@note_routes.route('/')
+@note_routes.route('')
 def get_note():
   notes = Note.query.all()
   return {"notes": [note.to_dict() for note in notes]}

@@ -137,5 +137,10 @@
 .login-register-link {
   margin-left: 5px;
   text-decoration: none;
-  color: #DD4B39
+  color: #DD4B39;
+  cursor: pointer;
+}
+
+.login-register-link:hover {
+  text-decoration: underline;
 }

@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@section_routes.route('/')
+@section_routes.route('')
 def get_section():
   sections = Section.query.all()
   return {"sections": [section.to_dict() for section in sections]}

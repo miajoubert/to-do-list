@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@auth_routes.route('/')
+@auth_routes.route('')
 def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
@@ -67,6 +67,10 @@ def sign_up_step_two():
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@auth_routes.route('/demo', methods=['POST'])
+def demo_login():
+    pass
 
 
 @auth_routes.route('/unauthorized')

@@ -20,6 +20,10 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async () => {
+    await dispatch(login('demo@aa.io', 'password'))
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -101,6 +105,15 @@ const LoginForm = () => {
             >
               Sign up
             </a>
+            <div>
+              Not ready to commit?
+              <a
+                onClick={demoLogin}
+                className='login-register-link'
+              >
+                Demo
+              </a>
+            </div>
           </div>
         </div>
       </div>

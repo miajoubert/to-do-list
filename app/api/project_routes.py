@@ -14,11 +14,11 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@project_routes.route('/')
+@project_routes.route('')
 def get_project():
   print("i'm in my route-------------------------")
-  print("IS CURRENTLY AUTHED!!!!!!!!!", current_user.is_authenticated)
-  projects = Project.query.filter(Project.user_id == 1).all()
+
+  projects = Project.query.filter(Project.user_id == current_user.id).all()
   return {"projects": [project.to_dict() for project in projects]}
 
 

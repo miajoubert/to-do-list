@@ -32,9 +32,7 @@ const deleteProject = (id) => ({
 
 
 export const getAllProjects = () => async (dispatch) => {
-  console.log("GOT INTO MY THUNK!!!!!")
   const res = await fetch('/projects')
-  console.log("GOT OUT OF FETCH, response========", res)
   if (res.ok) {
     const data = await res.json()
     dispatch(getProjects(data.projects))
