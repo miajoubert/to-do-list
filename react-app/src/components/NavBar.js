@@ -11,12 +11,7 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
 
   let sessionNav = null;
-  if (sessionUser) {
-    sessionNav = (
-      <MainApp />
-    )
-
-  } else if (!sessionUser) {
+  if (!sessionUser) {
     sessionNav = (
       <div className='nav-bar-splash-container'>
         <div className='nav-bar-splash-left'>

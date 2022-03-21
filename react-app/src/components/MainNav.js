@@ -70,7 +70,7 @@ const MainNav = () => {
           </div>
           <div className='nav-bar-right'>
             <div className='nav-bar-item'>
-              <NavLink to='/api/tasks/new' exact={true}
+              <NavLink to='/app/add' exact={true}
                 className="nav-link"
               >
                 <svg

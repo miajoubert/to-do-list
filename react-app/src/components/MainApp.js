@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import MainNav from './MainNav';
 import ProjectSidebar from './Projects/ProjectsSidebar';
-
+import { getAllTasks } from '../store/tasks';
 import './MainApp.css'
-import ProjectForm from './Projects/ProjectForm';
-import TaskList from './Tasks/TaskList';
 
 const MainApp = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
+  const tasksState = useSelector(state => state.tasks)
   const [openSideBar, setOpenSideBar] = useState(false)
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const tasks = Object.values(tasksState)
+  console.log("THESE ARE MY TASKS", tasks)
+
+  useEffect(() => {
+    dispatch(getAllTasks())
+  }, [dispatch])
+
+
+  const handleNewTask = () => {
+    history.push('/app/add')
+  }
+
 
   return (
     <>
@@ -47,9 +61,22 @@ const MainApp = () => {
           <div
             className='bottom-right'
           >
-            <Route to={`/app`} ><TaskList /></Route>
-
-            <div> MORE STUFF</div>
+            <div
+              onClick={handleNewTask}>
+              + Add task
+            </div>
+            <ul className="task-list">
+              {tasks?.map(task => {
+                return (
+                  <>
+                    <div>{task?.completed}</div>
+                    <div>{task?.task}</div>
+                    <div>{task?.description}</div>
+                    <div>BUTTONS</div>
+                  </>
+                )
+              })}
+            </ul>
           </div>
         </div>
       </div>

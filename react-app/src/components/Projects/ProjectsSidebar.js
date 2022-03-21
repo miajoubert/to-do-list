@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects, addAProject } from "../../store/projects";
+import { getAllProjects } from "../../store/projects";
 import ProjectForm from "./ProjectForm";
 import ProjectItem from "./ProjectItem";
 import "./ProjectsSidebar.css"
@@ -15,12 +15,6 @@ const ProjectSidebar = ({ openSideBar }) => {
     dispatch(getAllProjects())
   }, [dispatch])
 
-  // const onClick = async (e) => {
-  //   e.preventDefault()
-
-  //   dispatch(addAProject())
-
-  // }
 
   return (
     <>

@@ -46,9 +46,7 @@ def add_project():
 
 @project_routes.route('/<int:id>/edit', methods=['PUT'])
 def edit_project(id):
-  print('here I am!!!!!!!!!!!!!!!!!!!!!', id)
   myEdit = Project.query.get(id)
-  print("-------------------", myEdit.to_dict())
 
   form = ProjectEditForm()
   form['csrf_token'].data = request.cookies['csrf_token']

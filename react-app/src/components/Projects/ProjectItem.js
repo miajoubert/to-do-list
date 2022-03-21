@@ -24,15 +24,14 @@ const ProjectItem = ({ project }) => {
   return (
     <div
       className='project-div'
-      onClick={projectLink}
     >
       <div className='project-item-div'>
-        <a
+        <div
           className='project-link'
-        // onClick={}
+          onClick={projectLink}
         >
           {project?.title}
-        </a>
+        </div>
       </div>
       <div className='button-div'>
         <EditModal project={project} />
