@@ -45,8 +45,10 @@ const MainApp = () => {
           <div
             className='bottom-right'
           >
-            <div className=''>MAIN APP</div>
-            <div className=''> MORE STUFF</div>
+            <div>
+              MAIN APP
+            </div>
+            <div> MORE STUFF</div>
           </div>
         </div>
       </div>

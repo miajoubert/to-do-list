@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects } from "../../store/projects";
+import { getAllProjects, addAProject } from "../../store/projects";
 import ProjectItem from "./ProjectItem";
 import "./ProjectsSidebar.css"
 
@@ -15,13 +15,29 @@ const ProjectSidebar = ({ openSideBar }) => {
     dispatch(getAllProjects())
   }, [dispatch])
 
+  // const onClick = async (e) => {
+  //   e.preventDefault()
+
+  //   dispatch(addAProject())
+
+  // }
+
   return (
     <>
       <div className="side-bar-container">
-        <div className="project-sb-title">Projects</div>
+        <div className="project-title-container">
+          <div className="project-sb-title">Projects</div>
+          <a href="/app/projects/add">
+            <i class="fas fa-plus" />
+          </a>
+        </div>
         <ul className="project-list">
-          {projectItems?.map(project => <ProjectItem key={project?.id} project={project} />)}
-
+          {projectItems?.map(project => {
+            return (
+              <ProjectItem
+                key={project?.id}
+                project={project} />)
+          })}
         </ul>
       </div>
 

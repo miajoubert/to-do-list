@@ -62,8 +62,8 @@
   padding: 0 64px;
 }
 
-.fa-github::before,
-.fa-linkedin::before {
+.fa-github,
+.fa-linkedin {
   margin-right: 10px;
   color: #E44232;
 }

@@ -10,13 +10,27 @@
   box-shadow: 3px 3px 3px 1px lightgray;
 }
 
+.project-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .project-sb-title {
   font-weight: bold;
+
+}
+
+.fa-plus {
+  margin: 0 30px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333333;
 }
 
 .project-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-
+  padding: 0px;
 }

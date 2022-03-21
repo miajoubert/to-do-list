@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+`from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
 from app.models import Project, db
 from app.forms import ProjectForm
@@ -16,8 +16,6 @@ def validation_errors_to_error_messages(validation_errors):
 
 @project_routes.route('')
 def get_project():
-  print("i'm in my route-------------------------")
-
   projects = Project.query.filter(Project.user_id == current_user.id).all()
   return {"projects": [project.to_dict() for project in projects]}
 
@@ -67,3 +65,4 @@ def delete_project():
   db.session.delete(delete)
   db.session.commit()
   return {'Response': 'Deleted'}
+`

@@ -46,11 +46,15 @@ function App() {
         <UserRoute path='/register/step_two' exact={true}>
           <SignUpForm2 />
         </UserRoute>
-        <ProtectedRoute path='/app' exact={true}>
+        <ProtectedRoute path={[
+          '/app',
+          '/app/projects',
+          '/app/projects/:id']}
+          exact={true}>
           <MainApp />
         </ProtectedRoute>
         <ProtectedRoute path='/projects' exact={true}>
-          <NavBar />
+
         </ProtectedRoute>
         <ProtectedRoute path='/search' exact={true}>
           <SearchResults />
