@@ -8,7 +8,6 @@ import './MainNav.css'
 const MainNav = () => {
   const sessionUser = useSelector(state => state.session.user)
   const history = useHistory()
-  // localStorage.setItem('sidebar', hideSideBar)
 
   const searchSubmit = () => {
     history.push('/search')
@@ -23,7 +22,7 @@ const MainNav = () => {
             {/* <div className='nav-bar-item nav-link'>
               <svg
                 className='burger-menu'
-                // onClick={() => setHideSideBar(!hideSideBar)}
+                onClick={() => setHideSideBar(!hideSideBar)}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"

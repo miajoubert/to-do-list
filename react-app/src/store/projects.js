@@ -67,12 +67,13 @@ export const addAProject = (project) => async (dispatch) => {
 }
 
 export const editAProject = (project) => async (dispatch) => {
+  const title = project.title
   const res = await fetch(`/projects/${project.id}/edit`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(project)
+    body: JSON.stringify(title)
   })
 
   if (res.ok) {

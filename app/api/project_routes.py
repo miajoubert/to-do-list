@@ -1,7 +1,8 @@
-`from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
 from app.models import Project, db
 from app.forms import ProjectForm
+from app.forms import ProjectEditForm
 from datetime import datetime
 
 project_routes = Blueprint('projects', __name__)
@@ -43,9 +44,13 @@ def add_project():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@project_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_project():
-  form = ProjectForm()
+@project_routes.route('/<int:id>/edit', methods=['PUT'])
+def edit_project(id):
+  print('here I am!!!!!!!!!!!!!!!!!!!!!', id)
+  myEdit = Project.query.get(id)
+  print("-------------------", myEdit.to_dict())
+
+  form = ProjectEditForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     edit = Project.query.get(id)
@@ -60,9 +65,8 @@ def edit_project():
 
 
 @project_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_project():
+def delete_project(id):
   delete = Project.query.get(id)
   db.session.delete(delete)
   db.session.commit()
   return {'Response': 'Deleted'}
-`

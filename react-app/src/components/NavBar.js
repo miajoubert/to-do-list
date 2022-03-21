@@ -5,12 +5,18 @@ import LogoutButton from './auth/LogoutButton';
 import ProjectSidebar from './Projects/ProjectsSidebar';
 
 import './NavBar.css'
+import MainApp from './MainApp';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
 
-  let sessionNav = null
-  if (!sessionUser) {
+  let sessionNav = null;
+  if (sessionUser) {
+    sessionNav = (
+      <MainApp />
+    )
+
+  } else if (!sessionUser) {
     sessionNav = (
       <div className='nav-bar-splash-container'>
         <div className='nav-bar-splash-left'>

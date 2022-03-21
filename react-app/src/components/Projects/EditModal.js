@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal'
-import { addAProject } from '../../store/projects';
+import { editAProject } from '../../store/projects';
 
-import './ProjectForm.css'
+import './EditModal.css'
 
-const ProjectForm = () => {
+const EditModal = ({ project }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState(project?.title)
   const dispatch = useDispatch();
 
-  const handleNewProject = (e) => {
+  const handleEditProject = (e) => {
     e.preventDefault();
-    setErrors([]);
-    dispatch(addAProject({ title }))
+
+    project = {
+      id: project?.id,
+      title
+    }
+
+    dispatch(editAProject(project))
       .catch(
         async (res) => {
           const data = await res.json()
           if (data && data.errors) setErrors(data.errors)
         }
       )
-    setTitle('')
     setShowModal(false)
+    return
   }
 
   const handleClose = () => {
@@ -31,18 +36,21 @@ const ProjectForm = () => {
     setTitle('')
   }
 
-
   return (
     <>
       <a
-        onClick={() => setShowModal(true)}>
-        <i class="fas fa-plus" />
+        className='proj-sb-button'
+        onClick={() => setShowModal(true)}
+      >
+        <i class="far fa-edit tooltip">
+          <span className='tooltiptext'>Edit</span>
+        </i>
       </a>
       {showModal && (
-        <Modal onClose={handleClose}>
+        <Modal onClose={() => setShowModal(false)}>
           <form
             className='new-project-form-container'
-            onSubmit={handleNewProject}
+            onSubmit={handleEditProject}
           >
             <ul className="errorsAuth">
               {errors.map((error, i) => (
@@ -69,15 +77,16 @@ const ProjectForm = () => {
             <button
               type='submit'
               className="submit-button"
-              onClick={handleNewProject}
+              onClick={handleEditProject}
             >
-              Add
+              Edit
             </button>
           </div>
         </Modal>
-      )}
+      )
+      }
     </>
   );
 }
 
-export default ProjectForm;
+export default EditModal;

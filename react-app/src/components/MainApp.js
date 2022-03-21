@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MainNav from './MainNav';
 import ProjectSidebar from './Projects/ProjectsSidebar';
 
 import './MainApp.css'
+import ProjectForm from './Projects/ProjectForm';
+import TaskList from './Tasks/TaskList';
 
 const MainApp = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
@@ -45,9 +47,8 @@ const MainApp = () => {
           <div
             className='bottom-right'
           >
-            <div>
-              MAIN APP
-            </div>
+            <Route to={`/app`} ><TaskList /></Route>
+
             <div> MORE STUFF</div>
           </div>
         </div>

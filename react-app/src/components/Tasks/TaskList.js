@@ -9,7 +9,9 @@ const TaskList = () => {
 
 
   return (
-    <div> TASK LIST </div>
+    <div
+      className='task-container'
+    > TASK LIST </div>
   );
 }
 

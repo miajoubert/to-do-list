@@ -9,8 +9,12 @@ import SignUpForm from './components/auth/SignUpForm';
 import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import MainApp from './components/MainApp';
-import { authenticate } from './store/session';
 import SearchResults from './components/SearchResults';
+import ProjectForm from './components/Projects/ProjectForm';
+import ProjectBody from './components/Projects/ProjectBody';
+import TaskList from './components/Tasks/TaskList';
+import MainNav from './components/MainNav';
+import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,15 +50,14 @@ function App() {
         <UserRoute path='/register/step_two' exact={true}>
           <SignUpForm2 />
         </UserRoute>
-        <ProtectedRoute path={[
-          '/app',
-          '/app/projects',
-          '/app/projects/:id']}
-          exact={true}>
-          <MainApp />
+        <ProtectedRoute path='/app' exact={true}>
+          <TaskList />
         </ProtectedRoute>
-        <ProtectedRoute path='/projects' exact={true}>
-
+        <ProtectedRoute path='/projects/add' exact={true}>
+          <ProjectForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/projects/:id' exact={true}>
+          <ProjectBody />
         </ProtectedRoute>
         <ProtectedRoute path='/search' exact={true}>
           <SearchResults />

@@ -9,7 +9,7 @@ const ProjectBody = () => {
 
 
   return (
-    <div> MAIN APP </div>
+    <div> PROJECT BODY </div>
   );
 }
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects, addAProject } from "../../store/projects";
+import ProjectForm from "./ProjectForm";
 import ProjectItem from "./ProjectItem";
 import "./ProjectsSidebar.css"
 
 const ProjectSidebar = ({ openSideBar }) => {
   const projectsState = useSelector(state => state.projects)
   const dispatch = useDispatch()
-  console.log("my current projects!!!!!", projectsState)
 
   const projectItems = Object.values(projectsState)
 
@@ -27,9 +27,7 @@ const ProjectSidebar = ({ openSideBar }) => {
       <div className="side-bar-container">
         <div className="project-title-container">
           <div className="project-sb-title">Projects</div>
-          <a href="/app/projects/add">
-            <i class="fas fa-plus" />
-          </a>
+          <ProjectForm />
         </div>
         <ul className="project-list">
           {projectItems?.map(project => {
