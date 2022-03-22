@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
-import { getAProject, editAProject, deleteAProject } from '../../store/projects';
+import { Route, useHistory } from 'react-router-dom';
 import EditModal from './EditModal'
 import DeleteModal from './DeleteModal'
 
@@ -12,14 +11,6 @@ const ProjectItem = ({ project }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const projectLink = async () => {
-    await dispatch(getAProject(project?.id))
-    history.push(`/app/projects/${project?.id}`)
-  }
-
-  const handleProjectDelete = async () => {
-    await dispatch(deleteAProject(project?.id))
-  }
 
   return (
     <div
@@ -28,7 +19,7 @@ const ProjectItem = ({ project }) => {
       <div className='project-item-div'>
         <div
           className='project-link'
-          onClick={projectLink}
+          onClick={() => history.push(`/app/projects/${project?.id}`)}
         >
           {project?.title}
         </div>

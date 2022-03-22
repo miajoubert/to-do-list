@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import MainNav from '../MainNav';
 import ProjectSidebar from './ProjectsSidebar';
-import { getAllTasks } from '../../store/tasks';
+import { getProjTasks } from '../../store/tasks';
 import './ProjectBody.css'
 import TaskList from '../Tasks/TaskList';
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
+  const projectsState = useSelector(state => state.projects)
+  const tasksState = useSelector(state => state.tasks)
   const [openSideBar, setOpenSideBar] = useState(false)
+
   const { projectId } = useParams();
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const tasks = Object.values(tasksState)
+
+  useEffect(() => {
+    dispatch(getProjTasks(projectId))
+  }, [dispatch])
 
 
   const handleNewTask = () => {
     history.push('/app/add')
   }
-
 
   return (
     <>
@@ -42,6 +51,7 @@ const ProjectBody = () => {
           <div
             className='bottom-right'
           >
+            <div>{projectsState[projectId]?.title}</div>
             <div
               onClick={handleNewTask}>
               + Add task

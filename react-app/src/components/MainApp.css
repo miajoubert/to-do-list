@@ -42,4 +42,7 @@
   margin: 0px 50px;
   transition: all 0.2s ease-out;
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
