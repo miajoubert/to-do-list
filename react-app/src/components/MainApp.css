@@ -27,7 +27,7 @@
   position: relative;
   display: flex;
   flex-flow: row;
-  width: 100%
+  width: 100%;
 }
 
 .bottom-left {
@@ -37,12 +37,8 @@
 .bottom-right {
   position: relative;
   top: 43px;
-  padding-top: 40px;
-  padding-left: 35px;
-  margin: 0px 50px;
   transition: all 0.2s ease-out;
   flex: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }

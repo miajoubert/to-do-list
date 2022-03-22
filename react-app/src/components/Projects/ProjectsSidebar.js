@@ -28,7 +28,8 @@ const ProjectSidebar = ({ openSideBar }) => {
             return (
               <ProjectItem
                 key={project?.id}
-                project={project} />)
+                project={project}
+              />)
           })}
         </ul>
       </div>

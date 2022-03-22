@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import MainNav from '../MainNav';
 import ProjectSidebar from './ProjectsSidebar';
-import { getProjTasks } from '../../store/tasks';
-import './ProjectBody.css'
+import EditModal from './EditModal';
+import DeleteModal from './DeleteModal';
 import TaskList from '../Tasks/TaskList';
+import { getProjTasks, getAllTasks } from '../../store/tasks';
+import './ProjectBody.css'
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
@@ -17,15 +19,19 @@ const ProjectBody = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const tasks = Object.values(tasksState)
+  const tasks = Object.values(tasksState).filter((task) => {
+    return (task.project_id === +projectId)
+  })
 
-  useEffect(() => {
-    dispatch(getProjTasks(projectId))
+  useEffect(async () => {
+    await dispatch(getAllTasks())
   }, [dispatch])
 
 
   const handleNewTask = () => {
-    history.push('/app/add')
+    return (
+      <input></input>
+    )
   }
 
   return (
@@ -51,12 +57,33 @@ const ProjectBody = () => {
           <div
             className='bottom-right'
           >
-            <div>{projectsState[projectId]?.title}</div>
-            <div
-              onClick={handleNewTask}>
-              + Add task
+            <div className='task-list-title-container'>
+              <div className='task-list-title'>
+                {projectsState[projectId]?.title}
+              </div>
+              <div className='title-button-div'>
+                <EditModal project={projectsState[projectId]} />
+                <DeleteModal project={projectsState[projectId]} />
+              </div>
             </div>
-            <TaskList />
+            <div className='primary-task-container'>
+              <button
+                className='add-task-circle'
+                onClick={handleNewTask}
+              >
+                <i class="fas fa-plus main-add" />
+                Add task
+              </button>
+              <ul className="task-list">
+                {tasks?.map(task => {
+                  return (
+                    <li>
+                      <TaskList task={task} />
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

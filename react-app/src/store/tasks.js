@@ -106,7 +106,6 @@ export default function reducer(state = {}, action) {
       return newState;
     case GET_PROJ_TASKS:
       newState = { ...state };
-      console.log("MY TASKS ACTION ----------", action)
       action.tasks.forEach((task) => {
         newState[task?.id] = task
       });
