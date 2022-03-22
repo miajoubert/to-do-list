@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Task, db
+from app.models import Task, Project, db
 from app.forms import TaskForm
 from datetime import datetime
 
@@ -16,14 +16,14 @@ def validation_errors_to_error_messages(validation_errors):
 
 @task_routes.route('')
 def get_task():
-  tasks = Task.query.all()
+  tasks = Task.query.join(Project).filter(Project.user_id == current_user.id).all()
   return {"tasks": [task.to_dict() for task in tasks]}
 
 
 @task_routes.route("/<int:id>")
-def get_task_by_id(id):
-  task = Task.query.get(id)
-  return task.to_dict()
+def get_task_by_project_id(id):
+  tasks = Task.query.filter(Task.project_id == id)
+  return {"tasks": [task.to_dict() for task in tasks]}
 
 
 @task_routes.route('/add', methods=['POST'])

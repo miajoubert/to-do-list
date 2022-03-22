@@ -1,5 +1,5 @@
 const GET_TASKS = 'session/GET_TASKS';
-const GET_TASK = 'session/GET_TASK';
+const GET_PROJ_TASKS = 'session/GET_PROJ_TASKS';
 const ADD_TASK = 'session/ADD_TASK';
 const EDIT_TASK = 'session/EDIT_TASK';
 const DELETE_TASK = 'session/DELETE_TASK';
@@ -10,9 +10,9 @@ const getTasks = (tasks) => ({
   tasks
 });
 
-const getTask = (task) => ({
-  type: GET_TASK,
-  task
+const getProjectTasks = (tasks) => ({
+  type: GET_PROJ_TASKS,
+  tasks
 })
 
 const addTask = (task) => ({
@@ -40,12 +40,13 @@ export const getAllTasks = () => async (dispatch) => {
   }
 }
 
-export const getATask = (id) => async (dispatch) => {
-  const res = await fetch(`/api/tasks/${id}`)
+export const getProjTasks = (projectId) => async (dispatch) => {
+  const res = await fetch(`/api/tasks/${projectId}`)
+  console.log("THIS IS MY RESPONSE!!!!", res)
   if (res.ok) {
     const data = await res.json()
-    dispatch(getTask(data))
-    return data
+    dispatch(getProjectTasks(data.tasks))
+    return data.tasks
   }
 }
 
@@ -103,9 +104,12 @@ export default function reducer(state = {}, action) {
         newState[task?.id] = task
       });
       return newState;
-    case GET_TASK:
+    case GET_PROJ_TASKS:
       newState = { ...state };
-      newState[action.task?.id] = action.task;
+      console.log("MY TASKS ACTION ----------", action)
+      action.tasks.forEach((task) => {
+        newState[task?.id] = task
+      });
       return newState;
     case ADD_TASK:
       newState = { ...state };

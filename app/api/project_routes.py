@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
-from app.models import Project, db
+from app.models import Project, Task, db
 from app.forms import ProjectForm
-from app.forms import ProjectEditForm
 from datetime import datetime
 
 project_routes = Blueprint('projects', __name__)
@@ -19,12 +18,6 @@ def validation_errors_to_error_messages(validation_errors):
 def get_project():
   projects = Project.query.filter(Project.user_id == current_user.id).all()
   return {"projects": [project.to_dict() for project in projects]}
-
-
-@project_routes.route("/<int:id>")
-def get_project_by_id(id):
-  project = Project.query.get(id)
-  return project.to_dict()
 
 
 @project_routes.route('/add', methods=['POST'])

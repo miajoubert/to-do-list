@@ -1,5 +1,4 @@
 const GET_PROJECTS = 'session/GET_PROJECTS';
-const GET_PROJECT = 'session/GET_PROJECT';
 const ADD_PROJECT = 'session/ADD_PROJECT';
 const EDIT_PROJECT = 'session/EDIT_PROJECT';
 const DELETE_PROJECT = 'session/DELETE_PROJECT';
@@ -9,11 +8,6 @@ const getProjects = (projects) => ({
   type: GET_PROJECTS,
   projects
 });
-
-const getProject = (project) => ({
-  type: GET_PROJECT,
-  project
-})
 
 const addProject = (project) => ({
   type: ADD_PROJECT,
@@ -40,18 +34,8 @@ export const getAllProjects = () => async (dispatch) => {
   }
 }
 
-export const getAProject = (id) => async (dispatch) => {
-  const res = await fetch(`/projects/${id}`)
-  if (res.ok) {
-    const data = await res.json()
-    dispatch(getProject(data))
-    return data
-  }
-}
-
 
 export const addAProject = (project) => async (dispatch) => {
-  console.log('project!!!!!!!!!!!!!!!!!!!!!', project)
   const res = await fetch('/projects/add', {
     method: 'POST',
     headers: {
@@ -68,7 +52,6 @@ export const addAProject = (project) => async (dispatch) => {
 }
 
 export const editAProject = (project) => async (dispatch) => {
-  console.log("project----------------------", project)
   const res = await fetch(`/projects/${project.id}/edit`, {
     method: 'PUT',
     headers: {
@@ -76,7 +59,6 @@ export const editAProject = (project) => async (dispatch) => {
     },
     body: JSON.stringify(project)
   })
-
   if (res.ok) {
     const data = await res.json()
     dispatch(editProject(data))
@@ -104,10 +86,6 @@ export default function reducer(state = {}, action) {
       action.projects.forEach((project) => {
         newState[project?.id] = project
       });
-      return newState;
-    case GET_PROJECT:
-      newState = { ...state };
-      newState[action.project?.id] = action.project;
       return newState;
     case ADD_PROJECT:
       newState = { ...state };
