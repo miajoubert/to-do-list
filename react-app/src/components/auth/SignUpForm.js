@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 import './SignupForm.css'
 
 const SignUpForm = () => {
@@ -22,6 +22,10 @@ const SignUpForm = () => {
       history.push("/register/step_two")
     }
   };
+
+  const demoLogin = async () => {
+    await dispatch(login('demo@aa.io', 'password'))
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -89,6 +93,15 @@ const SignUpForm = () => {
             >
               Log in
             </a>
+            <div>
+              Not ready to commit?
+              <a
+                onClick={demoLogin}
+                className='signup-login-link'
+              >
+                Demo
+              </a>
+            </div>
           </div>
         </div>
       </div>

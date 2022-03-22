@@ -1,37 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import MainNav from './MainNav';
 import ProjectSidebar from './Projects/ProjectsSidebar';
+import TaskList from './Tasks/TaskList';
 
 import './MainApp.css'
 
 const MainApp = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [openSideBar, setOpenSideBar] = useState(false)
+  const history = useHistory();
+
+
+  const handleNewTask = () => {
+    history.push('/app/add')
+  }
+
 
   return (
     <>
       <div className='main-app-container'>
-        <div className='top-main'>
-          <MainNav />
-          <div className='nav-bar-item-burger'>
-            <svg
-              className='burger-menu-on-main'
-              onClick={() => setOpenSideBar(!openSideBar)}
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" fillRule="evenodd" d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path>
-            </svg>
-          </div>
-        </div>
+        <MainNav openSideBar={() => setOpenSideBar(!openSideBar)} />
 
         <div className='main-bottom'>
           <div
             className='bottom-left'
-            style={openSideBar ? { 'width': "0px" } : { 'width': "327px" }}
+            style={openSideBar ? { 'width': "0px", 'margin-left': "150px" }
+              : { 'width': "327px" }}
           >
             <div
               className="sidebar"
@@ -45,8 +41,11 @@ const MainApp = () => {
           <div
             className='bottom-right'
           >
-            <div className=''>MAIN APP</div>
-            <div className=''> MORE STUFF</div>
+            <div
+              onClick={handleNewTask}>
+              + Add task
+            </div>
+            <TaskList />
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const deleteProject = (id) => ({
 
 
 export const getAllProjects = () => async (dispatch) => {
-  const res = await fetch('/api/projects')
+  const res = await fetch('/projects')
   if (res.ok) {
     const data = await res.json()
     dispatch(getProjects(data.projects))
@@ -41,7 +41,7 @@ export const getAllProjects = () => async (dispatch) => {
 }
 
 export const getAProject = (id) => async (dispatch) => {
-  const res = await fetch(`/api/projects/${id}`)
+  const res = await fetch(`/projects/${id}`)
   if (res.ok) {
     const data = await res.json()
     dispatch(getProject(data))
@@ -51,7 +51,8 @@ export const getAProject = (id) => async (dispatch) => {
 
 
 export const addAProject = (project) => async (dispatch) => {
-  const res = await fetch('/api/projects/add', {
+  console.log('project!!!!!!!!!!!!!!!!!!!!!', project)
+  const res = await fetch('/projects/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -67,8 +68,9 @@ export const addAProject = (project) => async (dispatch) => {
 }
 
 export const editAProject = (project) => async (dispatch) => {
-  const res = await fetch(`/api/projects/${project.id}/edit`, {
-    method: 'PATCH',
+  console.log("project----------------------", project)
+  const res = await fetch(`/projects/${project.id}/edit`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -83,7 +85,7 @@ export const editAProject = (project) => async (dispatch) => {
 }
 
 export const deleteAProject = (id) => async (dispatch) => {
-  const res = await fetch(`/api/projects/${id}/delete`, {
+  const res = await fetch(`/projects/${id}/delete`, {
     method: 'DELETE'
   })
   if (res.ok) {

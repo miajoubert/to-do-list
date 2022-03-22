@@ -132,5 +132,10 @@
 .signup-login-link {
   margin-left: 5px;
   text-decoration: none;
-  color: #DD4B39
+  color: #DD4B39;
+  cursor: pointer;
+}
+
+.signup-login-link:hover {
+  text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UserRoute from './components/auth/UserRoute';
@@ -9,8 +9,12 @@ import SignUpForm from './components/auth/SignUpForm';
 import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import MainApp from './components/MainApp';
-import { authenticate } from './store/session';
 import SearchResults from './components/SearchResults';
+import ProjectForm from './components/Projects/ProjectForm';
+import ProjectBody from './components/Projects/ProjectBody';
+import TaskList from './components/Tasks/TaskList';
+import MainNav from './components/MainNav';
+import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,8 +53,8 @@ function App() {
         <ProtectedRoute path='/app' exact={true}>
           <MainApp />
         </ProtectedRoute>
-        <ProtectedRoute path='/projects' exact={true}>
-          <NavBar />
+        <ProtectedRoute path='/app/projects/:id' exact={true}>
+          <ProjectBody />
         </ProtectedRoute>
         <ProtectedRoute path='/search' exact={true}>
           <SearchResults />

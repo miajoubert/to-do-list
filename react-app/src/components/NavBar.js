@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import ProjectSidebar from './Projects/ProjectsSidebar';
 
 import './NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
 
-  let sessionNav = null
+  let sessionNav = null;
   if (!sessionUser) {
     sessionNav = (
       <div className='nav-bar-splash-container'>
@@ -29,14 +27,14 @@ const NavBar = () => {
           <div className='splash-bar-item'>
             <NavLink to='/login' exact={true}
               className="splash-link"
-              activeClassName='active'>
+            >
               Login
             </NavLink>
           </div>
           <div className='splash-bar-item'>
             <NavLink to='/register' exact={true}
               className="splash-link"
-              activeClassName='active'>
+            >
               Sign Up
             </NavLink>
           </div>

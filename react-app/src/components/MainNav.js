@@ -1,36 +1,38 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import ProjectSidebar from './Projects/ProjectsSidebar';
 
 import './MainNav.css'
 
-const MainNav = () => {
-  const sessionUser = useSelector(state => state.session.user)
-  // localStorage.setItem('sidebar', hideSideBar)
+const MainNav = ({ openSideBar }) => {
+  const history = useHistory()
 
-  let sessionNav;
-  if (sessionUser) {
-    sessionNav = (
+  const searchSubmit = () => {
+    history.push('/search')
+  }
+
+  return (
+    <>
       <nav className='nav-bar'>
         <div className='nav-bar-container'>
           <div className='nav-bar-left'>
-            {/* <div className='nav-bar-item nav-link'>
+            <div className='nav-bar-item nav-link'>
               <svg
                 className='burger-menu'
-                // onClick={() => setHideSideBar(!hideSideBar)}
+                onClick={openSideBar}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
               >
                 <path fill="currentColor" fillRule="evenodd" d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path>
               </svg>
-            </div> */}
+            </div>
             <div className='nav-bar-item'>
               <NavLink to='/app' exact={true}
                 className="nav-link"
-                activeClassName='active'>
+              >
                 {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <svg
                   className='burger-menu'
@@ -43,9 +45,9 @@ const MainNav = () => {
               </NavLink>
             </div>
             <div className='nav-bar-item search' >
-              <NavLink to='/search' exact={true}
+              <div to='/search' exact={true}
                 className="nav-link"
-                activeClassName='active'>
+              >
                 {/* <i className="fa fa-search" aria-hidden="true"></i> */}
                 <svg
                   className="search-icon"
@@ -56,24 +58,27 @@ const MainNav = () => {
                   <path d="M10.5 3a7.5 7.5 0 015.645 12.438l4.709 4.708a.502.502 0 01-.708.708l-4.708-4.709A7.5 7.5 0 1110.5 3zm0 1a6.5 6.5 0 100 13 6.5 6.5 0 000-13z" fill="currentColor"></path>
                 </svg>
                 <input
+                  type='text'
                   placeholder="Search"
-                  className='search-input'>
+                  className='search-input'
+                  onSubmit={searchSubmit}
+                >
                 </input>
-              </NavLink>
+              </div>
             </div>
           </div>
           <div className='nav-bar-right'>
             <div className='nav-bar-item'>
-              <NavLink to='/api/tasks/new' exact={true}
+              <NavLink to='/app/add' exact={true}
                 className="nav-link"
-                activeClassName='active'>
+              >
                 <svg
                   className='burger-menu'
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
                 >
-                  <g fill="none" fill-rule="evenodd" transform="translate(4 3)">
+                  <g fill="none" fillRule="evenodd" transform="translate(4 3)">
                     <mask id="jd4FBg" fill="#fff">
                       <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z">
                       </path>
@@ -90,25 +95,18 @@ const MainNav = () => {
             {/* <div className='nav-bar-item'>
               <NavLink to='/profile' exact={true}
                 className="nav-link burger-menu"
-                activeClassName='active'>
+            >
                 Users
               </NavLink>
             </div> */}
             <div logout-div>
-              <NavLink to='/logout' exact={true}
-                activeClassName='active'>
+              <NavLink to='/logout' exact={true}>
                 <LogoutButton />
               </NavLink>
             </div>
           </div>
         </div>
       </nav >
-    )
-  }
-
-  return (
-    <>
-      {sessionNav}
     </>
   );
 }

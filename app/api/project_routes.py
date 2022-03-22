@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from flask_login import current_user, login_required
+from flask_login import current_user
 from app.models import Project, db
 from app.forms import ProjectForm
+from app.forms import ProjectEditForm
 from datetime import datetime
 
 project_routes = Blueprint('projects', __name__)
@@ -14,9 +15,9 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@project_routes.route('/')
+@project_routes.route('')
 def get_project():
-  projects = Project.query.all()
+  projects = Project.query.filter(Project.user_id == current_user.id).all()
   return {"projects": [project.to_dict() for project in projects]}
 
 
@@ -43,15 +44,19 @@ def add_project():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@project_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_project():
+@project_routes.route('/<int:id>/edit', methods=['PUT'])
+def edit_project(id):
+  # body = request.get_json()
+  # title = body["title"]
+
+  # print("----------------", title)
   form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
     edit = Project.query.get(id)
 
-    edit.title=form.data['title'],
-    edit.updated_at = datetime.now()
+    edit.title = form.data['title']
 
     db.session.add(edit)
     db.session.commit()
@@ -60,7 +65,7 @@ def edit_project():
 
 
 @project_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_project():
+def delete_project(id):
   delete = Project.query.get(id)
   db.session.delete(delete)
   db.session.commit()
