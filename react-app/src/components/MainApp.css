@@ -7,13 +7,15 @@
   right: 0px;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .nav-bar-item-burger {
   position: relative;
-  top: 5px;
-  left: 49px;
+  top: 5.0px;
+  left: 48px;
   color: white;
+  z-index: 1;
 }
 
 .burger-menu-on-main {
@@ -22,17 +24,22 @@
 }
 
 .main-bottom {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-flow: row;
+  width: 100%
 }
 
 .bottom-left {
   transition: all 0.2s ease-out;
 }
+
 .bottom-right {
   position: relative;
   top: 43px;
   padding-top: 40px;
   padding-left: 35px;
+  margin: 0px 50px;
+  transition: all 0.2s ease-out;
+  flex: auto;
 }

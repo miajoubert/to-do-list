@@ -33,7 +33,6 @@ const EditModal = ({ project }) => {
 
   const handleClose = () => {
     setShowModal(false)
-    setTitle('')
   }
 
   return (

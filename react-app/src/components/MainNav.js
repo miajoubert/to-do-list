@@ -2,34 +2,33 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import ProjectSidebar from './Projects/ProjectsSidebar';
 
 import './MainNav.css'
 
-const MainNav = () => {
-  const sessionUser = useSelector(state => state.session.user)
+const MainNav = ({ openSideBar }) => {
   const history = useHistory()
 
   const searchSubmit = () => {
     history.push('/search')
   }
 
-  let sessionNav;
-  if (sessionUser) {
-    sessionNav = (
+  return (
+    <>
       <nav className='nav-bar'>
         <div className='nav-bar-container'>
           <div className='nav-bar-left'>
-            {/* <div className='nav-bar-item nav-link'>
+            <div className='nav-bar-item nav-link'>
               <svg
                 className='burger-menu'
-                onClick={() => setHideSideBar(!hideSideBar)}
+                onClick={openSideBar}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
               >
                 <path fill="currentColor" fillRule="evenodd" d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path>
               </svg>
-            </div> */}
+            </div>
             <div className='nav-bar-item'>
               <NavLink to='/app' exact={true}
                 className="nav-link"
@@ -108,12 +107,6 @@ const MainNav = () => {
           </div>
         </div>
       </nav >
-    )
-  }
-
-  return (
-    <>
-      {sessionNav}
     </>
   );
 }

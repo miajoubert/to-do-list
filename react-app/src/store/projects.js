@@ -51,6 +51,7 @@ export const getAProject = (id) => async (dispatch) => {
 
 
 export const addAProject = (project) => async (dispatch) => {
+  console.log('project!!!!!!!!!!!!!!!!!!!!!', project)
   const res = await fetch('/projects/add', {
     method: 'POST',
     headers: {
@@ -67,13 +68,13 @@ export const addAProject = (project) => async (dispatch) => {
 }
 
 export const editAProject = (project) => async (dispatch) => {
-  const title = project.title
+  console.log("project----------------------", project)
   const res = await fetch(`/projects/${project.id}/edit`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(title)
+    body: JSON.stringify(project)
   })
 
   if (res.ok) {

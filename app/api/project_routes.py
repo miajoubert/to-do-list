@@ -46,15 +46,17 @@ def add_project():
 
 @project_routes.route('/<int:id>/edit', methods=['PUT'])
 def edit_project(id):
-  myEdit = Project.query.get(id)
+  # body = request.get_json()
+  # title = body["title"]
 
-  form = ProjectEditForm()
+  # print("----------------", title)
+  form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
     edit = Project.query.get(id)
 
-    edit.title=form.data['title'],
-    edit.updated_at = datetime.now()
+    edit.title = form.data['title']
 
     db.session.add(edit)
     db.session.commit()
