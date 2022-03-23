@@ -10,11 +10,9 @@ import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import MainApp from './components/MainApp';
 import SearchResults from './components/SearchResults';
-import ProjectForm from './components/Projects/ProjectForm';
 import ProjectBody from './components/Projects/ProjectBody';
-import TaskList from './components/Tasks/TaskList';
-import MainNav from './components/MainNav';
 import { authenticate } from './store/session';
+import { getAllProjects } from './store/projects';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +21,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getAllProjects())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -50,18 +49,9 @@ function App() {
         <UserRoute path='/register/step_two' exact={true}>
           <SignUpForm2 />
         </UserRoute>
-        <ProtectedRoute path='/app' exact={true}>
+        <ProtectedRoute path='/app'>
           <MainApp />
         </ProtectedRoute>
-        <ProtectedRoute path='/app/projects/:projectId' exact={true}>
-          <ProjectBody />
-        </ProtectedRoute>
-        <ProtectedRoute path='/search' exact={true}>
-          <SearchResults />
-        </ProtectedRoute>
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

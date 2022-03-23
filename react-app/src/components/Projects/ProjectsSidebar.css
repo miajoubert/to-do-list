@@ -9,6 +9,7 @@
   padding-left: 35px;
   box-shadow: 3px 3px 3px 1px lightgray;
   overflow-x: hidden;
+  z-index: 1;
 }
 
 ::-webkit-scrollbar {
@@ -47,4 +48,8 @@
   display: flex;
   flex-direction: column;
   padding: 0px;
+}
+
+.archive-container {
+  margin-top: 20px;
 }

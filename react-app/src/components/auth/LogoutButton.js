@@ -10,12 +10,13 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <button
-    className='logout-button'
-    onClick={onLogout}
-  >
-    {sessionUser['username']?.charAt(0)}
-  </button>;
+  return (
+    <div
+      className='logout-button'
+      onClick={onLogout}>
+      <i className='fas fa-sign-out-alt'></i>
+      Log Out
+    </div >);
 };
 
 export default LogoutButton;

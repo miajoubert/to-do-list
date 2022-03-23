@@ -9,28 +9,23 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const projects = Object.values(projectsState)
-  const projectId = projects[0]?.id
-
-  console.log("THIS WAS SOMETHING HERE", projectId)
+  let { projectId } = useParams()
+  if (!projectId) projectId = projects[0]?.id
 
   const [project_id, setProjectId] = useState(projectId)
-  // const [showTaskForm, setShowTaskForm] = useState(false)
   const [task, setTask] = useState(currentTask?.task)
   const [description, setDescription] = useState(currentTask?.description)
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  // }, [])
-
+  }, [projectId])
 
   const handleAddTask = (e) => {
     e.preventDefault();
     setErrors([]);
-
-    console.log("PAYLOAD ID", project_id)
 
     const payload = {
       project_id,
@@ -81,7 +76,6 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
             value={project_id}
             onChange={(e) => setProjectId(e.target.value)}
           >
-            <option value=''>Inbox</option>
             {projects?.map(project => (
               <option key={project.id} value={project.id}>
                 {project.title}

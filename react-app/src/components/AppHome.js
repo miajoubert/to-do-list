@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import MainNav from '../MainNav';
-import ProjectSidebar from './ProjectsSidebar';
-import EditModal from './EditModal';
-import DeleteModal from './DeleteModal';
-import TaskList from '../Tasks/TaskList';
-import TaskForm from '../Tasks/TaskForm';
-import { getProjTasks, getAllTasks } from '../../store/tasks';
-import './ProjectBody.css'
+import TaskList from './Tasks/TaskList';
+import TaskForm from './Tasks/TaskForm';
+import { getAllTasks } from '../store/tasks';
+import './AppHome.css'
 
-const ProjectBody = () => {
+const AppHome = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
+  const [closeSideBar, setCloseSideBar] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
 
-  const { projectId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const tasks = Object.values(tasksState).filter((task) => {
-    return (task.project_id === +projectId)
-  })
+  const tasks = Object.values(tasksState)
 
 
   useEffect(async () => {
@@ -34,21 +28,10 @@ const ProjectBody = () => {
     <>
       <div className='task-list-title-container'>
         <div className='task-list-title'>
-          {projectsState[projectId]?.title}
-        </div>
-        <div className='title-button-div'>
-          <EditModal
-            className="project-title-button"
-            project={projectsState[projectId]}
-          />
-          <DeleteModal
-            className="project-title-button"
-            project={projectsState[projectId]}
-          />
+          Inbox
         </div>
       </div>
       <div className='primary-task-container'>
-
         <ul className="task-list">
           {tasks?.map(task => {
             return (
@@ -93,4 +76,4 @@ const ProjectBody = () => {
   );
 }
 
-export default ProjectBody;
+export default AppHome;

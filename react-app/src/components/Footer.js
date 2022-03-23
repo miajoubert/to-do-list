@@ -68,7 +68,7 @@ const Footer = () => {
             </a>
           </div>
           <div className='copyright'>
-            | © Todoist Clone
+            | © 2022 Todoist Clone
           </div>
         </div>
       </div>
