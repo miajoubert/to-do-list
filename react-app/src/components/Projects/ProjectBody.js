@@ -67,13 +67,7 @@ const ProjectBody = () => {
               </div>
             </div>
             <div className='primary-task-container'>
-              <button
-                className='add-task-circle'
-                onClick={handleNewTask}
-              >
-                <i class="fas fa-plus main-add" />
-                Add task
-              </button>
+
               <ul className="task-list">
                 {tasks?.map(task => {
                   return (
@@ -83,6 +77,13 @@ const ProjectBody = () => {
                   )
                 })}
               </ul>
+              <button
+                className='add-task-circle'
+                onClick={handleNewTask}
+              >
+                <i class="fas fa-plus main-add" />
+                Add task
+              </button>
             </div>
           </div>
         </div>

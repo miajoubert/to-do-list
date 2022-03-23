@@ -5,7 +5,7 @@ import { deleteATask } from '../../store/tasks';
 
 import './DeleteTask.css'
 
-const DeleteTask = () => {
+const DeleteTask = ({ task }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -28,7 +28,7 @@ const DeleteTask = () => {
   return (
     <>
       <a
-        className='proj-sb-button'
+        className='task-delete-button'
         onClick={() => setShowModal(true)}
       >
         <i class="far fa-trash-alt tooltip">
