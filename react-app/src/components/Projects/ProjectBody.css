@@ -1,9 +1,8 @@
 .task-list-title-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: auto;
+  justify-content: flex-start;
+  align-items: center;
   padding: 36px 55px 8px;
 }
 
@@ -19,4 +18,8 @@
   flex-direction: row;
   justify-content: flex-end;
   margin: 0px 20px;
+}
+
+.project-title-button {
+  color: #DB4C3F;
 }

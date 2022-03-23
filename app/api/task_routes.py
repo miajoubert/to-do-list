@@ -63,7 +63,7 @@ def edit_task():
 
 
 @task_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_task():
+def delete_task(id):
   delete = Task.query.get(id)
   db.session.delete(delete)
   db.session.commit()

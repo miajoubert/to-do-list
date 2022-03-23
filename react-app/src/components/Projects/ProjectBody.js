@@ -6,6 +6,7 @@ import ProjectSidebar from './ProjectsSidebar';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import TaskList from '../Tasks/TaskList';
+import TaskForm from '../Tasks/TaskForm';
 import { getProjTasks, getAllTasks } from '../../store/tasks';
 import './ProjectBody.css'
 
@@ -14,6 +15,7 @@ const ProjectBody = () => {
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
   const [openSideBar, setOpenSideBar] = useState(false)
+  const [showTaskForm, setShowTaskForm] = useState(false)
 
   const { projectId } = useParams();
   const dispatch = useDispatch();
@@ -62,8 +64,14 @@ const ProjectBody = () => {
                 {projectsState[projectId]?.title}
               </div>
               <div className='title-button-div'>
-                <EditModal project={projectsState[projectId]} />
-                <DeleteModal project={projectsState[projectId]} />
+                <EditModal
+                  className="project-title-button"
+                  project={projectsState[projectId]}
+                />
+                <DeleteModal
+                  className="project-title-button"
+                  project={projectsState[projectId]}
+                />
               </div>
             </div>
             <div className='primary-task-container'>
@@ -77,13 +85,36 @@ const ProjectBody = () => {
                   )
                 })}
               </ul>
-              <button
-                className='add-task-circle'
-                onClick={handleNewTask}
+
+              <a
+                className='main-add'
+                hidden={showTaskForm}
+                onClick={() => setShowTaskForm(true)}
               >
-                <i class="fas fa-plus main-add" />
-                Add task
-              </button>
+                <svg
+                  className='add-task-circle'
+                  width="20"
+                  height="20"
+                >
+                  <g fill="none" fillRule="evenodd" transform="translate(2 1)">
+                    <mask id="jd4FBg" fill="#fff">
+                      <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z">
+                      </path>
+                    </mask>
+                    <g mask="url(#jd4FBg)">
+                      <path fill="currentColor" d="M-4-3h24v24H-4z">
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+                <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
+                <a className='add-task'>Add Task</a>
+              </a>
+              <div
+                hidden={!showTaskForm}
+              >
+                <TaskForm showTaskForm={() => setShowTaskForm(false)} />
+              </div>
             </div>
           </div>
         </div>

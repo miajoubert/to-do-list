@@ -47,7 +47,7 @@ def upgrade():
     )
     op.create_table('tasks',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('project_id', sa.Integer(), nullable=False),
+    sa.Column('project_id', sa.Integer()),
     sa.Column('task', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('completed', sa.Boolean(), nullable=True),

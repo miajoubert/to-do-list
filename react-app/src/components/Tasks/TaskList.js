@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DeleteTask from './DeleteTask';
-import TaskForm from './TaskForm';
+import EditTaskForm from './EditTaskForm';
 
 import './TaskList.css'
 
@@ -28,7 +28,6 @@ const TaskList = ({ task }) => {
             <div className='task-description'>{task?.description}</div>
           </div>
           <div className='task-buttons-div'>
-            <DeleteTask task={task} />
             <a
               className='proj-sb-button'
               onClick={() => setShowTaskForm(true)}
@@ -38,6 +37,7 @@ const TaskList = ({ task }) => {
               </i>
             </a>
 
+            <DeleteTask task={task} />
           </div>
         </div >
       </div>
@@ -45,7 +45,7 @@ const TaskList = ({ task }) => {
       <div
         hidden={!showTaskForm}
       >
-        <TaskForm currentTask={task} showTaskForm={() => setShowTaskForm(false)} />
+        <EditTaskForm currentTask={task} showTaskForm={() => setShowTaskForm(false)} />
       </div>
     </>
   );

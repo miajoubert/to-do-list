@@ -10,6 +10,9 @@ const ProjectSidebar = ({ openSideBar }) => {
   const dispatch = useDispatch()
 
   const projectItems = Object.values(projectsState)
+  console.log("THIS IS MY SIDEBAR PROJ", projectItems)
+  projectItems.shift()
+  console.log("THESE ARE MY NEW PROJECTS", projectItems)
 
   useEffect(() => {
     dispatch(getAllProjects())

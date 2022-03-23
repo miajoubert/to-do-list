@@ -6,7 +6,7 @@ class Task(db.Model):
     __tablename__ = 'tasks'
 
     id = db.Column(db.Integer, primary_key=True)
-    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     task = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String, nullable=False)
     completed = db.Column(db.Boolean)

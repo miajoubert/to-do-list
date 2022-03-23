@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addATask } from '../../store/tasks'
+import { editATask } from '../../store/tasks'
 
-import './TaskForm.css'
+import './EditTaskForm.css'
 
-const TaskForm = ({ currentTask, showTaskForm }) => {
+const EditTaskForm = ({ currentTask, showTaskForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const projects = Object.values(projectsState)
-  const projectId = projects[0]?.id
+  let { projectId } = useParams();
+  if (!projectId) {
+    projectId = projects[0]?.id
+  }
+
 
   const [project_id, setProjectId] = useState(projectId)
   // const [showTaskForm, setShowTaskForm] = useState(false)
@@ -24,19 +28,20 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
   // }, [])
 
 
-  const handleAddTask = (e) => {
+  const handleEditTask = (e) => {
     e.preventDefault();
     setErrors([]);
 
     console.log("PAYLOAD ID", project_id)
 
     const payload = {
+      ...currentTask,
       project_id,
       task,
       description
     }
 
-    dispatch(addATask(payload))
+    dispatch(editATask(payload))
       .catch(
         async (res) => {
           const data = await res.json()
@@ -45,6 +50,7 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
       )
     setTask('')
     setDescription('')
+    showTaskForm(false)
   }
 
 
@@ -53,7 +59,7 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
       <div className='new-task-container'>
         <form
           className='new-task-form'
-          onSubmit={handleAddTask}
+          onSubmit={handleEditTask}
         >
           <ul className="errorsAuth">
             {errors.map((error, i) => (
@@ -91,9 +97,9 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
           <button
             type='submit'
             className="submit-button"
-            onClick={handleAddTask}
+            onClick={handleEditTask}
           >
-            Add task
+            Edit task
           </button>
           <button
             onClick={showTaskForm}
@@ -107,4 +113,4 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
   );
 }
 
-export default TaskForm;
+export default EditTaskForm;
