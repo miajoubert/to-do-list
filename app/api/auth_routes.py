@@ -1,6 +1,6 @@
 from http.client import OK
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Project, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from app.forms import SignUpFormTwo
@@ -62,7 +62,14 @@ def sign_up_step_two():
             username=form.data['username'],
             password=form.data['password']
         )
+
+        inbox = Project(
+            user_id=current_user.id,
+            title="Inbox"
+        )
+
         db.session.add(user)
+        db.session.add(inbox)
         db.session.commit()
         login_user(user)
         return user.to_dict()

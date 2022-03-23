@@ -68,6 +68,7 @@ export const addATask = (task) => async (dispatch) => {
 }
 
 export const editATask = (task) => async (dispatch) => {
+  console.log("IN MY EDIT THUNK-------------------", task)
   const res = await fetch(`/api/tasks/${task.id}/edit`, {
     method: 'PATCH',
     headers: {
@@ -106,7 +107,6 @@ export default function reducer(state = {}, action) {
       return newState;
     case GET_PROJ_TASKS:
       newState = { ...state };
-      console.log("MY TASKS ACTION ----------", action)
       action.tasks.forEach((task) => {
         newState[task?.id] = task
       });

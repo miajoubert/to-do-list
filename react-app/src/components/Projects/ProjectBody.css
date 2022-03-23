@@ -1,0 +1,25 @@
+.task-list-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 36px 55px 8px;
+}
+
+.task-list-title {
+  font-size: 20px;
+  color: #202020;
+  font-weight: bold;
+  text-align: left;
+}
+
+.title-button-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0px 20px;
+}
+
+.project-title-button {
+  color: #DB4C3F;
+}

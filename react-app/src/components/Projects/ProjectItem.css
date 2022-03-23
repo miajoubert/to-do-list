@@ -6,6 +6,12 @@
   width: 265px;
   font-size: 14px;
 }
+
+.selected {
+  background-color: #EEEEEE;
+  border-radius: 5px;
+}
+
 .project-div:hover {
   cursor: pointer;
   background-color: #EEEEEE;

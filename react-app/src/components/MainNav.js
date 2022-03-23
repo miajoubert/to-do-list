@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import ProjectSidebar from './Projects/ProjectsSidebar';
+import AddTaskModal from './Tasks/AddTaskModal';
 
 import './MainNav.css'
 
@@ -68,37 +68,7 @@ const MainNav = ({ openSideBar }) => {
             </div>
           </div>
           <div className='nav-bar-right'>
-            <div className='nav-bar-item'>
-              <NavLink to='/app/add' exact={true}
-                className="nav-link"
-              >
-                <svg
-                  className='burger-menu'
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <g fill="none" fillRule="evenodd" transform="translate(4 3)">
-                    <mask id="jd4FBg" fill="#fff">
-                      <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z">
-                      </path>
-                    </mask>
-                    <g mask="url(#jd4FBg)">
-                      <path fill="currentColor" d="M-4-3h24v24H-4z">
-                      </path>
-                    </g>
-                  </g>
-                </svg>
-                <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
-              </NavLink>
-            </div>
-            {/* <div className='nav-bar-item'>
-              <NavLink to='/profile' exact={true}
-                className="nav-link burger-menu"
-            >
-                Users
-              </NavLink>
-            </div> */}
+            <AddTaskModal />
             <div logout-div>
               <NavLink to='/logout' exact={true}>
                 <LogoutButton />
