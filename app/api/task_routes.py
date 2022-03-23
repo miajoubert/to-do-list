@@ -31,6 +31,7 @@ def add_task():
   form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
+    print("MY SOMETHING ELSE =-----------", task)
     task = Task(
       project_id=form.data['project_id'],
       task=form.data['task'],
@@ -44,8 +45,8 @@ def add_task():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@task_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_task():
+@task_routes.route('/<int:id>/edit', methods=['PATCH'])
+def edit_task(id):
   form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():

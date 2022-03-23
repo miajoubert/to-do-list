@@ -11,6 +11,8 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
   const projects = Object.values(projectsState)
   const projectId = projects[0]?.id
 
+  console.log("THIS WAS SOMETHING HERE", projectId)
+
   const [project_id, setProjectId] = useState(projectId)
   // const [showTaskForm, setShowTaskForm] = useState(false)
   const [task, setTask] = useState(currentTask?.task)
