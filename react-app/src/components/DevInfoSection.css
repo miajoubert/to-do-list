@@ -1,0 +1,72 @@
+.user-dropdown-div {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  padding: 20px;
+  border: rgba(0, 0, 0, 0, .7) solid 2px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px black;
+  background: linear-gradient(rgb(255, 255, 255) 40%, #808080 100%);
+  font-size: 14px;
+  z-index: 1;
+}
+
+.dev-info {
+margin-top: 20px;
+}
+
+.dev-line-div {
+  padding: 5px;
+  font-style: italic;
+}
+
+.split-section {
+  padding: 5px;
+  border-radius: 5px;
+}
+.split-section:hover {
+  background-color: #80808030;
+  box-shadow: .5px .5px 1px #808080;
+}
+
+.logout-section {
+  font-weight: bold;
+}
+
+.logout-section:hover {
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: .5px .5px 1px #808080;
+  background-color: #db4c3f;
+  color: white;
+}
+
+.drop-down-copyright {
+  margin-top: 30px;
+}
+
+.logout-navlink {
+  text-decoration: none;
+}
+
+.space-name {
+  margin-right: 15px;
+}
+
+.github-main-footer,
+.main-github {
+  text-decoration: none;
+  color: black;
+}
+
+.linkedin-main-footer,
+.main-linkedin {
+  text-decoration: none;
+  color:#0A66C2;
+}
+
+.main-github,
+.main-linkedin,
+.tdl-github {
+  font-size: 17px;
+}

@@ -9,13 +9,8 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const projects = Object.values(projectsState)
-  let { projectId } = useParams();
-  if (!projectId) {
-    projectId = projects[0]?.id
-  }
 
-
-  const [project_id, setProjectId] = useState(projectId)
+  const [project_id, setProjectId] = useState(currentTask?.project_id)
   // const [showTaskForm, setShowTaskForm] = useState(false)
   const [task, setTask] = useState(currentTask?.task)
   const [description, setDescription] = useState(currentTask?.description)
@@ -85,7 +80,6 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
             value={project_id}
             onChange={(e) => setProjectId(e.target.value)}
           >
-            <option value=''>Inbox</option>
             {projects?.map(project => (
               <option key={project.id} value={project.id}>
                 {project.title}

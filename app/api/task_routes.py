@@ -31,7 +31,7 @@ def add_task():
   form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    print("MY SOMETHING ELSE =-----------", task)
+    print("THIS IS -------in--------THE MY TASK")
     task = Task(
       project_id=form.data['project_id'],
       task=form.data['task'],
@@ -39,6 +39,7 @@ def add_task():
       created_at = datetime.now(),
       updated_at = datetime.now(),
     )
+    # print("THIS IS THE MY TASK", task)
     db.session.add(task)
     db.session.commit()
     return task.to_dict()

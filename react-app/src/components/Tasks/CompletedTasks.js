@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import MainNav from '../MainNav';
-import ProjectSidebar from './ProjectsSidebar';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import TaskList from '../Tasks/TaskList';
 import TaskForm from '../Tasks/TaskForm';
-import { getProjTasks, getAllTasks } from '../../store/tasks';
-import './ProjectBody.css'
+import { getAllTasks } from '../../store/tasks';
+import './CompletedTasks.css'
 
-const ProjectBody = () => {
+const CompletedTasks = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
@@ -93,4 +91,4 @@ const ProjectBody = () => {
   );
 }
 
-export default ProjectBody;
+export default CompletedTasks;
