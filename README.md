@@ -69,23 +69,24 @@ Inspired by Todoist, Todolist is a task-list platform on which users can create 
 
 ## Signup Page
 Users will verify if their email address is valid before they continue with sign-up process.
-![Login-Page]()
+![sign-up page](https://user-images.githubusercontent.com/91270578/159995576-de5f4ce3-895b-44e1-9932-50b6b8dfb40f.png)
 
 
 
 ## Inbox 
 Users can see all of their tasks in one place when logged in. They can mark them completed or uncheck if needed.
-![Login-Page]()
+(![inbox](https://user-images.githubusercontent.com/91270578/159995700-26a0dd3f-2e94-4e1b-adc7-4b09fb8b3c23.png)
+
 
 
 ## Project Page
 Users can see all of their projects in one place when logged in, and all tasks assigned to a specific project (task list).
-![Product-Detail]()
+![project page](https://user-images.githubusercontent.com/91270578/159996635-d7dbc928-8806-403e-b794-7f6d84387c52.png)
 
 
 ## Completed Tasks 
 Users can see all of their completed tasks in one location when logged in.
-![image]()
+![completed tasks](https://user-images.githubusercontent.com/91270578/159996737-1aeb0539-4eaf-450f-9153-d440003ae40b.png)
 
 
 ## Link to Wiki Docs:
