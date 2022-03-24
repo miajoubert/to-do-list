@@ -10,15 +10,13 @@ import SearchResults from './SearchResults';
 import { getAllTasks } from '../store/tasks';
 
 import './MainApp.css'
+import TaskForm from './Tasks/TaskForm';
 
 const MainApp = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
 
   const [closeSideBar, setCloseSideBar] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
-
-  const dispatch = useDispatch();
-
 
   return (
     <>

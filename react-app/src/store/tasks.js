@@ -3,6 +3,7 @@ const GET_PROJ_TASKS = 'tasks/GET_PROJ_TASKS';
 const ADD_TASK = 'tasks/ADD_TASK';
 const EDIT_TASK = 'tasks/EDIT_TASK';
 const DELETE_TASK = 'tasks/DELETE_TASK';
+const COMPLETE_TASK = 'tasks/COMPLETE_TASK';
 const GET_DONE_TASKS = 'tasks/GET_DONE_TASKS';
 
 const getTasks = (tasks) => ({
@@ -27,6 +28,11 @@ const editTask = (task) => ({
 
 const deleteTask = (id) => ({
   type: DELETE_TASK,
+  id
+})
+
+const completeTask = (id) => ({
+  type: COMPLETE_TASK,
   id
 })
 
@@ -110,6 +116,26 @@ export const deleteATask = (id) => async (dispatch) => {
   }
 }
 
+export const completeATask = (id) => async (dispatch) => {
+  const res = await fetch(`/api/tasks/${id}/complete`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(completeTask(data))
+
+  } else {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  }
+}
+
 export const getCompleteTasks = () => async (dispatch) => {
   const res = await fetch(`/api/tasks/completed`)
   if (res.ok) {
@@ -146,6 +172,10 @@ export default function reducer(state = {}, action) {
     case DELETE_TASK:
       newState = { ...state };
       delete newState[action.id]
+      return newState
+    case COMPLETE_TASK:
+      newState = { ...state };
+      newState[action.task?.id] = action.task;
       return newState
     case GET_DONE_TASKS:
       newState = {};

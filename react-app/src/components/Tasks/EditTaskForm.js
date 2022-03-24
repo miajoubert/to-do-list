@@ -5,13 +5,12 @@ import { editATask } from '../../store/tasks'
 
 import './EditTaskForm.css'
 
-const EditTaskForm = ({ currentTask, showTaskForm }) => {
+const EditTaskForm = ({ currentTask, showEditForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const projects = Object.values(projectsState)
 
   const [project_id, setProjectId] = useState(currentTask?.project_id)
-  // const [showTaskForm, setShowTaskForm] = useState(false)
   const [task, setTask] = useState(currentTask?.task)
   const [description, setDescription] = useState(currentTask?.description)
   const [errors, setErrors] = useState([])
@@ -38,7 +37,7 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
       setTask(currentTask?.task)
       setDescription(currentTask?.description)
       setErrors([])
-      showTaskForm(false)
+      showEditForm(false)
     }
   }
 
@@ -74,6 +73,7 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
             required
           />
           <select
+            className='select-project'
             value={project_id}
             onChange={(e) => setProjectId(e.target.value)}
           >
@@ -84,17 +84,17 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
             ))}
           </select>
         </form>
-        <div className='form-button-div'>
+        <div className='form-task-button-div'>
           <button
             type='submit'
-            className="submit-button"
+            className="submit-task-button"
             onClick={handleEditTask}
           >
-            Edit task
+            Save
           </button>
           <button
-            onClick={showTaskForm}
-            className='cancel-button'
+            onClick={showEditForm}
+            className='cancel-task-button'
           >
             Cancel
           </button>

@@ -30,3 +30,24 @@
 .tooltip:hover .tooltiptext {
   opacity: 1;
 }
+
+.confirmation {
+  padding: 16px 16px 32px;
+  font-size: 14px;
+}
+
+.modal-button-div {
+  text-align: right;
+}
+
+.cancel-delete-button {
+  border: 1px #80808030 solid;
+  border-radius: 3px;
+  padding: 6px 12px 7px;
+  background-color: white;
+  color: #202020;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}

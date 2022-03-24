@@ -49,7 +49,7 @@ const DeleteModal = ({ project }) => {
           <div className='modal-button-div'>
             <button
               onClick={() => setShowModal(false)}
-              className='cancel-button'
+              className='cancel-delete-button'
             >
               Cancel
             </button>

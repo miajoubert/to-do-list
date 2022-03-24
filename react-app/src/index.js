@@ -5,6 +5,7 @@ import App from './App';
 import configureStore from './store';
 import './index.css';
 import { ModalProvider } from './context/Modal';
+import { FormProvider } from './context/Form';
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ModalProvider>
-        <App />
+        <FormProvider>
+          <App />
+        </FormProvider>
       </ModalProvider>
     </Provider>
   </React.StrictMode>,

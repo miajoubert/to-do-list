@@ -1,0 +1,27 @@
+.form-task-button-div {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.submit-task-button {
+  border: 1px #80808030 solid;
+  border-radius: 3px;
+  padding: 6px 12px 7px;
+  background-color: #DB4C3F;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancel-task-button {
+  border: 1px #80808030 solid;
+  border-radius: 3px;
+  padding: 6px 12px 7px;
+  background-color: white;
+  color: #202020;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}

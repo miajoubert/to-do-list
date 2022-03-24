@@ -45,8 +45,6 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
     }
   }
 
-  console.log("THESEE ARE MY ERRORS", errors)
-
   return (
     <>
       <div className='new-task-container'>
@@ -76,6 +74,7 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
             className='task-form-description'
           />
           <select
+            className='select-project'
             value={project_id}
             onChange={(e) => setProjectId(e.target.value)}
           >
@@ -86,17 +85,17 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
             ))}
           </select>
         </form>
-        <div className='form-button-div'>
+        <div className='form-task-button-div'>
           <button
             type='submit'
-            className="submit-button"
+            className="submit-task-button"
             onClick={handleAddTask}
           >
             Add task
           </button>
           <button
             onClick={showTaskForm}
-            className='cancel-button'
+            className='cancel-task-button'
           >
             Cancel
           </button>

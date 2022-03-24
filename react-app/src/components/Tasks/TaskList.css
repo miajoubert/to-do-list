@@ -7,22 +7,52 @@
   flex-direction: row;
   margin: 0 30px 0 0;
   padding: 8px 0px;
-  border-bottom: .5px solid #80808060;
+  border-bottom: .5px solid #80808020;
 }
 
-.hide-container {
+/* .hide-container {
   display: flex;
   width: auto;
   position: relative;
   left: 0;
   right: 0;
+} */
+
+.completed-container {
+  width: 25px
+}
+
+.fa-check {
+  position: relative;
+  top: 3px;
+  left: 4.5px;
+  width: 100%;
+  color: white;
+}
+
+.fa-check:hover {
+  transition: all .25s;
+  color: #808080;
 }
 
 .completed-circle {
-  color: #DB4C3F;
-  border-radius: 10px;
-  font-size: 40px;
-  border: none
+  position: absolute;
+  bottom: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  font-size: 10px;
+  border: 1px solid #808080;
+  /* background-color: white; */
+}
+
+.completed-circle:hover {
+  color:#DB4C3F;
+  border: #DB4C3F solid 2px;
+}
+
+:checked {
+  background-color: #80808040;
 }
 
 .name-description-container {
