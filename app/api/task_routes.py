@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
 from app.models import Task, Project, db
-from app.forms import TaskForm, TaskCompleteForm
+from app.forms import TaskForm
 from datetime import datetime
 
 task_routes = Blueprint('tasks', __name__)
