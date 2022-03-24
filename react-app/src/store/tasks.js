@@ -67,7 +67,6 @@ export const addATask = (task) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addTask(data))
-    return data
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
@@ -90,7 +89,6 @@ export const editATask = (task) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(editTask(data))
-    return data
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {

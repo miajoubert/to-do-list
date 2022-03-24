@@ -47,7 +47,13 @@ export const addAProject = (project) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addProject(data))
-    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 
@@ -59,10 +65,19 @@ export const editAProject = (project) => async (dispatch) => {
     },
     body: JSON.stringify(project)
   })
+
   if (res.ok) {
     const data = await res.json()
     dispatch(editProject(data))
     return data
+  } else if (res.status < 500) {
+    console.log("SHOULD HAVE ERROR--------------")
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 

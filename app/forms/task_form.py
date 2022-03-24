@@ -9,6 +9,6 @@ def task_required(form, field):
         raise ValidationError('Task required.')
 
 class TaskForm(FlaskForm):
-    task = StringField('title', validators=[DataRequired()])
+    task = StringField('title', validators=[task_required])
     description = TextAreaField('description')
-    project_id = IntegerField('project_id', validators=[DataRequired(), task_required])
+    project_id = IntegerField('project_id', validators=[DataRequired()])

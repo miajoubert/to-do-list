@@ -35,8 +35,9 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
       setErrors(data)
     }
     else {
-      setTask('')
-      setDescription('')
+      setTask(currentTask?.task)
+      setDescription(currentTask?.description)
+      setErrors([])
       showTaskForm(false)
     }
   }
@@ -49,11 +50,14 @@ const EditTaskForm = ({ currentTask, showTaskForm }) => {
           className='new-task-form'
           onSubmit={handleEditTask}
         >
-          <ul className="errorsAuth">
-            {errors?.map((error, i) => (
-              <li key={i}>{error}</li>
+          <div className='signup-error-div'>
+            {errors.map((error, ind) => (
+              <div key={ind}>
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {error}
+              </div>
             ))}
-          </ul>
+          </div>
           <input
             type="text"
             value={task}
