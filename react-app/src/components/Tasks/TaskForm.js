@@ -8,14 +8,15 @@ import './TaskForm.css'
 const TaskForm = ({ currentTask, showTaskForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
+
   const projects = Object.values(projectsState)
   let { projectId } = useParams()
   if (!projectId) projectId = projects[0]?.id
 
+  const [errors, setErrors] = useState([])
   const [project_id, setProjectId] = useState(projectId)
   const [task, setTask] = useState(currentTask?.task)
   const [description, setDescription] = useState(currentTask?.description)
-  const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
 
 
@@ -23,9 +24,8 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
 
   }, [projectId])
 
-  const handleAddTask = (e) => {
+  const handleAddTask = async (e) => {
     e.preventDefault();
-    setErrors([]);
 
     const payload = {
       project_id,
@@ -33,17 +33,19 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
       description
     }
 
-    dispatch(addATask(payload))
-      .catch(
-        async (res) => {
-          const data = await res.json()
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
-    setTask('')
-    setDescription('')
+    const data = await dispatch(addATask(payload))
+
+    if (data) {
+      setErrors(data)
+    }
+    else {
+      setTask('')
+      setDescription('')
+      setErrors([])
+    }
   }
 
+  console.log("THESEE ARE MY ERRORS", errors)
 
   return (
     <>
@@ -52,25 +54,26 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
           className='new-task-form'
           onSubmit={handleAddTask}
         >
-          <ul className="errorsAuth">
-            {errors.map((error, i) => (
-              <li key={i}>{error}</li>
+          <div className='signup-error-div'>
+            {errors.map((error, ind) => (
+              <div key={ind}>
+                <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                {error}
+              </div>
             ))}
-          </ul>
+          </div>
           <input
             type="text"
             value={task}
             onChange={(e) => setTask(e.target.value)}
             placeholder="e.g., Pick up groceries"
             className='task-form-name'
-            required
           />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
             className='task-form-description'
-            required
           />
           <select
             value={project_id}

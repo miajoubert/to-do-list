@@ -85,7 +85,7 @@ def complete_task(id):
     db.session.add(complete)
     db.session.commit()
     return complete.to_dict()
-  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+  return {'Response': 'Completed'}, 401
 
 
 @task_routes.route('/completed')

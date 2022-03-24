@@ -12,18 +12,19 @@ const ProjectForm = () => {
   const [title, setTitle] = useState('')
   const dispatch = useDispatch();
 
-  const handleNewProject = (e) => {
+  const handleNewProject = async (e) => {
     e.preventDefault();
-    setErrors([]);
-    dispatch(addAProject({ title }))
-      .catch(
-        async (res) => {
-          const data = await res.json()
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
-    setTitle('')
-    setShowModal(false)
+
+    const data = await dispatch(addAProject({ title }))
+
+    if (data) {
+      setErrors(data)
+    }
+    else {
+      setTitle('')
+      setShowModal(false)
+      setErrors([])
+    }
   }
 
   const handleClose = () => {
@@ -44,11 +45,14 @@ const ProjectForm = () => {
             className='new-project-form-container'
             onSubmit={handleNewProject}
           >
-            <ul className="errorsAuth">
-              {errors.map((error, i) => (
-                <li key={i}>{error}</li>
+            <div className='signup-error-div'>
+              {errors.map((error, ind) => (
+                <div key={ind}>
+                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                  {error}
+                </div>
               ))}
-            </ul>
+            </div>
             <label className="new-input">
               Project Title
               <input
