@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
 from app.models import Task, Project, db
-from app.forms import TaskForm
+from app.forms import TaskForm, TaskCompleteForm
 from datetime import datetime
 
 task_routes = Blueprint('tasks', __name__)
@@ -74,18 +74,22 @@ def delete_task(id):
 
 @task_routes.route('/<int:id>/complete', methods=['PATCH'])
 def complete_task(id):
-  form = TaskForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-  if form.validate_on_submit():
-    complete = Task.query.get(id)
 
-    complete.completed = form.data['project_id'],
-    complete.updated_at = datetime.now()
+  print('MADE IT TO MY ROUTE!!!!!!!!!!!!!!!!!!!!!!!')
 
-    db.session.add(complete)
-    db.session.commit()
-    return complete.to_dict()
-  return {'Response': 'Completed'}, 401
+  complete = Task.query.get(id)
+  task_status = complete.completed
+
+  print('THIS IS MY TASK &&&&&', complete)
+  print('status------------', task_status)
+  print('opposite of status -------', not task_status)
+
+  complete.completed = not task_status
+  complete.updated_at = datetime.now()
+
+  db.session.add(complete)
+  db.session.commit()
+  return complete.to_dict()
 
 
 @task_routes.route('/completed')

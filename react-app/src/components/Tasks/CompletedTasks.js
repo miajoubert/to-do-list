@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TaskList from './TaskList';
-import { getCompleteTasks } from '../../store/tasks';
+import { completeATask, getCompleteTasks } from '../../store/tasks';
 import './CompletedTasks.css'
 
 const CompletedTasks = () => {
@@ -11,14 +11,15 @@ const CompletedTasks = () => {
   const completedState = useSelector(state => state.tasks)
   const tasks = Object.values(completedState)
 
+  console.log("MY TASKS---------", tasks)
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(async () => {
     await dispatch(getCompleteTasks())
-  }, [dispatch])
 
-  console.log("PLEASE WORK!!!!!!!!!!!!", tasks)
+  }, [dispatch, tasks.length])
 
 
   return (

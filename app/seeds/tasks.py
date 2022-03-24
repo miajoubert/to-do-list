@@ -38,12 +38,28 @@ def seed_tasks():
         completed=False,
         created_at=datetime.now(),
         updated_at=datetime.now())
+    t6 = Task(
+        project_id=4,
+        task='Vacuum carpets',
+        description='remember stairs!',
+        completed=True,
+        created_at=datetime.now(),
+        updated_at=datetime.now())
+    t7 = Task(
+        project_id=4,
+        task='Get car washed',
+        description='place closes at 4pm',
+        completed=True,
+        created_at=datetime.now(),
+        updated_at=datetime.now())
 
     db.session.add(t1)
     db.session.add(t2)
     db.session.add(t3)
     db.session.add(t4)
     db.session.add(t5)
+    db.session.add(t6)
+    db.session.add(t7)
 
     db.session.commit()
 

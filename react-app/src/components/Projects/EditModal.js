@@ -12,7 +12,7 @@ const EditModal = ({ project }) => {
   const [title, setTitle] = useState(project?.title)
   const dispatch = useDispatch();
 
-  const handleEditProject = (e) => {
+  const handleEditProject = async (e) => {
     e.preventDefault();
 
     project = {
@@ -20,15 +20,16 @@ const EditModal = ({ project }) => {
       title
     }
 
-    dispatch(editAProject(project))
-      .catch(
-        async (res) => {
-          const data = await res.json()
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
-    setShowModal(false)
-    return
+    const data = await dispatch(editAProject(project))
+
+    if (data) {
+      setErrors(data)
+    }
+    else {
+      setTitle('')
+      setShowModal(false)
+      setErrors([])
+    }
   }
 
   const handleClose = () => {
@@ -47,18 +48,23 @@ const EditModal = ({ project }) => {
       </a>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
+          <div className='modal-title'>Edit project</div>
           <form
             className='new-project-form-container'
             onSubmit={handleEditProject}
           >
-            <ul className="errorsAuth">
-              {errors.map((error, i) => (
-                <li key={i}>{error}</li>
+            <div className='signup-error-div'>
+              {errors.map((error, ind) => (
+                <div key={ind}>
+                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                  {error}
+                </div>
               ))}
-            </ul>
-            <label className="new-input">
-              Project Title
+            </div>
+            <label className="input-container">
+              <div className='input-label'>Name</div>
               <input
+                className="new-input"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -78,7 +84,7 @@ const EditModal = ({ project }) => {
               className="submit-button"
               onClick={handleEditProject}
             >
-              Edit
+              Save
             </button>
           </div>
         </Modal>

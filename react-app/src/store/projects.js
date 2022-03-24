@@ -71,7 +71,6 @@ export const editAProject = (project) => async (dispatch) => {
     dispatch(editProject(data))
     return data
   } else if (res.status < 500) {
-    console.log("SHOULD HAVE ERROR--------------")
     const data = await res.json();
     if (data.errors) {
       return data.errors;

@@ -41,6 +41,7 @@ const ProjectForm = () => {
       </a>
       {showModal && (
         <Modal onClose={handleClose}>
+          <div className='modal-title'>Add project</div>
           <form
             className='new-project-form-container'
             onSubmit={handleNewProject}
@@ -53,9 +54,10 @@ const ProjectForm = () => {
                 </div>
               ))}
             </div>
-            <label className="new-input">
-              Project Title
+            <label className="input-container">
+              <div className='input-label'>Name</div>
               <input
+                className="new-input"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}

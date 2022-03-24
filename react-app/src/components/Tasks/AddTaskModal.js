@@ -96,6 +96,7 @@ const AddTaskModal = ({ project }) => {
                 required
               />
               <select
+                className='select-project'
                 value={project_id}
                 onChange={(e) => setProjectId(e.target.value)}
               >
@@ -106,17 +107,17 @@ const AddTaskModal = ({ project }) => {
                 ))}
               </select>
             </form>
-            <div className='form-button-div'>
+            <div className='add-modal-button-div'>
               <button
                 type='submit'
-                className="submit-button"
+                className="submit-add-button"
                 onClick={handleAddTask}
               >
                 Add task
               </button>
               <button
                 onClick={() => setShowModal(false)}
-                className='cancel-button'
+                className='cancel-add-button'
               >
                 Cancel
               </button>
