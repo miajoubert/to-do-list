@@ -8,6 +8,7 @@ import './TaskForm.css'
 const TaskForm = ({ currentTask, showTaskForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
+
   const projects = Object.values(projectsState)
   let { projectId } = useParams()
   if (!projectId) projectId = projects[0]?.id
@@ -23,9 +24,8 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
 
   }, [projectId])
 
-  const handleAddTask = (e) => {
+  const handleAddTask = async (e) => {
     e.preventDefault();
-    setErrors([]);
 
     const payload = {
       project_id,
@@ -33,15 +33,15 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
       description
     }
 
-    dispatch(addATask(payload))
-      .catch(
-        async (res) => {
-          const data = await res.json()
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
-    setTask('')
-    setDescription('')
+    const data = await dispatch(addATask(payload))
+
+    if (data) {
+      setErrors(data)
+    }
+    else {
+      setTask('')
+      setDescription('')
+    }
   }
 
 
@@ -53,7 +53,7 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
           onSubmit={handleAddTask}
         >
           <ul className="errorsAuth">
-            {errors.map((error, i) => (
+            {errors?.map((error, i) => (
               <li key={i}>{error}</li>
             ))}
           </ul>

@@ -68,6 +68,13 @@ export const addATask = (task) => async (dispatch) => {
     const data = await res.json()
     dispatch(addTask(data))
     return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 
@@ -84,6 +91,13 @@ export const editATask = (task) => async (dispatch) => {
     const data = await res.json()
     dispatch(editTask(data))
     return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 
@@ -103,7 +117,6 @@ export const getCompleteTasks = () => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(getDoneTasks(data.tasks))
-    console.log("THIS IS IN MY THUNK", data.tasks)
     return data.tasks
   }
 }
