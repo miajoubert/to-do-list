@@ -3,31 +3,30 @@
 Inspired by Todoist, Todolist is a task-list platform on which users can create to-do lists (projects) with tasks to be completed.
 
 # Index
-
 - [Live Site](https://todolist-appclone.herokuapp.com/)
+- [User Stories](https://github.com/miajoubert/to-do-list/wiki/User-Stories)
 - [Feature List](https://github.com/miajoubert/to-do-list/wiki/Features)
 - [Database Schema](https://github.com/miajoubert/to-do-list/wiki/Database-Schema)
-- [User Stories](https://github.com/miajoubert/to-do-list/wiki/User-Stories)
 - [Wireframes](https://github.com/miajoubert/to-do-list/wiki/Wireframes)
 
 # Technologies Used
 
 ## Frontend
-React <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/>
-Redux <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/>
-Javascript <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/>
-HTML <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/>
-CSS <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/>
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/> React
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/> Redux
+- <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/> Javascript
+- <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/> HTML
+- <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/> CSS
 
 ## Backend
-Flask <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/>
-Python <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=40/>
-PostgreSQL <img src="https://github.com/devicons/devicon/blob/v2.15.1/icons/postgresql/postgresql-original.svg" height=40/>
-SQL Alchemy <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" height=40/>
-VS Code <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/> Flask
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=40/> Python
+<img src="https://github.com/devicons/devicon/blob/v2.15.1/icons/postgresql/postgresql-original.svg" height=40/> PostgreSQL
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" height=40/> SQL Alchemy
 
-GitHub <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/>
-Docker <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height=40/>
+<img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/> VS Code
+<img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/> GitHub
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height=40/> Docker
 
 # Getting started
 
@@ -78,13 +77,17 @@ Docker <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docke
 
 
 
-## Shopping Cart 
+## Inbox 
 ![Login-Page]()
 
 
-## Product Detail Page 
+## Project Page
 ![Product-Detail]()
 
 
-## 404 Page Not Found 
+## Completed Tasks 
 ![image]()
+
+
+## Link to Wiki Docs:
+https://github.com/miajoubert/to-do-list/wiki
