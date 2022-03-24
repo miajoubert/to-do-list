@@ -4,6 +4,5 @@ from .signup_form import SignUpForm
 from .signup_form2 import SignUpFormTwo
 from .project_form import ProjectForm
 from .task_form import TaskForm
-from .task_complete_form import TaskCompleteForm
 from .section_form import SectionForm
 from .note_form import NoteForm
