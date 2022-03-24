@@ -1,7 +1,7 @@
-const GET_PROJECTS = 'session/GET_PROJECTS';
-const ADD_PROJECT = 'session/ADD_PROJECT';
-const EDIT_PROJECT = 'session/EDIT_PROJECT';
-const DELETE_PROJECT = 'session/DELETE_PROJECT';
+const GET_PROJECTS = 'projects/GET_PROJECTS';
+const ADD_PROJECT = 'projects/ADD_PROJECT';
+const EDIT_PROJECT = 'projects/EDIT_PROJECT';
+const DELETE_PROJECT = 'projects/DELETE_PROJECT';
 
 
 const getProjects = (projects) => ({

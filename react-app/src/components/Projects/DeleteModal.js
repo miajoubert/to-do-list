@@ -30,7 +30,7 @@ const DeleteModal = ({ project }) => {
         className='proj-sb-button'
         onClick={() => setShowModal(true)}
       >
-        <i class="far fa-trash-alt tooltip">
+        <i className="far fa-trash-alt tooltip">
           <span className='tooltiptext'>Delete</span>
         </i>
       </a>

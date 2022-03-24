@@ -2,30 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProtectedRoute from './auth/ProtectedRoute';
 import MainNav from './MainNav';
-import ProjectSidebar from './Projects/ProjectsSidebar';
 import AppHome from './AppHome';
+import ProjectSidebar from './Projects/ProjectsSidebar';
 import ProjectBody from './Projects/ProjectBody';
+import CompletedTasks from './Tasks/CompletedTasks';
 import SearchResults from './SearchResults';
-import { addATask, getAllTasks } from '../store/tasks';
+import { getAllTasks } from '../store/tasks';
 
 import './MainApp.css'
-import TaskForm from './Tasks/TaskForm';
-import { useParams } from 'react-router-dom';
 
 const MainApp = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
-  const tasksState = useSelector(state => state.tasks)
 
   const [closeSideBar, setCloseSideBar] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
 
   const dispatch = useDispatch();
-
-  const tasks = Object.values(tasksState)
-
-  useEffect(() => {
-    dispatch(getAllTasks())
-  }, [dispatch])
 
 
   return (
@@ -54,6 +46,9 @@ const MainApp = () => {
             </ProtectedRoute>
             <ProtectedRoute path='/app/projects/:projectId' exact={true}>
               <ProjectBody />
+            </ProtectedRoute>
+            <ProtectedRoute path='/app/archive' exact={true}>
+              <CompletedTasks />
             </ProtectedRoute>
             <ProtectedRoute path='/app/search' exact={true}>
               <SearchResults />

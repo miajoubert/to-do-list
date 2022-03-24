@@ -1,9 +1,9 @@
-const GET_TASKS = 'session/GET_TASKS';
-const GET_PROJ_TASKS = 'session/GET_PROJ_TASKS';
-const ADD_TASK = 'session/ADD_TASK';
-const EDIT_TASK = 'session/EDIT_TASK';
-const DELETE_TASK = 'session/DELETE_TASK';
-
+const GET_TASKS = 'tasks/GET_TASKS';
+const GET_PROJ_TASKS = 'tasks/GET_PROJ_TASKS';
+const ADD_TASK = 'tasks/ADD_TASK';
+const EDIT_TASK = 'tasks/EDIT_TASK';
+const DELETE_TASK = 'tasks/DELETE_TASK';
+const GET_DONE_TASKS = 'tasks/GET_DONE_TASKS';
 
 const getTasks = (tasks) => ({
   type: GET_TASKS,
@@ -30,6 +30,12 @@ const deleteTask = (id) => ({
   id
 })
 
+const getDoneTasks = (tasks) => ({
+  type: GET_DONE_TASKS,
+  tasks
+})
+
+
 
 export const getAllTasks = () => async (dispatch) => {
   const res = await fetch('/api/tasks')
@@ -42,14 +48,12 @@ export const getAllTasks = () => async (dispatch) => {
 
 export const getProjTasks = (projectId) => async (dispatch) => {
   const res = await fetch(`/api/tasks/${projectId}`)
-  console.log("THIS IS MY RESPONSE!!!!", res)
   if (res.ok) {
     const data = await res.json()
     dispatch(getProjectTasks(data.tasks))
     return data.tasks
   }
 }
-
 
 export const addATask = (task) => async (dispatch) => {
   const res = await fetch('/api/tasks/add', {
@@ -68,7 +72,6 @@ export const addATask = (task) => async (dispatch) => {
 }
 
 export const editATask = (task) => async (dispatch) => {
-  console.log("IN MY EDIT THUNK-------------------", task)
   const res = await fetch(`/api/tasks/${task.id}/edit`, {
     method: 'PATCH',
     headers: {
@@ -92,6 +95,16 @@ export const deleteATask = (id) => async (dispatch) => {
     const data = await res.json()
     dispatch(deleteTask(id))
     return res
+  }
+}
+
+export const getCompleteTasks = () => async (dispatch) => {
+  const res = await fetch(`/api/tasks/completed`)
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(getDoneTasks(data.tasks))
+    console.log("THIS IS IN MY THUNK", data.tasks)
+    return data.tasks
   }
 }
 
@@ -123,6 +136,12 @@ export default function reducer(state = {}, action) {
       newState = { ...state };
       delete newState[action.id]
       return newState
+    case GET_DONE_TASKS:
+      newState = {};
+      action.tasks.forEach((task) => {
+        newState[task?.id] = task
+      });
+      return newState;
     default:
       return state;
   }

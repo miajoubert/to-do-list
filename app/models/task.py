@@ -8,7 +8,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     task = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
     completed = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
@@ -20,6 +20,7 @@ class Task(db.Model):
             'project_id': self.project_id,
             'task': self.task,
             'description': self.description,
+            'completed': self.completed,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

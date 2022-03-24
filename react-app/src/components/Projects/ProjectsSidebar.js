@@ -43,7 +43,7 @@ const ProjectSidebar = ({ showTaskForm }) => {
               onClick={() => history.push("/app/archive")}
             >
               <div className="project-item-div ">
-                Completed Tasks
+                <i>Completed Tasks</i>
               </div>
             </div>
           </div>

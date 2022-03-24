@@ -35,7 +35,7 @@ const AppHome = () => {
         <ul className="task-list">
           {tasks?.map(task => {
             return (
-              <li>
+              <li key={task?.id}>
                 <TaskList task={task} />
               </li>
             )

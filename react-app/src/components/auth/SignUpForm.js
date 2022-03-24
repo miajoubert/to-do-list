@@ -61,7 +61,7 @@ const SignUpForm = () => {
             <div className='signup-error-div'>
               {errors.map((error, ind) => (
                 <div key={ind}>
-                  <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                  <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
                   {error}
                 </div>
               ))}

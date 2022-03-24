@@ -30,16 +30,16 @@ def get_task_by_project_id(id):
 def add_task():
   form = TaskForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
-    print("THIS IS -------in--------THE MY TASK")
     task = Task(
-      project_id=form.data['project_id'],
-      task=form.data['task'],
+      project_id = form.data['project_id'],
+      task = form.data['task'],
       description = form.data['description'],
+      completed = False,
       created_at = datetime.now(),
       updated_at = datetime.now(),
     )
-    # print("THIS IS THE MY TASK", task)
     db.session.add(task)
     db.session.commit()
     return task.to_dict()
@@ -53,8 +53,8 @@ def edit_task(id):
   if form.validate_on_submit():
     edit = Task.query.get(id)
 
-    edit.project_id=form.data['project_id']
-    edit.task=form.data['task'],
+    edit.project_id = form.data['project_id']
+    edit.task = form.data['task'],
     edit.description = form.data['description'],
     edit.updated_at = datetime.now()
 
@@ -70,3 +70,25 @@ def delete_task(id):
   db.session.delete(delete)
   db.session.commit()
   return {'Response': 'Deleted'}
+
+
+@task_routes.route('/<int:id>/complete', methods=['PATCH'])
+def complete_task(id):
+  form = TaskForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    complete = Task.query.get(id)
+
+    complete.completed = form.data['project_id'],
+    complete.updated_at = datetime.now()
+
+    db.session.add(complete)
+    db.session.commit()
+    return complete.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@task_routes.route('/completed')
+def get_done_task():
+  tasks = Task.query.join(Project).filter(Project.user_id == current_user.id).filter(Task.completed).all()
+  return {"tasks": [task.to_dict() for task in tasks]}
