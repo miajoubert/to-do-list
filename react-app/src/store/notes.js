@@ -1,8 +1,8 @@
-const GET_NOTES = 'session/GET_NOTES';
-const GET_NOTE = 'session/GET_NOTE';
-const ADD_NOTE = 'session/ADD_NOTE';
-const EDIT_NOTE = 'session/EDIT_NOTE';
-const DELETE_NOTE = 'session/DELETE_NOTE';
+const GET_NOTES = 'notes/GET_NOTES';
+const GET_NOTE = 'notes/GET_NOTE';
+const ADD_NOTE = 'notes/ADD_NOTE';
+const EDIT_NOTE = 'notes/EDIT_NOTE';
+const DELETE_NOTE = 'notes/DELETE_NOTE';
 
 
 const getNotes = (notes) => ({

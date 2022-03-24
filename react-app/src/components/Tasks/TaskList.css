@@ -19,6 +19,7 @@
 }
 
 .completed-circle {
+  color: #DB4C3F;
   border-radius: 10px;
   font-size: 40px;
   border: none

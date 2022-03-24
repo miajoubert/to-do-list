@@ -5,5 +5,5 @@ from wtforms.validators import DataRequired
 
 class TaskForm(FlaskForm):
     task = StringField('title', validators=[DataRequired()])
-    description = TextAreaField('description', validators=[DataRequired()])
+    description = TextAreaField('description')
     project_id = IntegerField('project_id', validators=[DataRequired()])

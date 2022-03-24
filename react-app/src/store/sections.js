@@ -1,8 +1,8 @@
-const GET_SECTIONS = 'session/GET_SECTIONS';
-const GET_SECTION = 'session/GET_SECTION';
-const ADD_SECTION = 'session/ADD_SECTION';
-const EDIT_SECTION = 'session/EDIT_SECTION';
-const DELETE_SECTION = 'session/DELETE_SECTION';
+const GET_SECTIONS = 'sections/GET_SECTIONS';
+const GET_SECTION = 'sections/GET_SECTION';
+const ADD_SECTION = 'sections/ADD_SECTION';
+const EDIT_SECTION = 'sections/EDIT_SECTION';
+const DELETE_SECTION = 'sections/DELETE_SECTION';
 
 
 const getSections = (sections) => ({

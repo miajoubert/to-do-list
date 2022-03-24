@@ -36,7 +36,7 @@ const ProjectForm = () => {
     <>
       <a
         onClick={() => setShowModal(true)}>
-        <i class="fas fa-plus" />
+        <i className="fas fa-plus" />
       </a>
       {showModal && (
         <Modal onClose={handleClose}>

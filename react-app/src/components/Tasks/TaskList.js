@@ -8,7 +8,6 @@ const TaskList = ({ task }) => {
   const [completed, setCompleted] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
 
-
   return (
     <>
       <div className='task-container'>
@@ -16,12 +15,16 @@ const TaskList = ({ task }) => {
           className='hide-container'
           hidden={showTaskForm}
         >
-          <input
-            value={completed}
-            type="checkbox"
-            className='completed-circle'
-          />
-          {task?.completed}
+          <div className='completed-container'>
+            <input
+              value={completed}
+              type="checkbox"
+              className='completed-circle'
+              checked={task?.completed === true}
+            />
+            <span className='completed-circle'></span>
+          </div>
+          {/* {task?.completed} */}
 
           <div className='name-description-container'>
             <div className='task-name'>{task?.task}</div>
@@ -32,7 +35,7 @@ const TaskList = ({ task }) => {
               className='proj-sb-button'
               onClick={() => setShowTaskForm(true)}
             >
-              <i class="far fa-edit tooltip">
+              <i className="far fa-edit tooltip">
                 <span className='tooltiptext'>Edit</span>
               </i>
             </a>
