@@ -22,6 +22,22 @@
   width: 25px
 }
 
+.the-actual-checkbox {
+  box-shadow: 1px 1px 2px 1px #DB4C3F ;
+  border-radius: 10px;
+  border: none;
+}
+.the-actual-checkbox:hover {
+  box-shadow: 1px 1px 3px 3px #DB4C3F ;
+  border-radius: 10px;
+  border: none;
+}
+
+.the-actual-checkbox:checked {
+  box-shadow: 2px 2px 2px 2px black ;
+
+}
+
 .fa-check {
   position: relative;
   top: 3px;

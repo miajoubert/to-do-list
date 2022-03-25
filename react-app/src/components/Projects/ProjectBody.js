@@ -24,10 +24,9 @@ const ProjectBody = () => {
     return (task?.project_id === +projectId)
   })
 
-
   useEffect(async () => {
     await dispatch(getAllTasks())
-  }, [dispatch])
+  }, [dispatch, projectId])
 
 
   return (
@@ -89,7 +88,9 @@ const ProjectBody = () => {
         <div
           hidden={!showTaskForm}
         >
-          <TaskForm showTaskForm={() => setShowTaskForm(false)} />
+          <TaskForm
+            projectId={projectId}
+            showTaskForm={() => setShowTaskForm(false)} />
         </div>
       </div>
     </>

@@ -59,7 +59,7 @@ export const addAProject = (project) => async (dispatch) => {
 
 export const editAProject = (project) => async (dispatch) => {
   const res = await fetch(`/projects/${project.id}/edit`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -69,7 +69,6 @@ export const editAProject = (project) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(editProject(data))
-    return data
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {

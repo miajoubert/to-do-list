@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import TaskList from './TaskList';
 import { completeATask, getCompleteTasks } from '../../store/tasks';
 import './CompletedTasks.css'
@@ -10,8 +10,6 @@ const CompletedTasks = () => {
   const projectsState = useSelector(state => state.projects)
   const completedState = useSelector(state => state.tasks)
   const tasks = Object.values(completedState)
-
-  console.log("MY TASKS---------", tasks)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,6 +22,7 @@ const CompletedTasks = () => {
 
   return (
     <>
+      <Redirect to='/app/archive' />
       <div className='task-list-title-container'>
         <div className='task-list-title'>
           Completed Tasks

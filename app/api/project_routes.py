@@ -37,7 +37,7 @@ def add_project():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@project_routes.route('/<int:id>/edit', methods=['PUT'])
+@project_routes.route('/<int:id>/edit', methods=['PATCH'])
 def edit_project(id):
   form = ProjectForm()
   form['csrf_token'].data = request.cookies['csrf_token']

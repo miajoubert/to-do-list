@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { addATask } from '../../store/tasks'
 
 import './TaskForm.css'
 
-const TaskForm = ({ currentTask, showTaskForm }) => {
+const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
 
   const projects = Object.values(projectsState)
-  let { projectId } = useParams()
   if (!projectId) projectId = projects[0]?.id
 
   const [errors, setErrors] = useState([])
@@ -18,10 +17,10 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
   const [task, setTask] = useState(currentTask?.task)
   const [description, setDescription] = useState(currentTask?.description)
   const dispatch = useDispatch();
-
+  const history = useHistory()
 
   useEffect(() => {
-
+    setProjectId(projectId)
   }, [projectId])
 
   const handleAddTask = async (e) => {
@@ -43,6 +42,13 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
       setDescription('')
       setErrors([])
     }
+  }
+
+  const handleCancel = () => {
+    showTaskForm()
+    setTask('')
+    setDescription('')
+    setErrors([])
   }
 
   return (
@@ -94,7 +100,7 @@ const TaskForm = ({ currentTask, showTaskForm }) => {
             Add task
           </button>
           <button
-            onClick={showTaskForm}
+            onClick={handleCancel}
             className='cancel-task-button'
           >
             Cancel

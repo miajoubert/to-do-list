@@ -6,20 +6,18 @@ import { completeATask } from '../../store/tasks';
 
 import './TaskList.css'
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-const TaskList = ({ task }) => {
+const TaskList = ({ task, handleClose }) => {
   const [completed, setCompleted] = useState(task?.completed)
   const [showEditForm, setShowEditForm] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
 
-  }, [dispatch])
+  }, [showEditForm])
 
-
-  function handleShowForm() {
-    setShowEditForm(!showEditForm)
-  }
+  const { projectId } = useParams()
 
   const handleCompleted = async () => {
     await dispatch(completeATask(task?.id))
@@ -37,6 +35,7 @@ const TaskList = ({ task }) => {
               onClick={handleCompleted}
             >
               <input
+                className='the-actual-checkbox'
                 value={completed}
                 type="checkbox"
                 checked={completed}
@@ -45,14 +44,15 @@ const TaskList = ({ task }) => {
               {/* <span
                 className='completed-circle'
                 value={completed}
-                checked={true}
+                type="checkbox"
+                checked={completed}
               >
                 <i className="fas fa-check"></i>
               </span> */}
             </form>
           </div>
 
-          <div className='name-description-container'>
+          <div className='name-description-container' >
             <div className='task-name'>{task?.task}</div>
             <div className='task-description'>{task?.description}</div>
           </div>
