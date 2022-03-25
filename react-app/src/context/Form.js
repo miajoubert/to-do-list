@@ -28,9 +28,13 @@ export function Form({ onClose, children }) {
   if (!formNode) return null;
 
   return ReactDOM.createPortal(
-    <div id="form">
+    <div id="form-context">
       <div id="form-content">
         {children}
+      </div>
+      <div className='buttons'>
+        <button>Save</button>
+        <button onClick={onClose}>Cancel</button>
       </div>
     </div>,
     formNode

@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { addATask } from '../../store/tasks'
+import { useHistory } from 'react-router-dom';
+import { addATask } from '../../store/tasks';
+import './TaskForm.css';
 
-import './TaskForm.css'
+const TaskForm = ({ currentTask, showTaskForm, projectId, focusField }) => {
+  const sessionUser = useSelector(state => state.session?.user.id);
+  const projectsState = useSelector(state => state.projects);
 
-const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
-  const sessionUser = useSelector(state => state.session?.user.id)
-  const projectsState = useSelector(state => state.projects)
+  const projects = Object.values(projectsState);
+  if (!projectId) projectId = projects[0]?.id;
 
-  const projects = Object.values(projectsState)
-  if (!projectId) projectId = projects[0]?.id
-
-  const [errors, setErrors] = useState([])
-  const [project_id, setProjectId] = useState(projectId)
-  const [task, setTask] = useState(currentTask?.task)
-  const [description, setDescription] = useState(currentTask?.description)
+  const [errors, setErrors] = useState([]);
+  const [project_id, setProjectId] = useState(projectId);
+  const [task, setTask] = useState(currentTask?.task);
+  const [description, setDescription] = useState(currentTask?.description);
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     setProjectId(projectId)
     setErrors([])
-  }, [projectId])
+  }, [projectId]);
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [showTaskForm]);
 
   const handleAddTask = async (e) => {
     e.preventDefault();
@@ -44,14 +48,14 @@ const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
       setDescription('')
       setErrors([])
     }
-  }
+  };
 
   const handleCancel = () => {
     showTaskForm()
     setTask('')
     setDescription('')
     setErrors([])
-  }
+  };
 
   return (
     <>
@@ -74,6 +78,8 @@ const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
             onChange={(e) => setTask(e.target.value)}
             placeholder="e.g., Pick up groceries"
             className='task-form-name'
+            id={focusField}
+            ref={inputRef}
             required
           />
           <textarea

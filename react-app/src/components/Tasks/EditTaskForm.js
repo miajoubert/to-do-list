@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editATask } from '../../store/tasks'
-
-import './EditTaskForm.css'
+import { editATask } from '../../store/tasks';
+import './EditTaskForm.css';
 
 const EditTaskForm = ({ currentTask, showEditForm }) => {
-  const sessionUser = useSelector(state => state.session?.user.id)
-  const projectsState = useSelector(state => state.projects)
-  const projects = Object.values(projectsState)
+  const sessionUser = useSelector(state => state.session?.user.id);
+  const projectsState = useSelector(state => state.projects);
+  const projects = Object.values(projectsState);
 
-  const [project_id, setProjectId] = useState(currentTask?.project_id)
-  const [task, setTask] = useState(currentTask?.task)
-  const [description, setDescription] = useState(currentTask?.description)
-  const [errors, setErrors] = useState([])
+  const [project_id, setProjectId] = useState(currentTask?.project_id);
+  const [task, setTask] = useState(currentTask?.task);
+  const [description, setDescription] = useState(currentTask?.description);
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     setTask(currentTask?.task)
     setDescription(currentTask?.description)
     setErrors([])
-  }, [currentTask])
+  }, [currentTask]);
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [showEditForm]);
 
   const handleEditTask = async (e) => {
     e.preventDefault();
@@ -42,14 +46,14 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
       setDescription(currentTask?.description)
       showEditForm(false)
     }
-  }
+  };
 
   const handleCancel = () => {
     showEditForm()
     setTask(currentTask?.task)
     setDescription(currentTask?.description)
     setErrors([])
-  }
+  };
 
   return (
     <>
@@ -72,6 +76,7 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
             onChange={(e) => setTask(e.target.value)}
             placeholder="e.g., Pick up groceries"
             className='task-form-name'
+            ref={inputRef}
             required
           />
           <textarea

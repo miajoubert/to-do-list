@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal } from '../../context/Modal'
+import { Modal } from '../../context/Modal';
 import { addATask } from '../../store/tasks';
-
-import './AddTaskModal.css'
+import './AddTaskModal.css';
 
 const AddTaskModal = ({ project }) => {
-  const sessionUser = useSelector(state => state.session?.user.id)
-  const projectsState = useSelector(state => state.projects)
-  const projects = Object.values(projectsState)
-  const projectId = projects[0]?.id
+  const sessionUser = useSelector(state => state.session?.user.id);
+  const projectsState = useSelector(state => state.projects);
+  const projects = Object.values(projectsState);
+  const projectId = projects[0]?.id;
 
   const [showModal, setShowModal] = useState(false);
-  const [project_id, setProjectId] = useState(projectId)
-  const [task, setTask] = useState('')
-  const [description, setDescription] = useState('')
-  const [errors, setErrors] = useState([])
+  const [project_id, setProjectId] = useState(projectId);
+  const [task, setTask] = useState('');
+  const [description, setDescription] = useState('');
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [showModal]);
 
   const handleAddTask = async (e) => {
     e.preventDefault();
@@ -96,6 +100,7 @@ const AddTaskModal = ({ project }) => {
                 onChange={(e) => setTask(e.target.value)}
                 placeholder="e.g., Pick up groceries"
                 className='modal-task-form-name'
+                ref={inputRef}
                 required
               />
               <textarea

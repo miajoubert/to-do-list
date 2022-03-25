@@ -5,14 +5,29 @@ import projects from './projects';
 import tasks from './tasks'
 import sections from './sections'
 import notes from './notes'
+import { REMOVE_USER } from './session'
 
-const rootReducer = combineReducers({
+// const rootReducer = combineReducers({
+//   session,
+//   projects,
+//   tasks,
+//   sections,
+//   notes
+// });
+
+const appReducer = combineReducers({
   session,
   projects,
   tasks,
   sections,
   notes
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === REMOVE_USER) state = undefined
+
+  return appReducer(state, action)
+};
 
 
 let enhancer;

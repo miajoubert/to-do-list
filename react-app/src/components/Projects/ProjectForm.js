@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal } from '../../context/Modal'
+import { Modal } from '../../context/Modal';
 import { addAProject } from '../../store/projects';
-
-import './ProjectForm.css'
+import './ProjectForm.css';
 
 const ProjectForm = () => {
-  const sessionUser = useSelector(state => state.session?.user.id)
+  const sessionUser = useSelector(state => state.session?.user.id);
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
   const dispatch = useDispatch();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [showModal]);
 
   const handleNewProject = async (e) => {
     e.preventDefault();
@@ -25,12 +29,12 @@ const ProjectForm = () => {
       setShowModal(false)
       setErrors([])
     }
-  }
+  };
 
   const handleClose = () => {
     setShowModal(false)
     setTitle('')
-  }
+  };
 
 
   return (
@@ -62,6 +66,7 @@ const ProjectForm = () => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                ref={inputRef}
                 required
               />
             </label>

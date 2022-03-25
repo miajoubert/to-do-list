@@ -3,30 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import TaskList from './Tasks/TaskList';
 import TaskForm from './Tasks/TaskForm';
 import { getAllTasks } from '../store/tasks';
-import './AppHome.css'
+import './AppHome.css';
 
 const AppHome = () => {
-  const sessionUser = useSelector(state => state.session?.user.id)
-  const projectsState = useSelector(state => state.projects)
-  const tasksState = useSelector(state => state.tasks)
-  const [showTaskForm, setShowTaskForm] = useState(false)
+  const sessionUser = useSelector(state => state.session?.user.id);
+  const projectsState = useSelector(state => state.projects);
+  const tasksState = useSelector(state => state.tasks);
+  const [showTaskForm, setShowTaskForm] = useState(false);
 
   const dispatch = useDispatch();
 
-  const tasks = Object.values(tasksState)
+  const tasks = Object.values(tasksState);
 
   useEffect(async () => {
     await dispatch(getAllTasks())
-  }, [dispatch, sessionUser])
+  }, [dispatch, sessionUser]);
 
-  const isOpen = showTaskForm
-
-  useEffect(() => {
-    if (isOpen) {
-      setShowTaskForm(false)
-      setShowTaskForm(true)
-    }
-  }, [showTaskForm])
 
   return (
     <>
@@ -40,9 +32,7 @@ const AppHome = () => {
           {tasks?.map(task => {
             return (
               <li key={task?.id}>
-                <TaskList
-                  task={task}
-                  handleClose={() => setShowTaskForm(false)} />
+                <TaskList task={task} />
               </li>
             )
           })}
