@@ -14,7 +14,7 @@
   padding: 10px;
   margin-right: 15%;
   border: solid .5px #33333350;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: white;
 }
 
@@ -24,7 +24,12 @@
   color: #202020;
   font-size: 14px;
   font-weight: bold;
-  padding: 5px;
+  padding: 10px;
+}
+
+
+.task-form-name::placeholder {
+  color: #80808060
 }
 
 .task-form-description {
@@ -34,9 +39,21 @@
   font-size: 12px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-wrap: break-word;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
   height: 60px;
+}
+
+.task-form-description::placeholder {
+  color: #80808050
+}
+
+.select-project {
+  width: 30%;
+  padding: 5px;
+
+  border-radius: 3px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-task-button-div {
