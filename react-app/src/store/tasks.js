@@ -31,9 +31,9 @@ const deleteTask = (id) => ({
   id
 })
 
-const completeTask = (id) => ({
+const completeTask = (task) => ({
   type: COMPLETE_TASK,
-  id
+  task
 })
 
 const getDoneTasks = (tasks) => ({
