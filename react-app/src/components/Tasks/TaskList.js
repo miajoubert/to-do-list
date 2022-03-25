@@ -6,7 +6,7 @@ import { completeATask, getCompleteTasks } from '../../store/tasks';
 
 import './TaskList.css'
 
-const TaskList = ({ task }) => {
+const TaskList = ({ task, handleClose }) => {
   const [completed, setCompleted] = useState(task?.completed)
   const [showEditForm, setShowEditForm] = useState(false)
   const dispatch = useDispatch()
@@ -77,6 +77,7 @@ const TaskList = ({ task }) => {
 
       <div
         hidden={!showEditForm}
+        onClick={handleClose}
       >
         <EditTaskForm
           currentTask={task}

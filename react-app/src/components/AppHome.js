@@ -19,6 +19,14 @@ const AppHome = () => {
     await dispatch(getAllTasks())
   }, [dispatch, sessionUser])
 
+  const isOpen = showTaskForm
+
+  useEffect(() => {
+    if (isOpen) {
+      setShowTaskForm(false)
+      setShowTaskForm(true)
+    }
+  }, [showTaskForm])
 
   return (
     <>

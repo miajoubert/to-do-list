@@ -124,8 +124,6 @@ export const completeATask = (id) => async (dispatch) => {
     }
   })
 
-  console.log("THIS IS MY TASK RESPONSE", res)
-
   if (res.ok) {
     const data = await res.json()
     dispatch(completeTask(data))
@@ -175,18 +173,13 @@ export default function reducer(state = {}, action) {
       return newState
     case COMPLETE_TASK:
       newState = { ...state };
-      if (action.task?.completed) console.log("THIS ONE IS DONE", action.task)
-      if (!action.task?.completed) console.log("THIS ONE IS undone!!!!!!", action.task)
-      console.log("MY COMPLETED TASk action!!!!!!!!!!", action)
       newState[action.task?.id] = action.task;
-      console.log("this is updated complete_task state", newState)
       return newState
     case GET_DONE_TASKS:
       newState = {};
       action.tasks.forEach((task) => {
         newState[task?.id] = task
       });
-      console.log("THESE ARE MY NEW TASKS", newState)
       return newState;
     default:
       return state;

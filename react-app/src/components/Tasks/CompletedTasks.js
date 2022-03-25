@@ -12,9 +12,6 @@ const CompletedTasks = () => {
   const tasks = Object.values(completedState)
   const dispatch = useDispatch();
 
-  console.log("MY TASKS!!!!!", tasks)
-  let change;
-
   useEffect(async () => {
     let tasksAreComplete = true
 
