@@ -20,8 +20,7 @@ const AddTaskModal = ({ project }) => {
 
   const handleAddTask = async (e) => {
     e.preventDefault();
-
-    e.preventDefault();
+    setErrors([]);
 
     const payload = {
       project_id,
@@ -104,7 +103,6 @@ const AddTaskModal = ({ project }) => {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
                 className='modal-task-form-description'
-                required
               />
               <select
                 className='modal-select-project'

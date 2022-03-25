@@ -26,6 +26,7 @@ const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
 
   const handleAddTask = async (e) => {
     e.preventDefault();
+    setErrors([])
 
     const payload = {
       project_id,
@@ -73,6 +74,7 @@ const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
             onChange={(e) => setTask(e.target.value)}
             placeholder="e.g., Pick up groceries"
             className='task-form-name'
+            required
           />
           <textarea
             value={description}

@@ -6,6 +6,7 @@
 }
 
 .footer-container {
+  background: linear-gradient(rgb(255, 255, 255) 20%, #FFF9F3 90%);
   background-color: #FFF9F3;
   font-size: 15px;
   display: flex;
