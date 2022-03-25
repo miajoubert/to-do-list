@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UserRoute from './components/auth/UserRoute';
@@ -9,6 +9,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import SignUpForm2 from './components/auth/SignupForm2';
 import NavBar from './components/NavBar';
 import MainApp from './components/MainApp';
+import NotFound from './components/NotFound';
 import SearchResults from './components/SearchResults';
 import ProjectBody from './components/Projects/ProjectBody';
 import { authenticate } from './store/session';
@@ -52,6 +53,9 @@ function App() {
         <ProtectedRoute path='/app'>
           <MainApp />
         </ProtectedRoute>
+        <Route path='/'>
+          <NotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

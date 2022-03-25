@@ -75,14 +75,8 @@ def delete_task(id):
 @task_routes.route('/<int:id>/complete', methods=['PATCH'])
 def complete_task(id):
 
-  print('MADE IT TO MY ROUTE!!!!!!!!!!!!!!!!!!!!!!!')
-
   complete = Task.query.get(id)
   task_status = complete.completed
-
-  print('THIS IS MY TASK &&&&&', complete)
-  print('status------------', task_status)
-  print('opposite of status -------', not task_status)
 
   complete.completed = not task_status
   complete.updated_at = datetime.now()

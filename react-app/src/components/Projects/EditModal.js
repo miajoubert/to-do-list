@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal'
 import { editAProject } from '../../store/projects';
@@ -14,26 +14,27 @@ const EditModal = ({ project }) => {
 
   const handleEditProject = async (e) => {
     e.preventDefault();
+    setErrors([]);
 
-    project = {
+    const payload = {
       id: project?.id,
       title
     }
 
-    const data = await dispatch(editAProject(project))
+    const data = await dispatch(editAProject(payload))
 
     if (data) {
       setErrors(data)
-    }
-    else {
-      setTitle('')
+    } else {
+      setTitle(project?.title)
       setShowModal(false)
-      setErrors([])
     }
   }
 
   const handleClose = () => {
     setShowModal(false)
+    setTitle(project?.title)
+    setErrors([])
   }
 
   return (

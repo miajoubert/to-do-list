@@ -4,13 +4,15 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 10px;
 }
 
 .new-task-form {
   display: flex;
   flex-direction: column;
-  min-width: 56vw;
+  width: auto;
   padding: 10px;
+  margin-right: 15%;
   border: solid .5px #33333350;
   border-radius: 10px;
   background-color: white;

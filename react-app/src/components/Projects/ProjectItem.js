@@ -10,8 +10,8 @@ const ProjectItem = ({ project }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { projectId } = useParams()
 
+  const projectId = history.location?.pathname.split('/')[3]
 
   return (
     <div

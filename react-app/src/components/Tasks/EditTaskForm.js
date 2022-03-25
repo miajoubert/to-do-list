@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { editATask } from '../../store/tasks'
 
 import './EditTaskForm.css'
@@ -16,6 +15,11 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setTask(currentTask?.task)
+    setDescription(currentTask?.description)
+    setErrors([])
+  }, [setTask, setDescription, setErrors])
 
   const handleEditTask = async (e) => {
     e.preventDefault();
@@ -36,11 +40,16 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
     else {
       setTask(currentTask?.task)
       setDescription(currentTask?.description)
-      setErrors([])
       showEditForm(false)
     }
   }
 
+  const handleCancel = () => {
+    showEditForm()
+    setTask(currentTask?.task)
+    setDescription(currentTask?.description)
+    setErrors([])
+  }
 
   return (
     <>
@@ -93,7 +102,7 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
             Save
           </button>
           <button
-            onClick={showEditForm}
+            onClick={handleCancel}
             className='cancel-task-button'
           >
             Cancel

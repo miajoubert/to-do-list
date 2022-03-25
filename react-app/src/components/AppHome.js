@@ -10,7 +10,6 @@ const AppHome = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
-  const [closeSideBar, setCloseSideBar] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
 
   const dispatch = useDispatch();
@@ -18,6 +17,7 @@ const AppHome = () => {
 
   const tasks = Object.values(tasksState)
 
+  const { projectId } = useParams()
 
   useEffect(async () => {
     await dispatch(getAllTasks())
@@ -36,7 +36,9 @@ const AppHome = () => {
           {tasks?.map(task => {
             return (
               <li key={task?.id}>
-                <TaskList task={task} />
+                <TaskList
+                  task={task}
+                  handleClose={() => setShowTaskForm(false)} />
               </li>
             )
           })}
@@ -67,6 +69,7 @@ const AppHome = () => {
             <a className='add-task'>Add Task</a>
           </a>
         </div>
+
         <div
           hidden={!showTaskForm}
         >

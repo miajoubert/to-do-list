@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getAllProjects } from "../../store/projects";
 import ProjectForm from "./ProjectForm";
 import ProjectItem from "./ProjectItem";
 import "./ProjectsSidebar.css"
 
-const ProjectSidebar = ({ showTaskForm }) => {
+const ProjectSidebar = () => {
   const projectsState = useSelector(state => state.projects)
   const dispatch = useDispatch()
   const history = useHistory();
+  const { projectId } = useParams();
 
   const projectItems = Object.values(projectsState)
   projectItems.shift()
+
+  const currentWindow = window.location.href.search("/app/archive")
 
   useEffect(() => {
     dispatch(getAllProjects())
@@ -34,10 +37,10 @@ const ProjectSidebar = ({ showTaskForm }) => {
                 project={project}
               />)
           })}
+
           <div className="archive-container">
             <div className={
-              window.location.href.search("/app/archive") > 0
-                ? "selected project-div"
+              (currentWindow > 0) ? "selected project-div"
                 : "project-div"
             }
               onClick={() => history.push("/app/archive")}
@@ -48,8 +51,7 @@ const ProjectSidebar = ({ showTaskForm }) => {
             </div>
           </div>
         </ul>
-      </div>
-
+      </div >
     </>
   );
 }
