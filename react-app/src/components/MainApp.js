@@ -19,6 +19,10 @@ const MainApp = () => {
   const [showTaskForm, setShowTaskForm] = useState(false)
 
   useEffect(() => {
+
+  }, [sessionUser])
+
+  useEffect(() => {
     setShowTaskForm(false)
   }, [showTaskForm])
 

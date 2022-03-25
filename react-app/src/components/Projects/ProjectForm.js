@@ -36,6 +36,7 @@ const ProjectForm = () => {
   return (
     <>
       <a
+        className='project-plus'
         onClick={() => setShowModal(true)}>
         <i className="fas fa-plus" />
       </a>

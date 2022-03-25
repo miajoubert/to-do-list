@@ -12,6 +12,11 @@ const EditModal = ({ project }) => {
   const [title, setTitle] = useState(project?.title)
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setTitle(project?.title)
+    setErrors([])
+  }, [project])
+
   const handleEditProject = async (e) => {
     e.preventDefault();
     setErrors([]);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
 import TaskList from './Tasks/TaskList';
 import TaskForm from './Tasks/TaskForm';
 import { getAllTasks } from '../store/tasks';
@@ -13,15 +12,12 @@ const AppHome = () => {
   const [showTaskForm, setShowTaskForm] = useState(false)
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const tasks = Object.values(tasksState)
 
-  const { projectId } = useParams()
-
   useEffect(async () => {
     await dispatch(getAllTasks())
-  }, [dispatch])
+  }, [dispatch, sessionUser])
 
 
   return (
