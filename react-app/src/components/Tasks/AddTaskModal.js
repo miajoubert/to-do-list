@@ -18,7 +18,9 @@ const AddTaskModal = ({ project }) => {
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
 
-  const handleAddTask = (e) => {
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+
     e.preventDefault();
 
     const payload = {
@@ -27,17 +29,23 @@ const AddTaskModal = ({ project }) => {
       description
     }
 
-    dispatch(addATask(payload))
-      .catch(
-        async (res) => {
-          const data = await res.json()
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
+    const data = await dispatch(addATask(payload))
+
+    if (data) {
+      setErrors(data)
+    }
+    else {
+      setTask('')
+      setDescription('')
+      setErrors([])
+    }
+  }
+
+  const handleCancel = () => {
+    setShowModal(false)
     setTask('')
     setDescription('')
-    setShowModal(false)
-    return
+    setErrors([])
   }
 
   return (
@@ -70,33 +78,36 @@ const AddTaskModal = ({ project }) => {
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <div className='new-task-container'>
+          <div className='modal-new-task-container'>
             <form
-              className='new-task-form'
+              className='modal-new-task-form'
               onSubmit={handleAddTask}
             >
-              <ul className="errorsAuth">
-                {errors.map((error, i) => (
-                  <li key={i}>{error}</li>
+              <div className='signup-error-div'>
+                {errors.map((error, ind) => (
+                  <div key={ind}>
+                    <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                    {error}
+                  </div>
                 ))}
-              </ul>
+              </div>
               <input
                 type="text"
                 value={task}
                 onChange={(e) => setTask(e.target.value)}
                 placeholder="e.g., Pick up groceries"
-                className='task-form-name'
+                className='modal-task-form-name'
                 required
               />
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
-                className='task-form-description'
+                className='modal-task-form-description'
                 required
               />
               <select
-                className='select-project'
+                className='modal-select-project'
                 value={project_id}
                 onChange={(e) => setProjectId(e.target.value)}
               >
@@ -116,7 +127,7 @@ const AddTaskModal = ({ project }) => {
                 Add task
               </button>
               <button
-                onClick={() => setShowModal(false)}
+                onClick={handleCancel}
                 className='cancel-add-button'
               >
                 Cancel
