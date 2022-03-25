@@ -5,6 +5,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from app.forms import SignUpFormTwo
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -63,15 +64,21 @@ def sign_up_step_two():
             password=form.data['password']
         )
 
-        inbox = Project(
-            user_id=current_user.id,
-            title="Inbox"
-        )
-
         db.session.add(user)
-        db.session.add(inbox)
         db.session.commit()
         login_user(user)
+
+        inbox = Project(
+            user_id=current_user.id,
+            title="Inbox",
+            created_at = datetime.now(),
+            updated_at = datetime.now()
+        )
+
+
+        db.session.add(inbox)
+        db.session.commit()
+
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

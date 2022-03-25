@@ -1,0 +1,11 @@
+.project-plus {
+  margin: 0 30px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333333;
+  transition: transform .75s;
+}
+
+.project-plus:hover {
+  transform: rotate(.5turn);
+}

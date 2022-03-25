@@ -19,7 +19,7 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
     setTask(currentTask?.task)
     setDescription(currentTask?.description)
     setErrors([])
-  }, [setTask, setDescription, setErrors])
+  }, [currentTask])
 
   const handleEditTask = async (e) => {
     e.preventDefault();

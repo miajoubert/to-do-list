@@ -21,6 +21,7 @@ const TaskForm = ({ currentTask, showTaskForm, projectId }) => {
 
   useEffect(() => {
     setProjectId(projectId)
+    setErrors([])
   }, [projectId])
 
   const handleAddTask = async (e) => {
