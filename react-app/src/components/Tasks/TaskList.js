@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import DeleteTask from './DeleteTask';
 import EditTaskForm from './EditTaskForm';
-import { completeATask } from '../../store/tasks';
-
+import { completeATask, getCompleteTasks } from '../../store/tasks';
 
 import './TaskList.css'
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-const TaskList = ({ task }) => {
+const TaskList = ({ task, handleClose }) => {
   const [completed, setCompleted] = useState(task?.completed)
   const [showEditForm, setShowEditForm] = useState(false)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-  }, [showEditForm])
 
   const handleCompleted = async (e) => {
     await dispatch(completeATask(task?.id))
-    setCompleted(!completed)
+
+    if (window.location.href.search("/app/archive") > 2) {
+      await dispatch(getCompleteTasks())
+      setCompleted(!completed)
+    } else {
+      setCompleted(!completed)
+    }
   }
 
   if (!task) {
@@ -31,21 +33,25 @@ const TaskList = ({ task }) => {
             <form
               onClick={handleCompleted}
             >
-              <input
+              {/* <input
                 className='the-actual-checkbox'
                 value={completed}
                 type="checkbox"
                 checked={completed}
                 background-color="gray"
-              />
-              {/* <span
-                className='completed-circle'
+              /> */}
+              <span
                 value={completed}
                 type="checkbox"
                 checked={completed}
+                className={
+                  completed ? 'completed-circle checked'
+                    : 'completed-circle'}
               >
-                <i className="fas fa-check"></i>
-              </span> */}
+                <i className={
+                  completed ? 'fas fa-check done'
+                    : 'fas fa-check'}></i>
+              </span>
             </form>
           </div>
 
@@ -71,6 +77,7 @@ const TaskList = ({ task }) => {
 
       <div
         hidden={!showEditForm}
+        onClick={handleClose}
       >
         <EditTaskForm
           currentTask={task}

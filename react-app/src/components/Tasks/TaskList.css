@@ -40,10 +40,15 @@
 
 .fa-check {
   position: relative;
-  top: 3px;
+  top: 2px;
   left: 4.5px;
   width: 100%;
   color: white;
+  font-size: 10px;
+}
+
+.done {
+  color: #808080;
 }
 
 .fa-check:hover {
@@ -53,21 +58,20 @@
 
 .completed-circle {
   position: absolute;
-  bottom: 10px;
-  width: 20px;
-  height: 20px;
+  bottom: 15px;
+  width: 18px;
+  height: 18px;
   border-radius: 20px;
   font-size: 10px;
   border: 1px solid #808080;
-  /* background-color: white; */
+  background-color: white;
 }
 
 .completed-circle:hover {
-  color:#DB4C3F;
-  border: #DB4C3F solid 2px;
+  border: #808080 solid 2px;
 }
 
-:checked {
+.checked {
   background-color: #80808040;
 }
 

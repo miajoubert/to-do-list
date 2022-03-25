@@ -10,13 +10,19 @@ const CompletedTasks = () => {
   const projectsState = useSelector(state => state.projects)
   const completedState = useSelector(state => state.tasks)
   const tasks = Object.values(completedState)
-  const done = true;
-
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    await dispatch(getCompleteTasks())
-  }, [dispatch, tasks.length])
+    let tasksAreComplete = true
+
+    if (tasksAreComplete) {
+      await dispatch(getCompleteTasks())
+    }
+
+    return () => {
+      tasksAreComplete = false
+    }
+  }, [dispatch])
 
   return (
     <>

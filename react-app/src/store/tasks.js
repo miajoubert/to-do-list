@@ -129,15 +129,13 @@ export const completeATask = (id) => async (dispatch) => {
     dispatch(completeTask(data))
 
   } else {
-    const data = await res.json();
-    if (data.errors) {
-      return data.errors;
-    }
+    window.alert("There was a server error; please try again.")
   }
 }
 
 export const getCompleteTasks = () => async (dispatch) => {
   const res = await fetch(`/api/tasks/completed`)
+
   if (res.ok) {
     const data = await res.json()
     dispatch(getDoneTasks(data.tasks))

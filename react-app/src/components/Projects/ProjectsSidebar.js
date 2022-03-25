@@ -22,8 +22,6 @@ const ProjectSidebar = () => {
     dispatch(getAllProjects())
   }, [dispatch, sessionUser])
 
-  console.log("my project itmes!!!!!", projectItems)
-
   if (projectItems.length < 1) return (
     <>
       <div className="side-bar-container">
