@@ -14,6 +14,7 @@ import SearchResults from './components/SearchResults';
 import ProjectBody from './components/Projects/ProjectBody';
 import { authenticate } from './store/session';
 import { getAllProjects } from './store/projects';
+import { getCompleteTasks } from './store/tasks'
 
 function App() {
   const [loaded, setLoaded] = useState(false);

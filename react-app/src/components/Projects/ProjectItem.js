@@ -8,7 +8,6 @@ import './ProjectItem.css'
 
 const ProjectItem = ({ project }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const projectId = history.location?.pathname.split('/')[3]

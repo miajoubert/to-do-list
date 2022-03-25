@@ -8,18 +8,15 @@ import './TaskList.css'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const TaskList = ({ task, handleClose }) => {
+const TaskList = ({ task }) => {
   const [completed, setCompleted] = useState(task?.completed)
   const [showEditForm, setShowEditForm] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
-
   }, [showEditForm])
 
-  const { projectId } = useParams()
-
-  const handleCompleted = async () => {
+  const handleCompleted = async (e) => {
     await dispatch(completeATask(task?.id))
     setCompleted(!completed)
   }
