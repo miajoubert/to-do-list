@@ -63,20 +63,21 @@ const ProjectBody = () => {
             className='main-add'
             onClick={() => setShowTaskForm(true)}
           >
-            <svg className='add-task-circle'>
+            <svg
+              className='add-task-circle'
+              onClick={() => setShowTaskForm(true)}
+
+            >
               <g transform='translate(-.25 0)'>
-                <mask id='2'>
-                  <line x1='3' y1='10' x2='18' y2='10' stroke='white' stroke-width='1' />
-                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' stroke-width='1' />
-                </mask>
-                <g mask='url(#2)'>
-                  <path d='M-1-1H25V25H-1z'
-                    fill='currentColor'>
-                  </path>
+                <line x1='3' y1='10' x2='18' y2='10' stroke='white' stroke-width='1.5' />
+                <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' stroke-width='1.5' />
+                <g mask='url(#ahat)'>
+                  <line x1='3' y1='10' x2='18' y2='10' stroke='currentcolor' stroke-width='1.5' />
+                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='currentcolor' stroke-width='1.5' />
                 </g>
               </g>
             </svg>
-            <a className='add-task'>Add Task</a>
+            <div className='add-task'>Add Task</div>
           </a>
         </div>
 

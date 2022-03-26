@@ -4,9 +4,14 @@
   margin: 0 30px;
   cursor: pointer;
   text-decoration: none;
-  color: #333333;
+  color: #AAAAAA;
+  border-radius: 3px;
 }
 
-/* .project-plus:hover {
-  transform: rotate(.5turn);
-} */
+.project-plus:hover {
+  background-color: #EEEEEE;
+}
+
+svg.project-plus:hover {
+  color: #333333
+}
