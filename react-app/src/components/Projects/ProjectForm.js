@@ -39,11 +39,14 @@ const ProjectForm = () => {
 
   return (
     <>
-      <a
+      <svg
         className='project-plus'
-        onClick={() => setShowModal(true)}>
-        <i className="fas fa-plus" />
-      </a>
+        onClick={() => setShowModal(true)}
+      >
+        <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='black' stroke-width='1' />
+        <line x1='12' y1='4' x2='12' y2='20' stroke='black' stroke-width='1' />
+      </svg>
+
       {showModal && (
         <Modal onClose={handleClose}>
           <div className='modal-title'>Add project</div>
@@ -87,7 +90,8 @@ const ProjectForm = () => {
             </button>
           </div>
         </Modal>
-      )}
+      )
+      }
     </>
   );
 }

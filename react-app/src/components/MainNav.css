@@ -42,6 +42,11 @@
   font-size: 15px;
 }
 
+svg.burger-menu {
+  height: 24px;
+  width: 24px;
+}
+
 .burger-menu {
   padding: 3px;
 }
