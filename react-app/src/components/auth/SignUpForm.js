@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
-import './SignupForm.css'
+import './SignupForm.css';
 
 const SignUpForm = () => {
-  const userEmail = localStorage.user
+  const userEmail = localStorage.user;
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState(userEmail);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [history]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -25,7 +30,7 @@ const SignUpForm = () => {
 
   const demoLogin = async () => {
     await dispatch(login('demo@aa.io', 'password'))
-  }
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -33,7 +38,7 @@ const SignUpForm = () => {
 
   if (user) {
     return <Redirect to='/app' />;
-  }
+  };
 
   return (
     <div className='signup-page-container'>
@@ -72,6 +77,7 @@ const SignUpForm = () => {
               name='email'
               onChange={updateEmail}
               value={email}
+              ref={inputRef}
             ></input>
           </div>
           <button
@@ -107,6 +113,6 @@ const SignUpForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignUpForm;

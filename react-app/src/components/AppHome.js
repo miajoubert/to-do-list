@@ -3,30 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import TaskList from './Tasks/TaskList';
 import TaskForm from './Tasks/TaskForm';
 import { getAllTasks } from '../store/tasks';
-import './AppHome.css'
+import './AppHome.css';
 
 const AppHome = () => {
-  const sessionUser = useSelector(state => state.session?.user.id)
-  const projectsState = useSelector(state => state.projects)
-  const tasksState = useSelector(state => state.tasks)
-  const [showTaskForm, setShowTaskForm] = useState(false)
+  const sessionUser = useSelector(state => state.session?.user.id);
+  const projectsState = useSelector(state => state.projects);
+  const tasksState = useSelector(state => state.tasks);
+  const [showTaskForm, setShowTaskForm] = useState(false);
 
   const dispatch = useDispatch();
 
-  const tasks = Object.values(tasksState)
+  const tasks = Object.values(tasksState);
 
   useEffect(async () => {
     await dispatch(getAllTasks())
-  }, [dispatch, sessionUser])
+  }, [dispatch, sessionUser]);
 
-  const isOpen = showTaskForm
-
-  useEffect(() => {
-    if (isOpen) {
-      setShowTaskForm(false)
-      setShowTaskForm(true)
-    }
-  }, [showTaskForm])
 
   return (
     <>
@@ -40,9 +32,7 @@ const AppHome = () => {
           {tasks?.map(task => {
             return (
               <li key={task?.id}>
-                <TaskList
-                  task={task}
-                  handleClose={() => setShowTaskForm(false)} />
+                <TaskList task={task} />
               </li>
             )
           })}
@@ -53,23 +43,19 @@ const AppHome = () => {
             className='main-add'
             onClick={() => setShowTaskForm(true)}
           >
-            <svg
-              className='add-task-circle'
-              width="20"
-              height="20"
-            >
-              <g fill="none" fillRule="evenodd" transform="translate(2 1)">
-                <mask id="jd4FBg" fill="#fff">
-                  <path d="M9 8h7a.5.5 0 1 1 0 1H9v7a.5.5 0 1 1-1 0V9H1a.5.5 0 0 1 0-1h7V1a.5.5 0 0 1 1 0v7z">
-                  </path>
+            <svg className='add-task-circle'>
+              <g transform='translate(-.25 0)'>
+                <mask id='2'>
+                  <line x1='3' y1='10' x2='18' y2='10' stroke='white' stroke-width='1' />
+                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' stroke-width='1' />
                 </mask>
-                <g mask="url(#jd4FBg)">
-                  <path fill="currentColor" d="M-4-3h24v24H-4z">
+                <g mask='url(#2)'>
+                  <path d='M-1-1H25V25H-1z'
+                    fill='currentColor'>
                   </path>
                 </g>
               </g>
             </svg>
-            <path fill="currentColor" d="M-4-3h24v24H-4z"></path>
             <a className='add-task'>Add Task</a>
           </a>
         </div>

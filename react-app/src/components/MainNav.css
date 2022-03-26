@@ -9,7 +9,7 @@
 .nav-bar {
   background-color: #DB4C3F ;
   width: 100%vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -40,6 +40,11 @@
   padding: 5px;
   border-radius: 2px;
   font-size: 15px;
+}
+
+svg.burger-menu {
+  height: 24px;
+  width: 24px;
 }
 
 .burger-menu {

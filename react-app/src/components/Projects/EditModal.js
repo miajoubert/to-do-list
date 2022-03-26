@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal } from '../../context/Modal'
+import { Modal } from '../../context/Modal';
 import { editAProject } from '../../store/projects';
-
-import './EditModal.css'
+import './EditModal.css';
 
 const EditModal = ({ project }) => {
-  const sessionUser = useSelector(state => state.session?.user.id)
+  const sessionUser = useSelector(state => state.session?.user.id);
+
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState(project?.title)
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     setTitle(project?.title)
     setErrors([])
-  }, [project])
+  }, [project]);
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [showModal]);
 
   const handleEditProject = async (e) => {
     e.preventDefault();
@@ -34,13 +39,13 @@ const EditModal = ({ project }) => {
       setTitle(project?.title)
       setShowModal(false)
     }
-  }
+  };
 
   const handleClose = () => {
     setShowModal(false)
     setTitle(project?.title)
     setErrors([])
-  }
+  };
 
   return (
     <>
@@ -74,6 +79,7 @@ const EditModal = ({ project }) => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                ref={inputRef}
                 required
               />
             </label>
@@ -94,8 +100,7 @@ const EditModal = ({ project }) => {
             </button>
           </div>
         </Modal>
-      )
-      }
+      )}
     </>
   );
 }

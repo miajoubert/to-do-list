@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp2 } from '../../store/session';
-import './SignupForm2.css'
+import './SignupForm2.css';
 
 const SignUpForm2 = () => {
+  const user = useSelector(state => state.session.user);
+
   const [errors, setErrors] = useState([]);
-  const email = localStorage['user'];
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const email = localStorage['user'];
   const dispatch = useDispatch();
+  const history = useHistory;
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [history]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -32,6 +39,7 @@ const SignUpForm2 = () => {
         password
       ));
 
+      localStorage.removeItem('user')
       if (data) {
         setErrors(data)
       }
@@ -52,7 +60,7 @@ const SignUpForm2 = () => {
 
   if (user) {
     return <Redirect to='/app' />;
-  }
+  };
 
   return (
     <div className='signup2-page-container'>
@@ -96,6 +104,7 @@ const SignUpForm2 = () => {
               name='username'
               onChange={updateUsername}
               value={username}
+              ref={inputRef}
             ></input>
           </div>
           <div className='signup-div'>
@@ -144,6 +153,6 @@ const SignUpForm2 = () => {
       </div >
     </div >
   );
-};
+}
 
 export default SignUpForm2;

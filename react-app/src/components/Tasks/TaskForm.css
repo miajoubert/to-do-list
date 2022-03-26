@@ -51,9 +51,16 @@
 .select-project {
   width: 30%;
   padding: 5px;
-
   border-radius: 3px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:checked {
+  background-color: #80808050;
+}
+
+:checked:hover {
+  background-color: red;
 }
 
 .form-task-button-div {

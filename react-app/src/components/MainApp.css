@@ -66,33 +66,3 @@
   list-style: none;
   padding: 0px;
 }
-
-.main-add {
-  color: #808080;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 40px;
-}
-.main-add:hover svg {
-  color:white;
-  background-color: #DB4C3F;
-}
-.main-add:hover {
-  color:#DB4C3F;;
-}
-
-.add-task-circle {
-  color: #DB4C3F;
-  border-radius: 25px;
-  position: relative;
-}
-.add-task-circle:hover {
-  color:white;
-  background-color: #DB4C3F;
-}
-
-.add-task {
-  font-size: 14px;
-  margin-left: 10px;
-}

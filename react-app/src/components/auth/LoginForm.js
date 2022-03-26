@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
-
-import './LoginForm.css'
+import './LoginForm.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,6 +10,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [history])
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ const LoginForm = () => {
 
   const demoLogin = async () => {
     await dispatch(login('demo@aa.io', 'password'))
-  }
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -34,7 +39,7 @@ const LoginForm = () => {
 
   if (user) {
     return <Redirect to='/app' />;
-  }
+  };
 
   return (
     <div className='login-page-container'>
@@ -73,6 +78,7 @@ const LoginForm = () => {
               placeholder='Email'
               value={email}
               onChange={updateEmail}
+              ref={inputRef}
             />
           </div>
           <div className='input-div'>
@@ -119,6 +125,6 @@ const LoginForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoginForm;
