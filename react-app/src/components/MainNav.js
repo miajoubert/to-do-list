@@ -37,19 +37,23 @@ const MainNav = ({ closeSideBar }) => {
                 {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <svg
                   className='burger-menu'
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                 >
-                  <line x1='4' y1='11.5' x2='12' y2='4' stroke='white' stroke-width='1' />
-                  <line x1='4' y1='11.5' x2='4' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='10' y1='19' x2='4' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='10' y1='19' x2='10' y2='12' stroke='white' stroke-width='1' />
-                  <line x1='12' y1='4' x2='20' y2='11.5' stroke='white' stroke-width='1' />
-                  <line x1='20' y1='19' x2='20' y2='11.5' stroke='white' stroke-width='1' />
-                  <line x1='20' y1='19' x2='14' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='14' y1='12' x2='14' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='14' y1='12' x2='10' y2='12' stroke='white' stroke-width='1' />
+                  <line x1='4' y1='11.5' x2='12.25' y2='4' stroke='white' stroke-width='1' />
+                  <line x1='4' y1='11.25' x2='4' y2='19' stroke='white' stroke-width='1' />
+                  <line x1='10' y1='19' x2='3.5' y2='19' stroke='white' stroke-width='1' />
+                  <line x1='9.5' y1='19' x2='9.5' y2='13' stroke='white' stroke-width='1' />
+                  <line x1='11.75' y1='4' x2='20' y2='11.5' stroke='white' stroke-width='1' />
+                  <line x1='15' y1='13' x2='9' y2='13' stroke='white' stroke-width='1' />
+                  <line x1='14.5' y1='13' x2='14.5' y2='19' stroke='white' stroke-width='1' />
+                  <line x1='20.5' y1='19' x2='14' y2='19' stroke='white' stroke-width='1' />
+                  <line x1='20' y1='19' x2='20' y2='11.25' stroke='white' stroke-width='1' />
                 </svg>
               </NavLink>
             </div>
+
             <div className='nav-bar-item search' >
               {/* <div to='/search' exact={true}
                 className="nav-link"

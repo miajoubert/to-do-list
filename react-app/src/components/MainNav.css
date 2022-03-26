@@ -9,7 +9,7 @@
 .nav-bar {
   background-color: #DB4C3F ;
   width: 100%vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
