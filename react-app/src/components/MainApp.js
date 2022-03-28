@@ -33,13 +33,18 @@ const MainApp = () => {
 
         <div className='main-bottom-row'>
           <div
-            className='bottom-left'
-            style={closeSideBar ? { 'width': "0px" }
-              : { 'width': "327px" }}
+            // className='bottom-left'
+            // style={closeSideBar ? { 'width': "0px" }
+            //   : { 'width': "327px" }
+            className={closeSideBar ? 'bottom-left'
+              : 'bottom-left-open'
+            }
           >
             <div
               className="sidebar"
               style={closeSideBar ? { transform: 'translateX(-328px)' } : {}}
+            // className={closeSideBar ? 'sidebar'
+            //   : 'open-sidebar'}
             >
               <ProjectSidebar
                 showTaskForm={() => setShowTaskForm(false)} />
@@ -47,7 +52,7 @@ const MainApp = () => {
           </div>
 
           <div className={
-            closeSideBar ? 'big-bottom-right'
+            closeSideBar ? 'bottom-right-open'
               : 'bottom-right'}>
             <Switch>
               <ProtectedRoute path='/app' exact={true}>

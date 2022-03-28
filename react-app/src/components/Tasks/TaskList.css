@@ -54,6 +54,7 @@
 .fa-check:hover {
   transition: all .25s;
   color: #808080;
+  /* color:#DB4C3F */
 }
 
 .completed-circle {
@@ -95,4 +96,17 @@
 .task-buttons-div {
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-width: 780px) {
+  .task-container {
+    width: 70vw;
+    min-width: 300px;
+  }
+  .name-description-container {
+    min-width: 200px;
+  }
+  .task-list-title {
+    min-width: 200px;
+  }
 }
