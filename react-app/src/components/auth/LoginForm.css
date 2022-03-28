@@ -144,7 +144,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 465 px) {
+@media screen and (max-width: 465px) {
   .login-form-div {
     width: 100%;
   }
