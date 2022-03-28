@@ -90,3 +90,10 @@
     margin: 0 30px
   }
 }
+
+@media screen and (max-width: 780px) {
+  .splash-main-pic {
+    padding: 0 10px;
+    width: 100vw;
+  }
+}

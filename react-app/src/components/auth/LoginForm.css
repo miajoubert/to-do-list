@@ -143,3 +143,9 @@
 .login-register-link:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 465 px) {
+  .login-form-div {
+    width: 100%;
+  }
+}
