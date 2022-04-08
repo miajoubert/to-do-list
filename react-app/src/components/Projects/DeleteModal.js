@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, useHistory } from 'react-redux';
 import { Modal } from '../../context/Modal'
 import { deleteAProject } from '../../store/projects';
 
@@ -10,6 +10,7 @@ const DeleteModal = ({ project }) => {
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const handleDeleteProject = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const DeleteModal = ({ project }) => {
         }
       )
     setShowModal(false)
+    history.push('/app')
     return
   }
 
