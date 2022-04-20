@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(rgb(255, 255, 255) 40%, #FFF9F3 90%);
+  background: linear-gradient(rgb(255, 255, 255) 5%, #FFF9F3 35%, #FFF9F3 30%, #FFF9F3 20%);
   /* width: 100vw; */
   height: 100vh;
   overflow-x: hidden;
@@ -24,11 +24,12 @@ body {
   justify-content: space-between;
   font-size: 3rem;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .logo {
-  height: 6rem;
-  width: 6rem;
+  height: 3rem;
+  width: 3rem;
   margin: 0px 15px 0px 0px;
 }
 
@@ -42,7 +43,7 @@ body {
 }
 
 .EP-announcement {
-  margin: 20px 0px 60px 0px;
+  margin: 40px 0px 60px 0px;
   font-size: 1.1rem;
 }
 
