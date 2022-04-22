@@ -138,8 +138,7 @@ const AddTaskModal = ({ project }) => {
             </div>
           </div>
         </Modal>
-      )
-      }
+      )}
     </>
   );
 }
