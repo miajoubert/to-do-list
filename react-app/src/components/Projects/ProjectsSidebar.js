@@ -19,7 +19,7 @@ const ProjectSidebar = () => {
   const currentWindow = window.location.href.search("/app/archive")
 
   useEffect(() => {
-    dispatch(getAllProjects())
+    dispatch(getAllProjects(sessionUser))
   }, [dispatch, sessionUser])
 
   if (projectItems.length < 1) return (

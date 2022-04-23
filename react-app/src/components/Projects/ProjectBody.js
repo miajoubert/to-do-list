@@ -26,7 +26,7 @@ const ProjectBody = () => {
 
   useEffect(async () => {
     await dispatch(getAllTasks())
-  }, [dispatch, projectId])
+  }, [dispatch, projectId, sessionUser])
 
 
   return (

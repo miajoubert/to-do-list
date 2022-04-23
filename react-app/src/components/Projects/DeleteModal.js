@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch, useHistory } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 import { Modal } from '../../context/Modal'
 import { deleteAProject } from '../../store/projects';
 

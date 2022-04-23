@@ -34,7 +34,6 @@ const MainNav = ({ closeSideBar }) => {
               <NavLink to='/app' exact={true}
                 className="nav-link"
               >
-                {/* <i className="fa fa-home" aria-hidden="true"></i> */}
                 <svg
                   className='burger-menu'
                   width="24"
@@ -55,26 +54,27 @@ const MainNav = ({ closeSideBar }) => {
             </div>
 
             <div className='nav-bar-item search' >
-              {/* <div to='/search' exact={true}
+              <div to='/search' exact={true}
                 className="nav-link"
-              > */}
-              {/* <i className="fa fa-search" aria-hidden="true"></i> */}
-              {/* <svg
+                id='search-bar'
+              >
+                {/* <i className="fa fa-search" aria-hidden="true"></i> */}
+                <input
+                  onSubmit={searchSubmit}
+                  type='search'
+                  className='search-input'
+                  placeholder="Search"
+                />
+
+                <svg
                   className="search-icon"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
                 >
                   <path d="M10.5 3a7.5 7.5 0 015.645 12.438l4.709 4.708a.502.502 0 01-.708.708l-4.708-4.709A7.5 7.5 0 1110.5 3zm0 1a6.5 6.5 0 100 13 6.5 6.5 0 000-13z" fill="currentColor"></path>
-                </svg> */}
-              {/* <input
-                  type='text'
-                  placeholder="Search"
-                  className='search-input'
-                  onSubmit={searchSubmit}
-                >
-                </input> */}
-              {/* </div> */}
+                </svg>
+              </div>
             </div>
           </div>
 
