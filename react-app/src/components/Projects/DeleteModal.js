@@ -6,7 +6,7 @@ import { deleteAProject } from '../../store/projects';
 
 import './DeleteModal.css'
 
-const DeleteModal = ({ project }) => {
+const DeleteModal = ({ project, sb, closeMenu }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -30,6 +30,7 @@ const DeleteModal = ({ project }) => {
   return (
     <>
       <a
+        hidden={!sb}
         className='proj-sb-button'
         onClick={() => setShowModal(true)}
       >
@@ -37,6 +38,17 @@ const DeleteModal = ({ project }) => {
           <span className='tooltiptext'>Delete</span>
         </i>
       </a>
+
+      <span
+        className={sb ? 'hide' : 'proj-menu-button far fa-trash-alt'}
+        onClick={() => {
+          setShowModal(true)
+          closeMenu()
+        }}
+      >
+        <div className='project-menu'>Delete project</div>
+      </span>
+
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ul className="errorsAuth">

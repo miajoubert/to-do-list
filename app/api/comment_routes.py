@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
+from app.forms.comment_form import CommentForm
 from app.models import Note, db
-from app.forms import NoteForm
+from app.forms import CommentForm
 from datetime import datetime
 
-note_routes = Blueprint('notes', __name__)
+comment_routes = Blueprint('comments', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
   errorMessages = []
@@ -14,21 +15,21 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@note_routes.route('')
+@comment_routes.route('')
 def get_note():
   notes = Note.query.all()
   return {"notes": [note.to_dict() for note in notes]}
 
 
-@note_routes.route("/<int:id>")
+@comment_routes.route("/<int:id>")
 def get_note_by_id(id):
   note = Note.query.get(id)
   return note.to_dict()
 
 
-@note_routes.route('/add', methods=['POST'])
+@comment_routes.route('/add', methods=['POST'])
 def add_note():
-  form = NoteForm()
+  form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     note = Note(
@@ -43,9 +44,9 @@ def add_note():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@note_routes.route('/<int:id>/edit/', methods=['PATCH'])
+@comment_routes.route('/<int:id>/edit/', methods=['PATCH'])
 def edit_note(id):
-  form = NoteForm()
+  form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     edit = Note.query.get(id)
@@ -60,7 +61,7 @@ def edit_note(id):
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@note_routes.route('/<int:id>/delete', methods=['DELETE'])
+@comment_routes.route('/<int:id>/delete', methods=['DELETE'])
 def delete_note(id):
   delete = Note.query.get(id)
   db.session.delete(delete)

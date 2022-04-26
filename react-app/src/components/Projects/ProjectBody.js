@@ -7,10 +7,11 @@ import TaskList from '../Tasks/TaskList';
 import TaskForm from '../Tasks/TaskForm';
 import ProjectSection from '../Sections/Section';
 import AddSection from '../Sections/AddSection';
+import CommentModal from '../Comments/CommentModal';
 import { getAllTasks } from '../../store/tasks';
+import { getAllSections } from '../../store/sections';
 
 import './ProjectBody.css'
-import { getAllSections } from '../../store/sections';
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
@@ -55,46 +56,30 @@ const ProjectBody = () => {
             className={!showProjectMenu ? 'project-menu-container-hidden' : 'project-menu-container'}
             hidden={true}
           >
-            <span
-              className='proj-menu-button'
-              onClick={() => setShowProjectMenu(false)}
-            >
-              <EditModal
-                project={projectsState[projectId]}>
-                <div className='project-menu'>Edit project</div>
-              </EditModal>
-            </span>
+            <EditModal
+              project={projectsState[projectId]}
+              sb={false}
+              closeMenu={() => setShowProjectMenu(false)}
+            />
 
-
+            <CommentModal
+              closeMenu={() => setShowProjectMenu(false)} />
 
             <span
-              className='proj-menu-button far fa-comment-alt'
+              className='proj-menu-button far fa-plus-square'
               onClick={() => {
                 setShowSectionForm(true)
                 setShowProjectMenu(false)
               }}
             >
-              <div className='project-menu'>Add project note</div>
-            </span>
-
-            <span
-              className='proj-menu-button far fa-plus-square'
-              onClick={() => setShowSectionForm(true)}
-            >
               <div className='project-menu'>Add section</div>
             </span>
 
-            <span
-              className='proj-menu-button far fa-trash-alt'
-              onClick={() => setShowSectionForm(true)}
-            >
-              <div className='project-menu'>Delete project</div>
-              <div hidden={true}>
-                <DeleteModal
-                  project={projectsState[projectId]}
-                />
-              </div>
-            </span>
+            <DeleteModal
+              project={projectsState[projectId]}
+              sb={false}
+              closeMenu={() => setShowProjectMenu(false)}
+            />
           </div>
         </div>
       </div >

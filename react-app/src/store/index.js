@@ -4,23 +4,15 @@ import session from './session';
 import projects from './projects';
 import tasks from './tasks'
 import sections from './sections'
-import notes from './notes'
+import comments from './comments'
 import { REMOVE_USER } from './session'
-
-// const rootReducer = combineReducers({
-//   session,
-//   projects,
-//   tasks,
-//   sections,
-//   notes
-// });
 
 const appReducer = combineReducers({
   session,
   projects,
   tasks,
   sections,
-  notes
+  comments
 });
 
 const rootReducer = (state, action) => {
