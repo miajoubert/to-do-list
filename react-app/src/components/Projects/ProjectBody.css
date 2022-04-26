@@ -1,7 +1,7 @@
 .task-list-title-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 36px 55px 8px;
 }
@@ -14,8 +14,53 @@
 }
 
 .title-button-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   margin: 0px 20px;
+}
+
+.fa-ellipsis-h {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.project-menu-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0px;
+  width: 200px;
+  padding: 10px;
+  margin: 0px 20px 0px 0px;
+  background-color: white;
+  box-shadow: 0 0 3px 0px darkgray;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.project-menu-container-hidden {
+  display: none;
+}
+
+.project-menu {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
+  margin-left: 10px;
+}
+
+.proj-menu-button {
+  cursor: pointer;
+  font-size: 15px;
+  font-style: normal;
+  color: darkgray;
+  padding: 10px 5px;
+  display: flex;
+  border-radius: 2px;
+  flex-direction: row;
+}
+
+.proj-menu-button:hover {
+  background-color: rgb(211, 211, 211, .2);
+}
+
+.hide {
+  display: none;
 }

@@ -59,8 +59,7 @@ const TaskList = ({ task, handleClose }) => {
               className='proj-sb-button'
               onClick={() => setShowEditForm(true)}
             >
-              <i className="far fa-edit tooltip">
-                <span className='tooltiptext'>Edit</span>
+              <i className="far fa-edit">
               </i>
             </a>
 

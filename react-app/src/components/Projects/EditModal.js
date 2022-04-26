@@ -54,9 +54,10 @@ const EditModal = ({ project }) => {
         onClick={() => setShowModal(true)}
       >
         <i className="far fa-edit tooltip">
-          <span className='tooltiptext'>Edit</span>
+          {/* <span className='tooltiptext'>Edit</span> */}
         </i>
       </a>
+
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className='modal-title'>Edit project</div>
