@@ -25,9 +25,9 @@ const MainNav = ({ closeSideBar }) => {
                 className='burger-menu'
                 onClick={closeSideBar}
               >
-                <line x1='4' y1='5' x2='20' y2='5' stroke='white' stroke-width='1' />
-                <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' stroke-width='1' />
-                <line x1='4' y1='18' x2='20' y2='18' stroke='white' stroke-width='1' />
+                <line x1='4' y1='5' x2='20' y2='5' stroke='white' strokeWidth='1' />
+                <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' strokeWidth='1' />
+                <line x1='4' y1='18' x2='20' y2='18' stroke='white' strokeWidth='1' />
               </svg>
             </div>
             <div className='nav-bar-item'>
@@ -40,15 +40,15 @@ const MainNav = ({ closeSideBar }) => {
                   height="24"
                   viewBox="0 0 24 24"
                 >
-                  <line x1='4' y1='11.5' x2='12.25' y2='4' stroke='white' stroke-width='1' />
-                  <line x1='4' y1='11.25' x2='4' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='10' y1='19' x2='3.5' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='9.5' y1='19' x2='9.5' y2='13' stroke='white' stroke-width='1' />
-                  <line x1='11.75' y1='4' x2='20' y2='11.5' stroke='white' stroke-width='1' />
-                  <line x1='15' y1='13' x2='9' y2='13' stroke='white' stroke-width='1' />
-                  <line x1='14.5' y1='13' x2='14.5' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='20.5' y1='19' x2='14' y2='19' stroke='white' stroke-width='1' />
-                  <line x1='20' y1='19' x2='20' y2='11.25' stroke='white' stroke-width='1' />
+                  <line x1='4' y1='11.5' x2='12.25' y2='4' stroke='white' strokeWidth='1' />
+                  <line x1='4' y1='11.25' x2='4' y2='19' stroke='white' strokeWidth='1' />
+                  <line x1='10' y1='19' x2='3.5' y2='19' stroke='white' strokeWidth='1' />
+                  <line x1='9.5' y1='19' x2='9.5' y2='13' stroke='white' strokeWidth='1' />
+                  <line x1='11.75' y1='4' x2='20' y2='11.5' stroke='white' strokeWidth='1' />
+                  <line x1='15' y1='13' x2='9' y2='13' stroke='white' strokeWidth='1' />
+                  <line x1='14.5' y1='13' x2='14.5' y2='19' stroke='white' strokeWidth='1' />
+                  <line x1='20.5' y1='19' x2='14' y2='19' stroke='white' strokeWidth='1' />
+                  <line x1='20' y1='19' x2='20' y2='11.25' stroke='white' strokeWidth='1' />
                 </svg>
               </NavLink>
             </div>

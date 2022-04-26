@@ -1,28 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getAllProjects } from '../../store/projects';
+import { getAllSections } from '../../store/sections';
 import { addATask } from '../../store/tasks';
 import './TaskForm.css';
 
-const TaskForm = ({ currentTask, showTaskForm, projectId, focusField }) => {
+const TaskForm = ({ currentTask, showTaskForm, projectId, sectionId, focusField }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
   const projectsState = useSelector(state => state.projects);
-
-  const projects = Object.values(projectsState);
-  if (!projectId) projectId = projects[0]?.id;
+  const sectionsState = useSelector(state => state.sections)
 
   const [errors, setErrors] = useState([]);
   const [project_id, setProjectId] = useState(projectId);
+  const [section_id, setSectionId] = useState(sectionId);
   const [task, setTask] = useState(currentTask?.task);
   const [description, setDescription] = useState(currentTask?.description);
   const dispatch = useDispatch();
   const history = useHistory();
   const inputRef = useRef(null);
 
+  const projects = Object.values(projectsState);
+  if (!projectId) projectId = projects[0]?.id;
+
+  const sections = Object.values(sectionsState)
+    .filter(section => {
+      return section?.project_id === +project_id
+    });
+  sections.unshift({ id: null, section: "---" })
+
+  useEffect(async () => {
+    await dispatch(getAllProjects())
+    await dispatch(getAllSections())
+  }, [dispatch]);
+
   useEffect(() => {
     setProjectId(projectId)
+    setSectionId(sectionId)
     setErrors([])
-  }, [projectId]);
+  }, [projectId, sectionId]);
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -34,6 +50,7 @@ const TaskForm = ({ currentTask, showTaskForm, projectId, focusField }) => {
 
     const payload = {
       project_id,
+      section_id,
       task,
       description
     }
@@ -46,6 +63,7 @@ const TaskForm = ({ currentTask, showTaskForm, projectId, focusField }) => {
     else {
       setTask('')
       setDescription('')
+      setSectionId(sectionId)
       setErrors([])
     }
   };
@@ -88,17 +106,32 @@ const TaskForm = ({ currentTask, showTaskForm, projectId, focusField }) => {
             placeholder="Description"
             className='task-form-description'
           />
-          <select
-            className='select-project'
-            value={project_id}
-            onChange={(e) => setProjectId(e.target.value)}
-          >
-            {projects?.map(project => (
-              <option key={project.id} value={project.id}>
-                {project.title}
-              </option>
-            ))}
-          </select>
+          <div className='selects-container'>
+            <select
+              className='select-project'
+              value={project_id}
+              onChange={(e) => setProjectId(e.target.value)}
+            >
+              {projects?.map(project => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+            {sections.length ?
+              <select
+                className='select-project'
+                value={section_id}
+                onChange={(e) => setSectionId(e.target.value)}
+              >
+                {sections?.map(section => (
+                  <option key={section.id} value={section.id}>
+                    {section.section}
+                  </option>
+                ))}
+              </select>
+              : <div></div>}
+          </div>
         </form>
         <div className='form-task-button-div'>
           <button

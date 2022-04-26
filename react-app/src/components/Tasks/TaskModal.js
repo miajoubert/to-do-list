@@ -41,8 +41,8 @@ const TaskModal = ({ project }) => {
             className='burger-menu'
             onClick={() => setShowModal(true)}
           >
-            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' stroke-width='1' />
-            <line x1='11.5' y1='4' x2='11.5' y2='20' stroke='white' stroke-width='1' />
+            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' strokeWidth='1' />
+            <line x1='11.5' y1='4' x2='11.5' y2='20' stroke='white' strokeWidth='1' />
           </svg>
         </div>
       </div>

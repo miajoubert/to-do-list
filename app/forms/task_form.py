@@ -12,3 +12,4 @@ class TaskForm(FlaskForm):
     task = StringField('title', validators=[task_required])
     description = TextAreaField('description')
     project_id = IntegerField('project_id', validators=[DataRequired()])
+    section_id = IntegerField('section_id')

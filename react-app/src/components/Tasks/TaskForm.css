@@ -49,10 +49,17 @@
 }
 
 .select-project {
-  width: 30%;
+  width: auto;
+  min-width: 30%;
   padding: 5px;
   border-radius: 3px;
+  margin-right: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.selects-container {
+  display: flex;
+  flex-direction: row;
 }
 
 :checked {

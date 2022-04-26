@@ -45,12 +45,12 @@ const ProjectForm = () => {
       >
         <g>
           <mask id='pf'>
-            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' stroke-width='1.5' />
-            <line x1='12' y1='4' x2='12' y2='20' stroke='white' stroke-width='1.5' />
+            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='white' strokeWidth='1.5' />
+            <line x1='12' y1='4' x2='12' y2='20' stroke='white' strokeWidth='1.5' />
           </mask>
           <g mask='url(#pf)'>
-            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='currentcolor' stroke-width='1.5' />
-            <line x1='12' y1='4' x2='12' y2='20' stroke='currentcolor' stroke-width='1.5' />
+            <line x1='4' y1='11.5' x2='20' y2='11.5' stroke='currentcolor' strokeWidth='1.5' />
+            <line x1='12' y1='4' x2='12' y2='20' stroke='currentcolor' strokeWidth='1.5' />
           </g>
         </g>
       </svg>

@@ -13,8 +13,6 @@ const EditSection = ({ currentSection, showEditForm, showSectionMenu }) => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
 
-  console.log("CURRENT SECTION", section_id)
-
   useEffect(() => {
     setSectionId(currentSection.id)
     setErrors([])
