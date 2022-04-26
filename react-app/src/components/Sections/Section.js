@@ -6,77 +6,87 @@ import EditSection from './EditSection';
 import { getAllSections } from '../../store/sections';
 
 import './Section.css'
+import TaskList from '../Tasks/TaskList';
+import { getAllTasks } from '../../store/tasks';
 
-const ProjectSection = ({ handleClose }) => {
+const ProjectSection = ({ handleClose, section }) => {
   const sessionUser = useSelector(state => state.session.user.id)
-  const sectionsList = useSelector(state => state.sections)
-  const projectId = useParams()
+  const tasksState = useSelector(state => state.tasks)
   const dispatch = useDispatch()
 
   const [showSectionMenu, setShowSectionMenu] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+
+  const tasks = Object.values(tasksState).filter((task) => {
+    return (task?.section_id === section.id)
+  })
 
   useEffect(async () => {
     await dispatch(getAllSections(sessionUser))
+    await dispatch(getAllTasks(sessionUser))
   }, [dispatch, sessionUser])
 
-  const sections = Object.values(sectionsList)
-    .filter(section => {
-      section?.project_id === projectId
-    })
-
-  if (!sections) {
-    return null
-  } else return (
+  return (
     <>
-      {/* <div hidden={showEditForm}> */}
-      <div className='section-container'>
+      {/* <Draggable> */}
+      <div hidden={showEdit}>
+        <div className='name-description-container' >
+          <b>{section?.section}</b>
 
-        {sections.map(section => {
+          <span
+            className='fas fa-ellipsis-h'
+            onClick={() => setShowSectionMenu(!showSectionMenu)}
+          />
+
+          <div
+            className='section-menu-div'
+            hidden={!showSectionMenu}
+          >
+
+            <div
+              className='proj-sb-button'
+              onClick={() => setShowEdit(true)}
+            >
+              <span className="far fa-edit tooltip">
+                Edit section
+              </span>
+            </div>
+
+            <div
+              className='proj-sb-button'
+              onClick={() => setShowDelete(true)}
+            >
+              <span className="far fa-edit tooltip">
+                Delete section
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      < div
+        hidden={!showEdit}
+      >
+        <EditSection
+          currentSection={section}
+          showEditForm={() => setShowEdit(false)}
+          showSectionMenu={() => setShowSectionMenu(false)}
+        />
+      </div>
+
+
+      <ul className="task-list">
+        {tasks?.map(task => {
           return (
-            <>
-              <Draggable>
-                <div className='name-description-container' >
-                  <div className='task-name'>{section?.section}</div>
-                </div>
-
-                <div>
-                  <span
-                    className='fas fa-ellipsis-h'
-                    onClick={() => setShowSectionMenu(!showSectionMenu)}
-                  />
-                </div>
-
-                <div
-                  className='section-menu-div'
-                  hidden={!showSectionMenu}
-                >
-
-                  <a
-                    className='proj-sb-button'
-                    onClick={() => setShowEditForm(true)}
-                  >
-                    <i className="far fa-edit tooltip">
-                      <span className='tooltiptext'>Edit section</span>
-                    </i>
-                  </a>
-
-                  <DeleteTask task={task} />
-                </div>
-
-                < div
-                  hidden={!showEditForm}
-                  onClick={handleClose}
-                >
-                  <EditSection
-                    currentTask={task}
-                    showEditForm={() => setShowEditForm(false)}
-                  />
-                </div>
-              </Draggable>
-            </>
+            <li key={task?.id}>
+              <TaskList task={task} />
+            </li>
           )
         })}
-      </div>
+      </ul>
+
+      {/* </Draggable> */}
     </>
   );
 }

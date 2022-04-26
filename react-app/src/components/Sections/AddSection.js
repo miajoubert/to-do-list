@@ -42,6 +42,7 @@ const AddSection = ({ currentSection, showSectionForm, projectId, focusField }) 
       setErrors(data)
     }
     else {
+      showSectionForm()
       setSection('')
       setErrors([])
     }
