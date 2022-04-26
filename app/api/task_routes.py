@@ -34,6 +34,7 @@ def add_task():
   if form.validate_on_submit():
     task = Task(
       project_id = form.data['project_id'],
+      section_id = form.data['section_id'],
       task = form.data['task'],
       description = form.data['description'],
       completed = False,
@@ -54,6 +55,7 @@ def edit_task(id):
     edit = Task.query.get(id)
 
     edit.project_id = form.data['project_id']
+    edit.section_id = form.data['section_id']
     edit.task = form.data['task'],
     edit.description = form.data['description'],
     edit.updated_at = datetime.now()

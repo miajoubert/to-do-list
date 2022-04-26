@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Section, db
+from app.models import Section, Task, db
 from app.forms import SectionForm
 from datetime import datetime
 
@@ -45,15 +45,13 @@ def add_section():
 
 @section_routes.route('/<int:id>/edit', methods=['PATCH'])
 def edit_section(id):
-  print("Here I am!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   form = SectionForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print("IN MY ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!", form)
   if form.validate_on_submit():
     edit = Section.query.get(id)
 
-    # edit.project_id=form.data['project_id']
+    edit.project_id=form.data['project_id']
     edit.section=form.data['section'],
     edit.updated_at = datetime.now()
 
@@ -64,7 +62,10 @@ def edit_section(id):
 
 
 @section_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_section():
+def delete_section(id):
+  all_tasks = Task.query.filter(Task.section_id == id)
+  [db.session.delete(task) for task in all_tasks]
+
   delete = Section.query.get(id)
   db.session.delete(delete)
   db.session.commit()

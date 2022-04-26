@@ -44,7 +44,7 @@ def add_note():
 
 
 @note_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_note():
+def edit_note(id):
   form = NoteForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -61,7 +61,7 @@ def edit_note():
 
 
 @note_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_note():
+def delete_note(id):
   delete = Note.query.get(id)
   db.session.delete(delete)
   db.session.commit()

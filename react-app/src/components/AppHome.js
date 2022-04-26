@@ -49,11 +49,11 @@ const AppHome = () => {
 
             >
               <g transform='translate(-.25 0)'>
-                <line x1='3' y1='10' x2='18' y2='10' stroke='white' stroke-width='1.5' />
-                <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' stroke-width='1.5' />
+                <line x1='3' y1='10' x2='18' y2='10' stroke='white' strokeWidth='1.5' />
+                <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' strokeWidth='1.5' />
                 <g mask='url(#ahat)'>
-                  <line x1='3' y1='10' x2='18' y2='10' stroke='currentcolor' stroke-width='1.5' />
-                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='currentcolor' stroke-width='1.5' />
+                  <line x1='3' y1='10' x2='18' y2='10' stroke='currentcolor' strokeWidth='1.5' />
+                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='currentcolor' strokeWidth='1.5' />
                 </g>
               </g>
             </svg>

@@ -63,12 +63,21 @@ const ProjectBody = () => {
           <EditModal
             project={projectsState[projectId]}
           />
-          <DeleteModal
-            project={projectsState[projectId]}
-          />
+          <span
+            className='proj-sb-button far fa-edit'
+            onClick={() => setShowSectionForm(true)}
+          /> Edit project
+          <span
+            className='proj-sb-button far fa-comment-alt'
+            onClick={() => setShowSectionForm(true)}
+          /> Add project note
           <span
             className='proj-sb-button fas fa-puzzle-piece'
             onClick={() => setShowSectionForm(true)}
+          /> Add section
+
+          <DeleteModal
+            project={projectsState[projectId]}
           />
         </div>
       </div>
@@ -79,16 +88,6 @@ const ProjectBody = () => {
             return (
               <li key={task?.id}>
                 <TaskList task={task} />
-              </li>
-            )
-          })}
-        </ul>
-
-        <ul className="task-list">
-          {sections?.map(section => {
-            return (
-              <li key={section?.id}>
-                <ProjectSection section={section} />
               </li>
             )
           })}
@@ -105,11 +104,11 @@ const ProjectBody = () => {
 
             >
               <g transform='translate(-.25 0)'>
-                <line x1='3' y1='10' x2='18' y2='10' stroke='white' stroke-width='1.5' />
-                <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' stroke-width='1.5' />
+                <line x1='3' y1='10' x2='18' y2='10' stroke='white' strokeWidth='1.5' />
+                <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='white' strokeWidth='1.5' />
                 <g mask='url(#ahat)'>
-                  <line x1='3' y1='10' x2='18' y2='10' stroke='currentcolor' stroke-width='1.5' />
-                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='currentcolor' stroke-width='1.5' />
+                  <line x1='3' y1='10' x2='18' y2='10' stroke='currentcolor' strokeWidth='1.5' />
+                  <line x1='10.5' y1='3' x2='10.5' y2='17' stroke='currentcolor' strokeWidth='1.5' />
                 </g>
               </g>
             </svg>
@@ -122,8 +121,23 @@ const ProjectBody = () => {
         >
           <TaskForm
             projectId={projectId}
+            // sectionId={null}
             showTaskForm={() => setShowTaskForm(false)} />
         </div>
+
+        <ul className="task-list">
+          {sections?.map(section => {
+            return (
+              <li key={section?.id}>
+                <ProjectSection
+                  section={section}
+                  projectId={projectId}
+                />
+              </li>
+            )
+          })}
+        </ul>
+
 
         <div
           hidden={!showSectionForm}

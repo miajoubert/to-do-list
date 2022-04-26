@@ -6,18 +6,32 @@ import './EditTaskForm.css';
 const EditTaskForm = ({ currentTask, showEditForm }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
   const projectsState = useSelector(state => state.projects);
-  const projects = Object.values(projectsState);
+  const sectionsState = useSelector(state => state.sections);
+
+  console.log("CURR TASK", currentTask)
 
   const [project_id, setProjectId] = useState(currentTask?.project_id);
+  const [section_id, setSectionId] = useState(currentTask?.section_id);
   const [task, setTask] = useState(currentTask?.task);
   const [description, setDescription] = useState(currentTask?.description);
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const inputRef = useRef(null);
 
+  const projects = Object.values(projectsState);
+  const sections = Object.values(sectionsState)
+    .filter(section => {
+      return section?.project_id === +project_id
+    });
+  sections.unshift({ id: null, section: "---" })
+
+  console.log("ALL PROJECTS", projects)
+  console.log("ALL SECTIONS", sections)
+
   useEffect(() => {
     setTask(currentTask?.task)
     setDescription(currentTask?.description)
+    setSectionId(currentTask?.section_id)
     setErrors([])
   }, [currentTask]);
 
@@ -32,6 +46,7 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
     const payload = {
       ...currentTask,
       project_id,
+      section_id,
       task,
       description
     }
@@ -86,17 +101,30 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
             className='task-form-description'
             required
           />
-          <select
-            className='select-project'
-            value={project_id}
-            onChange={(e) => setProjectId(e.target.value)}
-          >
-            {projects?.map(project => (
-              <option key={project.id} value={project.id}>
-                {project.title}
-              </option>
-            ))}
-          </select>
+          <div className='selects-container'>
+            <select
+              className='select-project'
+              value={project_id}
+              onChange={(e) => setProjectId(e.target.value)}
+            >
+              {projects?.map(project => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+            <select
+              className='select-project'
+              value={section_id}
+              onChange={(e) => setSectionId(e.target.value)}
+            >
+              {sections?.map(section => (
+                <option key={section.id} value={section.id}>
+                  {section.section}
+                </option>
+              ))}
+            </select>
+          </div>
         </form>
         <div className='form-task-button-div'>
           <button
