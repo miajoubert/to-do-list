@@ -107,9 +107,26 @@ const CommentModal = ({ closeMenu }) => {
                         </div>
                         <div className='comment-div'>
                           <div className='comment-div-header'>
-                            {sessionUser.username}
+                            <div className='header-left'>
+                              <div className='comment-username'>
+                                {sessionUser?.username}
+                              </div>
+                              <div className='comment-timestamp'>
+                                {new Date(comment?.updated_at).toDateString().split(" ")[1]}&nbsp;
+                                {new Date(comment?.updated_at).toDateString().split(" ")[2]}&nbsp;
+                                {new Date(comment?.updated_at).getHours() > 12 ?
+                                  new Date(comment?.updated_at).getHours() - 12 :
+                                  new Date(comment?.updated_at).getHours()}:
+                                {new Date(comment?.updated_at).getMinutes()}&nbsp;
+                                {new Date(comment?.updated_at).getHours() > 12 ? 'PM' : 'AM'}
+                              </div>
+                            </div>
+                            <div>
+                              <span className='far fa-edit' />
+                              <span className='far fa-trash-alt ' />
+                            </div>
                           </div>
-                          <div className='comment-div-body'> {comment.comment}</div>
+                          <div className='comment-div-body'> {comment?.comment}</div>
                         </div>
                       </div>
                     )

@@ -57,6 +57,8 @@
   padding: 20px 0px;
 }
 
+
+
 .comments-list {
   padding: 20px 0px;
 }
@@ -64,12 +66,25 @@
 .individual-comment-div {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .comment-div {
   display: flex;
   flex-direction: column;
-  margin: 0px 20px;
+  margin: 0px 20px 0px 0px;
+  width: 100%;
+}
+
+#comment-user {
+  text-align: center;
+  cursor: default;
+  width: 41.82px;
+  height: 36px;
+  margin: 0px 16px 0px 0px;
+  box-sizing: border-box;
+  border-width: 2px;
 }
 
 .comment-div-header {
@@ -78,12 +93,24 @@
   justify-content: space-between
 }
 
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.comment-username {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px
+}
+
+.comment-timestamp {
+  font-size: 12px;
+  color: gray;
+}
+
 .comment-div-body {
 
   font-size: 14px;
-}
-
-#comment-user {
-  text-align: center;
-  cursor: default;
 }
