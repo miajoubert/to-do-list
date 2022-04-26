@@ -43,14 +43,17 @@ def add_section():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@section_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_section():
+@section_routes.route('/<int:id>/edit', methods=['PATCH'])
+def edit_section(id):
+  print("Here I am!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   form = SectionForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+
+  print("IN MY ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!", form)
   if form.validate_on_submit():
     edit = Section.query.get(id)
 
-    edit.project_id=form.data['project_id']
+    # edit.project_id=form.data['project_id']
     edit.section=form.data['section'],
     edit.updated_at = datetime.now()
 

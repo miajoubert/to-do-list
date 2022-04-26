@@ -35,6 +35,9 @@ export const getAllSections = () => async (dispatch) => {
   const res = await fetch('/api/sections')
   if (res.ok) {
     const data = await res.json()
+
+    console.log('data from fetch', data)
+
     dispatch(getSections(data.sections))
     return data.sections
   }
@@ -80,11 +83,15 @@ export const editASection = (section) => async (dispatch) => {
     body: JSON.stringify(section)
   })
 
+  console.log("THIS IS MY RES!!!!!!!", res)
+
   if (res.ok) {
     const data = await res.json()
+    console.log("MY DATA", data)
     dispatch(editSection(data))
   } else if (res.status < 500) {
     const data = await res.json();
+    console.log("MY error DATA", data)
     if (data.errors) {
       return data.errors;
     }

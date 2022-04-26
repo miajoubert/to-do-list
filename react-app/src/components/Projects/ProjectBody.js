@@ -5,15 +5,19 @@ import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import TaskList from '../Tasks/TaskList';
 import TaskForm from '../Tasks/TaskForm';
+import ProjectSection from '../Sections/Section';
 import AddSection from '../Sections/AddSection';
 import { getAllTasks } from '../../store/tasks';
 
 import './ProjectBody.css'
+import { getAllSections } from '../../store/sections';
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
+  const sectionState = useSelector(state => state.sections)
+
   const [showProjectMenu, setShowProjectMenu] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
   const [showSectionForm, setShowSectionForm] = useState(false)
@@ -22,11 +26,16 @@ const ProjectBody = () => {
   const dispatch = useDispatch();
 
   const tasks = Object.values(tasksState).filter((task) => {
-    return (task?.project_id === +projectId)
+    return (task?.project_id === +projectId && !task?.section_id)
+  })
+
+  const sections = Object.values(sectionState).filter((section) => {
+    return (section?.project_id === +projectId)
   })
 
   useEffect(async () => {
-    await dispatch(getAllTasks())
+    await dispatch(getAllTasks(sessionUser))
+    await dispatch(getAllSections(projectId))
   }, [dispatch, projectId, sessionUser])
 
   return (
@@ -59,7 +68,8 @@ const ProjectBody = () => {
           />
           <span
             className='proj-sb-button fas fa-puzzle-piece'
-          /> Add section
+            onClick={() => setShowSectionForm(true)}
+          />
         </div>
       </div>
       <div className='primary-task-container'>
@@ -69,6 +79,16 @@ const ProjectBody = () => {
             return (
               <li key={task?.id}>
                 <TaskList task={task} />
+              </li>
+            )
+          })}
+        </ul>
+
+        <ul className="task-list">
+          {sections?.map(section => {
+            return (
+              <li key={section?.id}>
+                <ProjectSection section={section} />
               </li>
             )
           })}

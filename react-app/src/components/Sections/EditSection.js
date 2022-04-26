@@ -1,42 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { addASection } from '../../store/sections';
+import { editASection } from '../../store/sections';
 
 
-const EditSection = ({ currentSection, showSectionForm, projectId, focusField }) => {
+const EditSection = ({ currentSection, showEditForm, showSectionMenu }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
-  const projectsState = useSelector(state => state.projects);
-
-  const projects = Object.values(projectsState);
-  if (!projectId) projectId = projects[0]?.id;
 
   const [errors, setErrors] = useState([]);
-  const [project_id, setProjectId] = useState(projectId);
+  const [section_id, setSectionId] = useState(currentSection.id)
   const [section, setSection] = useState(currentSection?.section);
   const dispatch = useDispatch();
-  const history = useHistory();
   const inputRef = useRef(null);
 
+  console.log("CURRENT SECTION", section_id)
+
   useEffect(() => {
-    setProjectId(projectId)
+    setSectionId(currentSection.id)
     setErrors([])
-  }, [projectId]);
+  }, [section_id]);
 
   useEffect(() => {
     inputRef.current?.focus()
-  }, [showSectionForm]);
+  }, [showEditForm]);
 
-  const handleAddSection = async (e) => {
+  const handleEditSection = async (e) => {
     e.preventDefault();
     setErrors([])
 
     const payload = {
-      project_id,
+      ...currentSection,
       section
     }
 
-    const data = await dispatch(addASection(payload))
+    const data = await dispatch(editASection(payload))
 
     if (data) {
       setErrors(data)
@@ -44,11 +41,14 @@ const EditSection = ({ currentSection, showSectionForm, projectId, focusField })
     else {
       setSection('')
       setErrors([])
+      showEditForm()
+      showSectionMenu()
     }
   };
 
   const handleCancel = () => {
-    showSectionForm()
+    showEditForm()
+    showSectionMenu()
     setSection('')
     setErrors([])
   };
@@ -58,7 +58,7 @@ const EditSection = ({ currentSection, showSectionForm, projectId, focusField })
       <div className='new-task-container'>
         <form
           className='new-task-form'
-          onSubmit={handleAddSection}
+          onSubmit={handleEditSection}
         >
           <div className='signup-error-div'>
             {errors.map((error, ind) => (
@@ -74,8 +74,8 @@ const EditSection = ({ currentSection, showSectionForm, projectId, focusField })
             onChange={(e) => setSection(e.target.value)}
             placeholder="Name this section"
             className='task-form-name'
-            id={focusField}
-            ref={inputRef}
+            // id={focusField}
+            // ref={inputRef}
             required
           />
         </form>
@@ -83,7 +83,7 @@ const EditSection = ({ currentSection, showSectionForm, projectId, focusField })
           <button
             type='submit'
             className="submit-task-button"
-            onClick={handleAddSection}
+            onClick={handleEditSection}
           >
             Edit section
           </button>
