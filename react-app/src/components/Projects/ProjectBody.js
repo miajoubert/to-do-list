@@ -7,10 +7,11 @@ import TaskList from '../Tasks/TaskList';
 import TaskForm from '../Tasks/TaskForm';
 import ProjectSection from '../Sections/Section';
 import AddSection from '../Sections/AddSection';
+import CommentModal from '../Comments/CommentModal';
 import { getAllTasks } from '../../store/tasks';
+import { getAllSections } from '../../store/sections';
 
 import './ProjectBody.css'
-import { getAllSections } from '../../store/sections';
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
@@ -45,44 +46,45 @@ const ProjectBody = () => {
           {projectsState[projectId]?.title}
         </div>
 
-        <div
-
-          className='title-button-div'
-        >
+        <div className='title-button-div'>
           <span
-            className='fas fa-ellipsis-h'
+            className='fas fa-ellipsis-h proj-sb-button'
             onClick={() => setShowProjectMenu(!showProjectMenu)}
           />
 
-        </div>
+          <div
+            className={!showProjectMenu ? 'project-menu-container-hidden' : 'project-menu-container'}
+            hidden={true}
+          >
+            <EditModal
+              project={projectsState[projectId]}
+              sb={false}
+              closeMenu={() => setShowProjectMenu(false)}
+            />
 
-        <div
-          hidden={!showProjectMenu}
-          className='project-menu-container'
-        >
-          <EditModal
-            project={projectsState[projectId]}
-          />
-          <span
-            className='proj-sb-button far fa-edit'
-            onClick={() => setShowSectionForm(true)}
-          /> Edit project
-          <span
-            className='proj-sb-button far fa-comment-alt'
-            onClick={() => setShowSectionForm(true)}
-          /> Add project note
-          <span
-            className='proj-sb-button fas fa-puzzle-piece'
-            onClick={() => setShowSectionForm(true)}
-          /> Add section
+            <CommentModal
+              closeMenu={() => setShowProjectMenu(false)} />
 
-          <DeleteModal
-            project={projectsState[projectId]}
-          />
+            <span
+              className='proj-menu-button far fa-plus-square'
+              onClick={() => {
+                setShowSectionForm(true)
+                setShowProjectMenu(false)
+              }}
+            >
+              <div className='project-menu'>Add section</div>
+            </span>
+
+            <DeleteModal
+              project={projectsState[projectId]}
+              sb={false}
+              closeMenu={() => setShowProjectMenu(false)}
+            />
+          </div>
         </div>
-      </div>
+      </div >
+
       <div className='primary-task-container'>
-
         <ul className="task-list">
           {tasks?.map(task => {
             return (

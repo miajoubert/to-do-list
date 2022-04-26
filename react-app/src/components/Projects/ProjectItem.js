@@ -27,8 +27,8 @@ const ProjectItem = ({ project }) => {
         </div>
       </div>
       <div className='button-div'>
-        <EditModal project={project} />
-        <DeleteModal project={project} />
+        <EditModal project={project} sb={true} />
+        <DeleteModal project={project} sb={true} />
       </div>
     </div>
   );

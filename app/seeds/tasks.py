@@ -19,6 +19,7 @@ def seed_tasks():
         updated_at=datetime.now())
     t3 = Task(
         project_id=2,
+        section_id=1,
         task='Task #3......',
         description='description for task three',
         completed=False,

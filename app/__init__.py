@@ -11,7 +11,7 @@ from .api.user_routes import user_routes
 from .api.project_routes import project_routes
 from .api.task_routes import task_routes
 from .api.section_routes import section_routes
-from .api.note_routes import note_routes
+from .api.comment_routes import comment_routes
 
 from .seeds import seed_commands
 
@@ -38,7 +38,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(project_routes, url_prefix='/projects')
 app.register_blueprint(task_routes, url_prefix='/api/tasks')
 app.register_blueprint(section_routes, url_prefix='/api/sections')
-app.register_blueprint(note_routes, url_prefix='/api/notes')
+app.register_blueprint(comment_routes, url_prefix='/api/comments')
 db.init_app(app)
 Migrate(app, db)
 

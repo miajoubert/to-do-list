@@ -1,0 +1,116 @@
+.modal-comments-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+  min-height: 80vh;
+  width: 50vw;
+}
+
+.comments-proj-title-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.comments-proj-title {
+  color: gray
+}
+
+.close-span {
+  padding: 0px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.close-span:hover {
+  background-color: rgb(211, 211, 211, .2);
+}
+
+.close-span:hover .close-svg line {
+  stroke: #333333;
+}
+
+.close-svg {
+  transform: rotate(90deg);
+  color: black;
+}
+
+
+.comments-no-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.fa-comments {
+  font-size: 90px;
+  color: #db4c3f82
+}
+
+.no-comments-text {
+  font-size: 17px;
+  color: #333333;
+  text-align: center;
+  padding: 20px 0px;
+}
+
+
+
+.comments-list {
+  padding: 20px 0px;
+}
+
+.individual-comment-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.comment-div {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px 0px 0px;
+  width: 100%;
+}
+
+#comment-user {
+  text-align: center;
+  cursor: default;
+  width: 41.82px;
+  height: 36px;
+  margin: 0px 16px 0px 0px;
+  box-sizing: border-box;
+  border-width: 2px;
+}
+
+.comment-div-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.comment-username {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px
+}
+
+.comment-timestamp {
+  font-size: 12px;
+  color: gray;
+}
+
+.comment-div-body {
+
+  font-size: 14px;
+}

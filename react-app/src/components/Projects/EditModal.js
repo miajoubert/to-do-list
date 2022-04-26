@@ -4,7 +4,7 @@ import { Modal } from '../../context/Modal';
 import { editAProject } from '../../store/projects';
 import './EditModal.css';
 
-const EditModal = ({ project }) => {
+const EditModal = ({ project, sb, closeMenu }) => {
   const sessionUser = useSelector(state => state.session?.user.id);
 
   const [showModal, setShowModal] = useState(false);
@@ -50,6 +50,7 @@ const EditModal = ({ project }) => {
   return (
     <>
       <a
+        hidden={!sb}
         className='proj-sb-button'
         onClick={() => setShowModal(true)}
       >
@@ -57,50 +58,63 @@ const EditModal = ({ project }) => {
           <span className='tooltiptext'>Edit</span>
         </i>
       </a>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <div className='modal-title'>Edit project</div>
-          <form
-            className='new-project-form-container'
-            onSubmit={handleEditProject}
-          >
-            <div className='signup-error-div'>
-              {errors.map((error, ind) => (
-                <div key={ind}>
-                  <i className="fa fa-exclamation-circle" aria-hidden="true" />
-                  {error}
-                </div>
-              ))}
+
+      <span
+        className={sb ? 'hide' : 'proj-menu-button far fa-edit'}
+        onClick={() => {
+          setShowModal(true)
+          closeMenu()
+        }}
+      >
+        <div className='project-menu'>Edit project</div>
+      </span>
+
+      {
+        showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <div className='modal-title'>Edit project</div>
+            <form
+              className='new-project-form-container'
+              onSubmit={handleEditProject}
+            >
+              <div className='signup-error-div'>
+                {errors.map((error, ind) => (
+                  <div key={ind}>
+                    <i className="fa fa-exclamation-circle" aria-hidden="true" />
+                    {error}
+                  </div>
+                ))}
+              </div>
+              <label className="input-container">
+                <div className='input-label'>Name</div>
+                <input
+                  className="new-input"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  ref={inputRef}
+                  required
+                />
+              </label>
+            </form>
+            <div className='form-button-div'>
+              <button
+                onClick={handleClose}
+                className='cancel-button'
+              >
+                Cancel
+              </button>
+              <button
+                type='submit'
+                className="submit-button"
+                onClick={handleEditProject}
+              >
+                Save
+              </button>
             </div>
-            <label className="input-container">
-              <div className='input-label'>Name</div>
-              <input
-                className="new-input"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                ref={inputRef}
-                required
-              />
-            </label>
-          </form>
-          <div className='form-button-div'>
-            <button
-              onClick={handleClose}
-              className='cancel-button'
-            >
-              Cancel
-            </button>
-            <button
-              type='submit'
-              className="submit-button"
-              onClick={handleEditProject}
-            >
-              Save
-            </button>
-          </div>
-        </Modal>
-      )}
+          </Modal>
+        )
+      }
     </>
   );
 }

@@ -31,8 +31,7 @@ const DeleteTask = ({ task }) => {
         className='task-delete-button'
         onClick={() => setShowModal(true)}
       >
-        <i className="far fa-trash-alt tooltip">
-          <span className='tooltiptext'>Delete</span>
+        <i className="far fa-trash-alt">
         </i>
       </a>
       {showModal && (

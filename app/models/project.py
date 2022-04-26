@@ -13,7 +13,7 @@ class Project(db.Model):
     user = db.relationship('User', back_populates='project')
     task = db.relationship('Task', back_populates='project')
     section = db.relationship('Section', back_populates='project')
-    note = db.relationship('Note', back_populates='project')
+    comment = db.relationship('Comment', back_populates='project')
 
     def to_dict(self):
         return {

@@ -25,7 +25,7 @@ def seed_projects():
         updated_at=datetime.now())
     p5 = Project(
         user_id=2,
-        title='Project #5',
+        title='Project #4',
         created_at=datetime.now(),
         updated_at=datetime.now())
 

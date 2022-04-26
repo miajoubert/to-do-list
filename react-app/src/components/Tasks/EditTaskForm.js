@@ -8,8 +8,6 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
   const projectsState = useSelector(state => state.projects);
   const sectionsState = useSelector(state => state.sections);
 
-  console.log("CURR TASK", currentTask)
-
   const [project_id, setProjectId] = useState(currentTask?.project_id);
   const [section_id, setSectionId] = useState(currentTask?.section_id);
   const [task, setTask] = useState(currentTask?.task);
@@ -24,9 +22,6 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
       return section?.project_id === +project_id
     });
   sections.unshift({ id: null, section: "---" })
-
-  console.log("ALL PROJECTS", projects)
-  console.log("ALL SECTIONS", sections)
 
   useEffect(() => {
     setTask(currentTask?.task)

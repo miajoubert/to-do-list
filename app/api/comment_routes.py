@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Note, db
-from app.forms import NoteForm
+from app.forms.comment_form import CommentForm
+from app.models import Comment, db
+from app.forms import CommentForm
 from datetime import datetime
 
-note_routes = Blueprint('notes', __name__)
+comment_routes = Blueprint('comments', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
   errorMessages = []
@@ -14,44 +15,44 @@ def validation_errors_to_error_messages(validation_errors):
   return errorMessages
 
 
-@note_routes.route('')
-def get_note():
-  notes = Note.query.all()
-  return {"notes": [note.to_dict() for note in notes]}
+@comment_routes.route('')
+def get_comment():
+  comments = Comment.query.all()
+  return {"comments": [comment.to_dict() for comment in comments]}
 
 
-@note_routes.route("/<int:id>")
-def get_note_by_id(id):
-  note = Note.query.get(id)
-  return note.to_dict()
+@comment_routes.route("/<int:id>")
+def get_comment_by_id(id):
+  comment = Comment.query.get(id)
+  return comment.to_dict()
 
 
-@note_routes.route('/add', methods=['POST'])
-def add_note():
-  form = NoteForm()
+@comment_routes.route('/add', methods=['POST'])
+def add_comment():
+  form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    note = Note(
+    comment = Comment(
       project_id=form.data['project_id'],
-      note=form.data['note'],
+      comment=form.data['comment'],
       created_at = datetime.now(),
       updated_at = datetime.now(),
     )
-    db.session.add(note)
+    db.session.add(comment)
     db.session.commit()
-    return note.to_dict()
+    return comment.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@note_routes.route('/<int:id>/edit/', methods=['PATCH'])
-def edit_note(id):
-  form = NoteForm()
+@comment_routes.route('/<int:id>/edit/', methods=['PATCH'])
+def edit_comment(id):
+  form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    edit = Note.query.get(id)
+    edit = Comment.query.get(id)
 
     edit.project_id=form.data['project_id']
-    edit.note=form.data['note'],
+    edit.comment=form.data['comment'],
     edit.updated_at = datetime.now()
 
     db.session.add(edit)
@@ -60,9 +61,9 @@ def edit_note(id):
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@note_routes.route('/<int:id>/delete', methods=['DELETE'])
-def delete_note(id):
-  delete = Note.query.get(id)
+@comment_routes.route('/<int:id>/delete', methods=['DELETE'])
+def delete_comment(id):
+  delete = Comment.query.get(id)
   db.session.delete(delete)
   db.session.commit()
   return {'Response': 'Deleted'}
