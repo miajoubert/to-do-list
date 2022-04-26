@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import TaskList from './TaskList';
-import { completeATask, getCompleteTasks } from '../../store/tasks';
+import { getAllTasks } from '../../store/tasks';
 import './CompletedTasks.css'
 
 const CompletedTasks = () => {
@@ -10,19 +10,16 @@ const CompletedTasks = () => {
   const projectsState = useSelector(state => state.projects)
   const completedState = useSelector(state => state.tasks)
   const tasks = Object.values(completedState)
+    .filter(task => {
+      return task.completed
+    })
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    let tasksAreComplete = true
+    await dispatch(getAllTasks(sessionUser))
+  }, [dispatch, sessionUser])
 
-    if (tasksAreComplete) {
-      await dispatch(getCompleteTasks())
-    }
 
-    return () => {
-      tasksAreComplete = false
-    }
-  }, [dispatch])
 
   return (
     <>
@@ -43,8 +40,6 @@ const CompletedTasks = () => {
             )
           })}
         </ul>
-
-
       </div>
     </>
   );

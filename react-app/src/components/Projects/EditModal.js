@@ -50,11 +50,10 @@ const EditModal = ({ project }) => {
   return (
     <>
       <a
-        className='proj-sb-button'
         onClick={() => setShowModal(true)}
       >
-        <i className="far fa-edit tooltip">
-          <span className='tooltiptext'>Edit</span>
+        <i className="proj-sb-button far fa-edit tooltip">
+          Edit project
         </i>
       </a>
       {showModal && (

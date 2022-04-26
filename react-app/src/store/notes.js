@@ -62,7 +62,13 @@ export const addANote = (note) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addNote(data))
-    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 
@@ -78,7 +84,13 @@ export const editANote = (note) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(editNote(data))
-    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 

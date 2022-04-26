@@ -61,7 +61,13 @@ export const addASection = (section) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addSection(data))
-    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 
@@ -77,7 +83,13 @@ export const editASection = (section) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(editSection(data))
-    return data
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['A server error occurred. Please try again.']
   }
 }
 

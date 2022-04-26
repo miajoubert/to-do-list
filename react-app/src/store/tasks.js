@@ -4,7 +4,6 @@ const ADD_TASK = 'tasks/ADD_TASK';
 const EDIT_TASK = 'tasks/EDIT_TASK';
 const DELETE_TASK = 'tasks/DELETE_TASK';
 const COMPLETE_TASK = 'tasks/COMPLETE_TASK';
-const GET_DONE_TASKS = 'tasks/GET_DONE_TASKS';
 
 const getTasks = (tasks) => ({
   type: GET_TASKS,
@@ -35,12 +34,6 @@ const completeTask = (task) => ({
   type: COMPLETE_TASK,
   task
 })
-
-const getDoneTasks = (tasks) => ({
-  type: GET_DONE_TASKS,
-  tasks
-})
-
 
 
 export const getAllTasks = () => async (dispatch) => {
@@ -133,17 +126,6 @@ export const completeATask = (id) => async (dispatch) => {
   }
 }
 
-export const getCompleteTasks = () => async (dispatch) => {
-  const res = await fetch(`/api/tasks/completed`)
-
-  if (res.ok) {
-    const data = await res.json()
-    dispatch(getDoneTasks(data.tasks))
-    return data.tasks
-  }
-}
-
-
 export default function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
@@ -175,12 +157,6 @@ export default function reducer(state = {}, action) {
       newState = { ...state };
       newState[action.task?.id] = action.task;
       return newState
-    case GET_DONE_TASKS:
-      newState = {};
-      action.tasks.forEach((task) => {
-        newState[task?.id] = task
-      });
-      return newState;
     default:
       return state;
   }

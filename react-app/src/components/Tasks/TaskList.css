@@ -10,32 +10,8 @@
   border-bottom: .5px solid #80808020;
 }
 
-/* .hide-container {
-  display: flex;
-  width: auto;
-  position: relative;
-  left: 0;
-  right: 0;
-} */
-
 .completed-container {
   width: 25px
-}
-
-.the-actual-checkbox {
-  box-shadow: 1px 1px 2px black ;
-  border-radius: 10px;
-  border: none;
-}
-.the-actual-checkbox:hover {
-  box-shadow: 1px 1px 4px black ;
-  border-radius: 10px;
-  border: none;
-}
-
-.the-actual-checkbox:checked {
-  box-shadow: 1px 1px 2px 1px black ;
-
 }
 
 .fa-check {
@@ -51,12 +27,6 @@
   color: #808080;
 }
 
-.fa-check:hover {
-  transition: all .25s;
-  color: #808080;
-  /* color:#DB4C3F */
-}
-
 .completed-circle {
   position: absolute;
   bottom: 15px;
@@ -70,6 +40,11 @@
 
 .completed-circle:hover {
   border: #808080 solid 2px;
+}
+
+.completed-circle:hover .fa-check {
+  transition: all .25s;
+  color: #808080;
 }
 
 .checked {
@@ -103,9 +78,11 @@
     width: 70vw;
     min-width: 300px;
   }
+
   .name-description-container {
     min-width: 200px;
   }
+
   .task-list-title {
     min-width: 200px;
   }

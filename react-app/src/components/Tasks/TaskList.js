@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DeleteTask from './DeleteTask';
 import EditTaskForm from './EditTaskForm';
-import { completeATask, getCompleteTasks } from '../../store/tasks';
+import { completeATask } from '../../store/tasks';
 
 import './TaskList.css'
 
@@ -11,16 +11,10 @@ const TaskList = ({ task, handleClose }) => {
   const [showEditForm, setShowEditForm] = useState(false)
   const dispatch = useDispatch()
 
-
   const handleCompleted = async (e) => {
     await dispatch(completeATask(task?.id))
 
-    if (window.location.href.search("/app/archive") > 2) {
-      await dispatch(getCompleteTasks())
-      setCompleted(!completed)
-    } else {
-      setCompleted(!completed)
-    }
+    setCompleted(!completed)
   }
 
   if (!task) {

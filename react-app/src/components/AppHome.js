@@ -6,7 +6,7 @@ import { getAllTasks } from '../store/tasks';
 import './AppHome.css';
 
 const AppHome = () => {
-  const sessionUser = useSelector(state => state.session?.user.id);
+  const sessionUser = useSelector(state => state.session?.user);
   const projectsState = useSelector(state => state.projects);
   const tasksState = useSelector(state => state.tasks);
   const [showTaskForm, setShowTaskForm] = useState(false);
@@ -16,15 +16,15 @@ const AppHome = () => {
   const tasks = Object.values(tasksState);
 
   useEffect(async () => {
-    await dispatch(getAllTasks())
-  }, [dispatch, sessionUser]);
+    await dispatch(getAllTasks(sessionUser.id))
+  }, [dispatch, sessionUser.id]);
 
 
   return (
     <>
       <div className='task-list-title-container'>
         <div className='task-list-title'>
-          Inbox
+          All {sessionUser.username}'s Tasks
         </div>
       </div>
       <div className='primary-task-container'>

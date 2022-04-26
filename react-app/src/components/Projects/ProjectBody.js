@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import MainNav from '../MainNav';
-import ProjectSidebar from './ProjectsSidebar';
+import { useParams } from 'react-router-dom';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import TaskList from '../Tasks/TaskList';
 import TaskForm from '../Tasks/TaskForm';
-import { getProjTasks, getAllTasks } from '../../store/tasks';
+import AddSection from '../Sections/AddSection';
+import { getAllTasks } from '../../store/tasks';
+
 import './ProjectBody.css'
 
 const ProjectBody = () => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const projectsState = useSelector(state => state.projects)
   const tasksState = useSelector(state => state.tasks)
+  const [showProjectMenu, setShowProjectMenu] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
+  const [showSectionForm, setShowSectionForm] = useState(false)
 
   const { projectId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const tasks = Object.values(tasksState).filter((task) => {
     return (task?.project_id === +projectId)
@@ -28,22 +29,37 @@ const ProjectBody = () => {
     await dispatch(getAllTasks())
   }, [dispatch, projectId, sessionUser])
 
-
   return (
     <>
       <div className='task-list-title-container'>
         <div className='task-list-title'>
           {projectsState[projectId]?.title}
         </div>
-        <div className='title-button-div'>
+
+        <div
+
+          className='title-button-div'
+        >
+          <span
+            className='fas fa-ellipsis-h'
+            onClick={() => setShowProjectMenu(!showProjectMenu)}
+          />
+
+        </div>
+
+        <div
+          hidden={!showProjectMenu}
+          className='project-menu-container'
+        >
           <EditModal
-            className="project-title-button"
             project={projectsState[projectId]}
           />
           <DeleteModal
-            className="project-title-button"
             project={projectsState[projectId]}
           />
+          <span
+            className='proj-sb-button fas fa-puzzle-piece'
+          /> Add section
         </div>
       </div>
       <div className='primary-task-container'>
@@ -87,6 +103,14 @@ const ProjectBody = () => {
           <TaskForm
             projectId={projectId}
             showTaskForm={() => setShowTaskForm(false)} />
+        </div>
+
+        <div
+          hidden={!showSectionForm}
+        >
+          <AddSection
+            projectId={projectId}
+            showSectionForm={() => setShowSectionForm(false)} />
         </div>
       </div>
     </>
