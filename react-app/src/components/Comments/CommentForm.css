@@ -1,0 +1,27 @@
+.modal-new-comment-form {
+  padding: 10px;
+  border: solid .5px #33333350;
+  border-radius: 10px;
+}
+
+.modal-comment-textarea {
+  height: 50px;
+  width: 98%;
+  border: none;
+  padding: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: auto;
+  resize: none;
+}
+
+.modal-comment-textarea {
+  border: none;
+}
+
+.add-comment-button-div {
+  text-align: right;
+}
+
+#comment-add-button {
+  margin: 0px;
+}

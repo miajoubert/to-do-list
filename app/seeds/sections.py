@@ -4,27 +4,27 @@ from datetime import datetime
 
 def seed_sections():
     s1 = Section(
-        project_id=1,
+        project_id=2,
         section='Section #1',
         created_at=datetime.now(),
         updated_at=datetime.now())
     s2 = Section(
-        project_id=1,
+        project_id=2,
         section='Section #2',
         created_at=datetime.now(),
         updated_at=datetime.now())
     s3 = Section(
         project_id=2,
-        section='Section #1',
+        section='Section #3',
         created_at=datetime.now(),
         updated_at=datetime.now())
     s4 = Section(
         project_id=3,
-        section='Section #1',
+        section='Section 1',
         created_at=datetime.now(),
         updated_at=datetime.now())
     s5 = Section(
-        project_id=4,
+        project_id=5,
         section='Section #1',
         created_at=datetime.now(),
         updated_at=datetime.now())

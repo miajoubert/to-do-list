@@ -34,7 +34,6 @@ const deleteComment = (id) => ({
 export const getAllComments = () => async (dispatch) => {
   const res = await fetch('/api/comments')
 
-  console.log("THIS IS MY COMMENTSSSSSSSS", res)
   if (res.ok) {
     const data = await res.json()
     dispatch(getComments(data.comments))
