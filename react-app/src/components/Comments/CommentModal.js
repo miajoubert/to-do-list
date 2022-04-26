@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
+import DeleteComment from './CommentDelete';
 import { addAComment, getAllComments } from '../../store/comments';
 
 import './CommentModal.css'
@@ -22,7 +23,6 @@ const CommentModal = ({ closeMenu }) => {
 
   const comments = Object.values(commentsState)
     .filter(comment => {
-      console.log("COMM ID vs comment ID", comment.project_id, project_id)
       return comment.project_id === +project_id
     })
 
@@ -123,7 +123,7 @@ const CommentModal = ({ closeMenu }) => {
                             </div>
                             <div>
                               <span className='far fa-edit' />
-                              <span className='far fa-trash-alt ' />
+                              <DeleteComment comment={comment} />
                             </div>
                           </div>
                           <div className='comment-div-body'> {comment?.comment}</div>

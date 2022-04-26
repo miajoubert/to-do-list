@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 5px 10px;
   min-width: 300px;
   min-height: 80vh;
-  width: 50vw;
+  width: 45vw;
 }
 
 .comments-proj-title-div {
@@ -68,6 +69,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .comment-div {
@@ -113,4 +115,9 @@
 .comment-div-body {
 
   font-size: 14px;
+}
+
+.comment-button {
+  margin-left: 10px;
+  color: gray;
 }
