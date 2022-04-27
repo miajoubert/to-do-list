@@ -21,7 +21,7 @@ const EditTaskForm = ({ currentTask, showEditForm }) => {
     .filter(section => {
       return section?.project_id === +project_id
     });
-  sections.unshift({ id: null, section: "---" })
+  sections.unshift({ id: 0, section: "---" })
 
   useEffect(() => {
     setTask(currentTask?.task)
