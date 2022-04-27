@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal'
-import { getAllTasks } from '../../store/tasks';
-import { deleteASection } from '../../store/sections';
+import { deleteAComment } from '../../store/comments';
 
-import './Section.css'
+import './CommentModal.css'
 
-const DeleteSection = ({ section }) => {
+const CommentDelete = ({ comment }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
-  const tasksState = useSelector(state => state.tasks)
-  const tasks = Object.values(tasksState)
-    .filter(task => {
-      return task.section_id === section.id
-    })
-
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(getAllTasks())
-  }, [dispatch, sessionUser])
-
-  const handleDeleteSection = (e) => {
+  const handleDeleteComment = (e) => {
     e.preventDefault();
-
-    dispatch(deleteASection(section?.id))
+    dispatch(deleteAComment(comment?.id))
       .catch(
         async (res) => {
           const data = await res.json()
@@ -38,15 +26,10 @@ const DeleteSection = ({ section }) => {
 
   return (
     <>
-      <div
-        className='section-menu'
+      <span
+        className='far fa-trash-alt comment-button'
         onClick={() => setShowModal(true)}
-      >
-        <span className="far fa-trash-alt" />
-        <div className='project-menu'>
-          Delete section
-        </div>
-      </div>
+      />
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
@@ -57,7 +40,7 @@ const DeleteSection = ({ section }) => {
           </ul>
 
           <div className='confirmation'>
-            Are you sure you want to delete {section?.section} and its {tasks.length} tasks?
+            Are you sure you want to delete this comment?
           </div>
 
           <div className='modal-button-div'>
@@ -69,9 +52,9 @@ const DeleteSection = ({ section }) => {
             </button>
             <button
               className="submit-button"
-              onClick={handleDeleteSection}
+              onClick={handleDeleteComment}
             >
-              Delete section
+              Delete comment
             </button>
           </div>
         </Modal>
@@ -81,4 +64,4 @@ const DeleteSection = ({ section }) => {
   );
 }
 
-export default DeleteSection;
+export default CommentDelete;

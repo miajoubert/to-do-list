@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
+import Comment from './Comment';
 import { addAComment, getAllComments } from '../../store/comments';
 
 import './CommentModal.css'
@@ -22,7 +23,6 @@ const CommentModal = ({ closeMenu }) => {
 
   const comments = Object.values(commentsState)
     .filter(comment => {
-      console.log("COMM ID vs comment ID", comment.project_id, project_id)
       return comment.project_id === +project_id
     })
 
@@ -91,8 +91,8 @@ const CommentModal = ({ closeMenu }) => {
                     height="15"
                     viewBox="0 0 15 15"
                   >
-                    <line x1='0' y1='0' x2='15' y2='15' stroke='gray' strokeWidth='1.5' />
-                    <line x1='0' y1='15' x2='15' y2='0' stroke='gray' strokeWidth='1.5' />
+                    <line x1='0' y1='0' x2='14' y2='14' stroke='gray' strokeWidth='1.5' />
+                    <line x1='0' y1='14' x2='14' y2='0' stroke='gray' strokeWidth='1.5' />
                   </svg>
                 </span>
               </div>
@@ -101,38 +101,11 @@ const CommentModal = ({ closeMenu }) => {
                 {comments.length ?
                   comments?.map((comment) => {
                     return (
-                      <div className='individual-comment-div'>
-                        <div className='user-button' id="comment-user">
-                          {sessionUser['username']?.charAt(0)}
-                        </div>
-                        <div className='comment-div'>
-                          <div className='comment-div-header'>
-                            <div className='header-left'>
-                              <div className='comment-username'>
-                                {sessionUser?.username}
-                              </div>
-                              <div className='comment-timestamp'>
-                                {new Date(comment?.updated_at).toDateString().split(" ")[1]}&nbsp;
-                                {new Date(comment?.updated_at).toDateString().split(" ")[2]}&nbsp;
-                                {new Date(comment?.updated_at).getHours() > 12 ?
-                                  new Date(comment?.updated_at).getHours() - 12 :
-                                  new Date(comment?.updated_at).getHours()}:
-                                {new Date(comment?.updated_at).getMinutes()}&nbsp;
-                                {new Date(comment?.updated_at).getHours() > 12 ? 'PM' : 'AM'}
-                              </div>
-                            </div>
-                            <div>
-                              <span className='far fa-edit' />
-                              <span className='far fa-trash-alt ' />
-                            </div>
-                          </div>
-                          <div className='comment-div-body'> {comment?.comment}</div>
-                        </div>
-                      </div>
+                      <Comment comment={comment} />
                     )
                   })
-                  :
 
+                  :
                   <div className='comments-no-comments'>
                     <i class="far fa-comments"></i>
                     <div className='no-comments-text'>

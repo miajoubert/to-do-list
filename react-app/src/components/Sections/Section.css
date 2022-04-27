@@ -1,6 +1,73 @@
-.drag-box {
+/* .drag-box {
   padding: 30px;
   background: #ccc;
   width: 100px;
   cursor: move;
+} */
+
+
+.section-container {
+  font-size: 14px;
+  width: 57vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: .5px solid #80808020;
+}
+
+#section-button {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: rgba(51, 51, 51, 0.6);
+  padding: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 2.5px;
+}
+
+#section-button:hover {
+  background-color: rgb(211, 211, 211, .3);
+  color: #333333
+}
+
+.section-menu-div {
+  position: fixed;
+  /* right: 40px; */
+  display: flex;
+  flex-direction: column;
+  width: 125px;
+  padding: 10px;
+  margin: 0px 30px 0px 0px;
+  background-color: white;
+  box-shadow: 0 0 3px 0px darkgray;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.section-menu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.section-menu:hover {
+  background-color: rgb(211, 211, 211, .4);
+}
+
+.section-add {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px 50px 0px;
+}
+
+.fa-trash-alt {
+  width: 15.75px;
 }

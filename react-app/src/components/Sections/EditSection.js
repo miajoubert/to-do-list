@@ -83,7 +83,7 @@ const EditSection = ({ currentSection, showEditForm, showSectionMenu }) => {
             className="submit-task-button"
             onClick={handleEditSection}
           >
-            Edit section
+            Save
           </button>
           <button
             onClick={handleCancel}

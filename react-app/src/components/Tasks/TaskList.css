@@ -71,6 +71,11 @@
 .task-buttons-div {
   display: flex;
   flex-direction: row;
+  display: none;
+}
+
+.task-container:hover .task-buttons-div {
+  display: contents;
 }
 
 @media screen and (max-width: 780px) {

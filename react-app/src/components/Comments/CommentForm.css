@@ -25,3 +25,11 @@
 #comment-add-button {
   margin: 0px;
 }
+
+.edit-comment-button-div {
+  text-align: right;
+}
+
+#comment-edit-buttons {
+  margin: 10px 0px 0px 10px;
+}
