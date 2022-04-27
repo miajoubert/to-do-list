@@ -5,7 +5,7 @@ import { deleteAComment } from '../../store/comments';
 
 import './CommentModal.css'
 
-const DeleteComment = ({ comment }) => {
+const CommentDelete = ({ comment }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -64,4 +64,4 @@ const DeleteComment = ({ comment }) => {
   );
 }
 
-export default DeleteComment;
+export default CommentDelete;

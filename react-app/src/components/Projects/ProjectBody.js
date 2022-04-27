@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import EditModal from './EditModal';
@@ -25,6 +25,7 @@ const ProjectBody = () => {
 
   const { projectId } = useParams();
   const dispatch = useDispatch();
+  const inputRef = useRef()
 
   const tasks = Object.values(tasksState).filter((task) => {
     return (task?.project_id === +projectId && !task?.section_id)
@@ -33,6 +34,10 @@ const ProjectBody = () => {
   const sections = Object.values(sectionState).filter((section) => {
     return (section?.project_id === +projectId)
   })
+
+  useEffect(() => {
+    setShowProjectMenu(false)
+  }, [projectId])
 
   useEffect(async () => {
     await dispatch(getAllTasks(sessionUser))
@@ -48,7 +53,7 @@ const ProjectBody = () => {
 
         <div className='title-button-div'>
           <span
-            className='fas fa-ellipsis-h proj-sb-button'
+            className='fas fa-ellipsis-h'
             onClick={() => setShowProjectMenu(!showProjectMenu)}
           />
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Draggable from 'react-draggable'
+// import Draggable from 'react-draggable'
 import EditSection from './EditSection';
 import DeleteSection from './DeleteSection';
 import TaskList from '../Tasks/TaskList';
@@ -14,6 +14,7 @@ const ProjectSection = ({ section, projectId }) => {
   const sessionUser = useSelector(state => state.session.user.id);
   const tasksState = useSelector(state => state.tasks);
   const dispatch = useDispatch();
+  const inputRef = useRef();
 
   const [showSectionMenu, setShowSectionMenu] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
@@ -22,6 +23,11 @@ const ProjectSection = ({ section, projectId }) => {
   const tasks = Object.values(tasksState).filter((task) => {
     return (task?.section_id === section.id)
   })
+
+  useEffect(() => {
+    setShowSectionMenu(false)
+    setShowEdit(false)
+  }, [inputRef])
 
   useEffect(async () => {
     await dispatch(getAllSections(sessionUser))
@@ -32,34 +38,38 @@ const ProjectSection = ({ section, projectId }) => {
     <>
       {/* <Draggable> */}
       <div hidden={showEdit}>
-        <div className='name-description-container' >
+        <div className='section-container' >
           <b>{section?.section}</b>
 
-          <span
-            className='fas fa-ellipsis-h'
-            onClick={() => setShowSectionMenu(!showSectionMenu)}
-          />
-
-          <div
-            className='section-menu-div'
-            hidden={!showSectionMenu}
-          >
+          <div>
+            <span
+              className='fas fa-ellipsis-h'
+              id='section-button'
+              onClick={() => setShowSectionMenu(!showSectionMenu)}
+            />
 
             <div
-              className='proj-sb-button'
-              onClick={() => setShowEdit(true)}
+              className={!showSectionMenu ? 'hidden' : 'section-menu-div'}
+              hidden={!showSectionMenu}
             >
-              <span className="far fa-edit tooltip">
-                Edit section
-              </span>
+
+              <div
+                className='section-menu'
+                onClick={() => setShowEdit(true)}
+              >
+                <span className="far fa-edit" />
+                <div className='project-menu'>
+                  Edit section
+                </div>
+              </div>
+
+              <DeleteSection
+                section={section} />
+
             </div>
-
-            <DeleteSection
-              section={section} />
-
           </div>
         </div>
-      </div>
+      </div >
 
       < div
         hidden={!showEdit}
@@ -84,7 +94,7 @@ const ProjectSection = ({ section, projectId }) => {
 
       <div hidden={showTaskForm}>
         <a
-          className='main-add'
+          className='section-add'
           onClick={() => setShowTaskForm(true)}
         >
           <svg

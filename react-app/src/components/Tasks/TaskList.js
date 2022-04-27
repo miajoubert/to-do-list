@@ -54,7 +54,6 @@ const TaskList = ({ task, handleClose }) => {
             <div className='task-description'>{task?.description}</div>
           </div>
           <div className='task-buttons-div'>
-
             <a
               className='proj-sb-button'
               onClick={() => setShowEditForm(true)}

@@ -44,14 +44,13 @@ def add_comment():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@comment_routes.route('/<int:id>/edit/', methods=['PATCH'])
+@comment_routes.route('/<int:id>/edit', methods=['PATCH'])
 def edit_comment(id):
   form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     edit = Comment.query.get(id)
 
-    edit.project_id=form.data['project_id']
     edit.comment=form.data['comment'],
     edit.updated_at = datetime.now()
 

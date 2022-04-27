@@ -4,6 +4,8 @@ import { Modal } from '../../context/Modal'
 import { getAllTasks } from '../../store/tasks';
 import { deleteASection } from '../../store/sections';
 
+import './Section.css'
+
 const DeleteSection = ({ section }) => {
   const sessionUser = useSelector(state => state.session?.user.id)
   const tasksState = useSelector(state => state.tasks)
@@ -36,11 +38,15 @@ const DeleteSection = ({ section }) => {
 
   return (
     <>
-      <span
-        className="far fa-trash-alt"
-        onClick={() => setShowModal(true)}>
-        Delete section
-      </span>
+      <div
+        className='section-menu'
+        onClick={() => setShowModal(true)}
+      >
+        <span className="far fa-trash-alt" />
+        <div className='project-menu'>
+          Delete section
+        </div>
+      </div>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
