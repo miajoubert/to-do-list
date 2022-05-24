@@ -12,6 +12,8 @@ const ProjectItem = ({ project }) => {
 
   const projectId = history.location?.pathname.split('/')[3]
 
+  const color = "red"
+
   return (
     <div
       className={
@@ -27,7 +29,7 @@ const ProjectItem = ({ project }) => {
           height="30"
           viewBox="0 0 10 10"
         >
-          <circle cx="4" cy="4" r="4" />
+          <circle cx="4" cy="4" r="4" fill={color} />
         </svg>
         <div className='project-link'>
           {project?.title}
