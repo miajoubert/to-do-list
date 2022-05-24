@@ -22,6 +22,13 @@ const ProjectItem = ({ project }) => {
       onClick={() => history.push(`/app/projects/${project?.id}`)}
     >
       <div className='project-item-div'>
+        <svg
+          width="10"
+          height="30"
+          viewBox="0 0 10 10"
+        >
+          <circle cx="4" cy="4" r="4" />
+        </svg>
         <div className='project-link'>
           {project?.title}
         </div>

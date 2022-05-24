@@ -18,6 +18,11 @@
   border-radius: 5px;
 }
 
+.project-item-div {
+  display: flex;
+  flex-direction: row;
+}
+
 .project-link {
   padding: 3px 0 3px 7px;
   min-width: 207px;
