@@ -9,6 +9,7 @@ const ProjectForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState('');
+  const [hideColors, setHideColors] = useState(true)
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -86,18 +87,26 @@ const ProjectForm = () => {
               <label className="input-container">
                 <div className='input-label'>Color</div>
                 <div className='dropdown-colors-list'>
-                  <div>
-                    <span className='fas fa-circle' style={{ color: "#B8255F", fontSize: "12px", margin: "8px 6px" }} />
-                    Strawberry Red
+                  <div
+                    onClick={() => setHideColors(!hideColors)}
+                  >
+                    Default color</div>
+
+                  <div hidden={hideColors}>
+                    <div>
+                      <span className='fas fa-circle' style={{ color: "#B8255F", fontSize: "12px", margin: "8px 6px" }} />
+                      Strawberry Red
+                    </div>
+                    <div>
+                      <span className='fas fa-circle' style={{ color: "#DB4025", fontSize: "12px", margin: "8px 6px" }} />
+                      Red
+                    </div>
+                    <div>
+                      <span className='fas fa-circle' style={{ color: "#FF9933", fontSize: "12px", margin: "8px 6px" }} />
+                      Orange
+                    </div>
                   </div>
-                  <div>
-                    <span className='fas fa-circle' style={{ color: "#DB4025", fontSize: "12px", margin: "8px 6px" }} />
-                    Red
-                  </div>
-                  <div>
-                    <span className='fas fa-circle' style={{ color: "#FF9933", fontSize: "12px", margin: "8px 6px" }} />
-                    Orange
-                  </div>
+
                 </div>
               </label>
             </form>
