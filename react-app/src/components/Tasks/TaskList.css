@@ -53,19 +53,20 @@
 
 .name-description-container {
   width: 50vw;
+  min-height: 34.67px;
   padding: 0 10px;
 }
 
 .task-name {
   font-size: 14px;
   color: #202020;
-  width: 100%;
+  min-width: 100%;
 }
 
 .task-description {
   font-size: 12px;
   color: #808080;
-  width: 100%;
+  min-width: 100%;
 }
 
 .task-buttons-div {
